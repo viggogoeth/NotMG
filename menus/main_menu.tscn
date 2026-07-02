@@ -1,0 +1,131 @@
+[gd_scene format=3 uid="uid://dbk8a2wqhird2"]
+
+[ext_resource type="Script" uid="uid://dt67h2mpjwvm7" path="res://menus/main_menu.gd" id="1_caclp"]
+[ext_resource type="Texture2D" uid="uid://1bgbft4tghhk" path="res://sprites/wizard/wizard_idle_side/wizard_idle_side0.png" id="1_vmd75"]
+[ext_resource type="Texture2D" uid="uid://pqvivyjxwbc4" path="res://sprites/wizard/wizard_idle_side/wizard_idle_side1.png" id="2_caclp"]
+[ext_resource type="Texture2D" uid="uid://by8y7i4rvkksp" path="res://sprites/wizard/wizard_idle_side/wizard_idle_side2.png" id="3_nc6jr"]
+[ext_resource type="Texture2D" uid="uid://lfrvk2srhj08" path="res://sprites/wizard/wizard_idle_side/wizard_idle_side3.png" id="4_kk4mm"]
+[ext_resource type="Texture2D" uid="uid://cebl254va2ctg" path="res://sprites/wizard/wizard_idle_side/wizard_idle_side4.png" id="5_rx1ud"]
+[ext_resource type="Texture2D" uid="uid://doj7jvkbd2qpr" path="res://sprites/wizard/wizard_idle_side/wizard_idle_side5.png" id="6_wcdpt"]
+[ext_resource type="Texture2D" uid="uid://c7rbtck8f5car" path="res://sprites/wizard/wizard_idle_side/wizard_idle_side6.png" id="7_u3dsk"]
+[ext_resource type="Texture2D" uid="uid://bsq146ba18o1i" path="res://sprites/wizard/wizard_idle_side/wizard_idle_side7.png" id="8_ygrj5"]
+[ext_resource type="Texture2D" uid="uid://cgro6dk0u6rlt" path="res://sprites/wizard/wizard_idle_side/wizard_idle_side8.png" id="9_lgqab"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_caclp"]
+font_size = 120
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kqtkm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_vmd75")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_caclp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_nc6jr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_kk4mm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_rx1ud")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_wcdpt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_u3dsk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ygrj5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_lgqab")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="MainMenu" type="Control" unique_id=285151893]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_caclp")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=801337898]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.23753911, 0.23753914, 0.23753911, 0.3137255)
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1865380649]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.05
+anchor_right = 0.95
+anchor_bottom = 0.95
+localize_numeral_system = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1810387982]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=723560561]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=650255237]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RichTextLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=313705796]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "NotMG"
+label_settings = SubResource("LabelSettings_caclp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1567482305]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ContinueButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2" unique_id=1559678919]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Continue"
+
+[node name="NewGameButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2" unique_id=276197516]
+layout_mode = 2
+size_flags_vertical = 3
+text = "New Game"
+
+[node name="QuitButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2" unique_id=550697452]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Quit"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=440037372]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MarginContainer/HBoxContainer/HBoxContainer" unique_id=1243192169]
+texture_filter = 1
+position = Vector2(586, 738)
+scale = Vector2(2.7187495, 2.7187495)
+sprite_frames = SubResource("SpriteFrames_kqtkm")
+flip_h = true
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/QuitButton" to="." method="_on_quit_button_pressed"]

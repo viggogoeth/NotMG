@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://bm2857742v0ai"]
+
+[ext_resource type="Script" uid="uid://cm6fvr1ixmh6a" path="res://entities/characters/enemies/enemy.gd" id="1_w0cf2"]
+[ext_resource type="PackedScene" uid="uid://qxwiaux0yv7h" path="res://entities/characters/components/health_component.tscn" id="2_wv5ky"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i0y61"]
+size = Vector2(48, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wv5ky"]
+size = Vector2(32, 32)
+
+[node name="Enemy" type="CharacterBody2D" unique_id=720180946 groups=["hostile_entities"]]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_w0cf2")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=832939916]
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 24.0
+offset_bottom = 24.0
+color = Color(0, 0.39532185, 0.022088934, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1713658057]
+shape = SubResource("RectangleShape2D_i0y61")
+
+[node name="MovementTimer" type="Timer" parent="." unique_id=848070374]
+wait_time = 0.2
+
+[node name="HealthComponent" parent="." unique_id=334772244 instance=ExtResource("2_wv5ky")]
+
+[node name="HitBox" type="Area2D" parent="." unique_id=859461235]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=1787505710]
+shape = SubResource("RectangleShape2D_wv5ky")
+
+[connection signal="timeout" from="MovementTimer" to="." method="_on_movement_timer_timeout"]
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]

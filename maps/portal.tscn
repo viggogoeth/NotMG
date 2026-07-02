@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://b8rjrpsoqbdvw"]
+
+[ext_resource type="Script" uid="uid://bls7mpwe2cwm0" path="res://maps/portal.gd" id="1_0r486"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ef3v5"]
+size = Vector2(80, 80)
+
+[sub_resource type="LabelSettings" id="LabelSettings_352g6"]
+font_size = 44
+font_color = Color(0.73300546, 0.7330054, 0.7330054, 1)
+shadow_color = Color(0, 0, 0, 0.22745098)
+
+[node name="Portal" type="Area2D" unique_id=1364127591]
+collision_layer = 0
+script = ExtResource("1_0r486")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=166009973]
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.6509804, 0.99215686, 0.8509804, 0.47843137)
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1509197484]
+shape = SubResource("RectangleShape2D_ef3v5")
+
+[node name="InteractPrompt" type="Control" parent="." unique_id=1554188617]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -64.0
+offset_right = 64.0
+grow_vertical = 0
+
+[node name="ColorRect" type="ColorRect" parent="InteractPrompt" unique_id=703858609]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.29219002, 0.29219005, 0.29218993, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="InteractPrompt" unique_id=230517447]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.0
+offset_top = -26.0
+offset_right = 26.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.34033912, 0.3403394, 0.34033918, 1)
+
+[node name="Label" type="Label" parent="InteractPrompt" unique_id=699361983]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -8.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "[E]"
+label_settings = SubResource("LabelSettings_352g6")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
