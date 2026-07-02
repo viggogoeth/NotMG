@@ -58,7 +58,13 @@ tile_map_data = PackedByteArray("AAAAAAgAAgAAAAAAAAABAAgAAQAAAAEAAAACAAgAAQACAAE
 tile_set = SubResource("TileSet_0xgh2")
 
 [node name="Enemy" parent="." unique_id=720180946 instance=ExtResource("3_8jmup")]
-position = Vector2(976, 1448)
+position = Vector2(960, 1432)
+scale = Vector2(3, 3)
+speed = 750.0
+health = 500.0
+resistance = 0.75
+contact_damage = 25.0
+color = Color(0.9314931, 0.24568924, 0.5608222, 1)
 
 [node name="Player" parent="." unique_id=8722019 instance=ExtResource("4_edqsn")]
 position = Vector2(960, 240)

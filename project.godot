@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 WorldManager="*uid://c0u05346lweyl"
+PlayerVariables="*uid://b4wgvnsvva0y4"
 
 [display]
 

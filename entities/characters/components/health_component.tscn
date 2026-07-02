@@ -2,5 +2,30 @@
 
 [ext_resource type="Script" uid="uid://3y3ytolwvloo" path="res://entities/characters/components/health_component.gd" id="1_n21r7"]
 
-[node name="HealthComponent" type="Node" unique_id=334772244]
+[node name="HealthComponent" type="Node2D" unique_id=807587943]
 script = ExtResource("1_n21r7")
+
+[node name="HealthbarBackground" type="ColorRect" parent="." unique_id=619525095]
+z_index = 2
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -32.0
+offset_right = 32.0
+offset_bottom = 8.0
+grow_horizontal = 2
+size_flags_horizontal = 0
+color = Color(0.5489626, 0.5489626, 0.54896253, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Healthbar" type="ColorRect" parent="." unique_id=785284205]
+z_index = 2
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -32.0
+offset_right = 32.0
+offset_bottom = 8.0
+grow_horizontal = 2
+color = Color(0, 1, 0, 1)
+metadata/_edit_use_anchors_ = true

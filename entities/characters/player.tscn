@@ -226,9 +226,9 @@ radius = 36.0
 height = 112.0
 
 [node name="Player" type="CharacterBody2D" unique_id=8722019 groups=["persistent"]]
+position = Vector2(111, 75)
 collision_mask = 2
 script = ExtResource("1_o21vo")
-metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=439149585]
 texture_filter = 1
@@ -240,7 +240,6 @@ frame_progress = 0.90827423
 shape = SubResource("CapsuleShape2D_o21vo")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=484666724]
-visible = false
 script = ExtResource("47_fwlip")
 
 [node name="ProjectileSpawn" type="Marker2D" parent="." unique_id=933644270]
@@ -252,7 +251,11 @@ one_shot = true
 [node name="IFrameTimer" type="Timer" parent="." unique_id=69761710 groups=["friendly_entities"]]
 wait_time = 0.2
 
+[node name="RegenTimer" type="Timer" parent="." unique_id=1699768470]
+autostart = true
+
 [node name="HealthComponent" parent="." unique_id=334772244 instance=ExtResource("48_48k2y")]
+position = Vector2(0, 68)
 
 [node name="HitBox" type="Area2D" parent="." unique_id=476129413]
 collision_layer = 0
@@ -263,3 +266,4 @@ shape = SubResource("CapsuleShape2D_48k2y")
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="IFrameTimer" to="." method="_on_i_frame_timer_timeout"]
+[connection signal="timeout" from="RegenTimer" to="." method="_on_regen_timer_timeout"]

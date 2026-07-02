@@ -74,7 +74,7 @@ position = Vector2(1219, 678)
 process_mode = 3
 
 [node name="Player" parent="." unique_id=8722019 instance=ExtResource("4_5s6ly")]
-position = Vector2(632, 618)
+position = Vector2(654, 640)
 
 [node name="Portal" parent="." unique_id=1364127591 instance=ExtResource("6_c8ogg")]
 position = Vector2(960, 233)

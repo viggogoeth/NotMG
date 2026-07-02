@@ -1,7 +1,10 @@
 extends Node
 
-
+# UI globals
 var zoom_level: float = 1.0
+
+# Player globals
+var current_health: float
 
 
 # Called when the node enters the scene tree for the first time.
