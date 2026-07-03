@@ -8,7 +8,7 @@ extends Area2D
 var time_elapsed: float = 0.0
 @onready var spawn_position: Vector2 = global_position
 
-const DAMAGE: float = 15.0
+const DAMAGE: float = 200.0
 
 var inversed: bool = false
 

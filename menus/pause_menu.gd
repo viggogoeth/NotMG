@@ -17,8 +17,6 @@ func toggle_pause() -> void:
 	get_tree().paused = new_pause_state
 	visible = new_pause_state
 
-
-
 func _on_resume_button_pressed() -> void:
 	toggle_pause()
 
@@ -39,4 +37,4 @@ func save_data() -> void:
 func _on_quit_button_pressed() -> void:
 	save_data()
 	
-	get_tree().change_scene_to_file(MAIN_MENU)
+	get_tree().change_scene_to_file(WorldManager.MAIN_MENU)

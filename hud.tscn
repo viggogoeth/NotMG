@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://cmi0lerhhabpo"]
+
+[ext_resource type="Script" uid="uid://dqlo3r3p6mcni" path="res://hud.gd" id="1_37p78"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8sq4i"]
+font_size = 28
+
+[sub_resource type="LabelSettings" id="LabelSettings_64ctp"]
+font_size = 20
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_37p78"]
+font_size = 29
+font_color = Color(0.972102, 0.8136438, 0.4627037, 1)
+
+[node name="Hud" type="CanvasLayer" unique_id=970906071]
+script = ExtResource("1_37p78")
+
+[node name="Healthbar" type="Node" parent="." unique_id=116427907]
+
+[node name="HealthbarBorder" type="ColorRect" parent="Healthbar" unique_id=1581283061]
+offset_left = 60.0
+offset_top = 988.0
+offset_right = 388.0
+offset_bottom = 1028.0
+color = Color(0, 0, 0, 1)
+
+[node name="HealthbarBackground" type="ColorRect" parent="Healthbar" unique_id=256535688]
+offset_left = 64.0
+offset_top = 992.0
+offset_right = 384.0
+offset_bottom = 1024.0
+color = Color(0.4351923, 0.43519226, 0.43519226, 1)
+
+[node name="Healthbar" type="ColorRect" parent="Healthbar" unique_id=326086945]
+offset_left = 64.0
+offset_top = 992.0
+offset_right = 384.0
+offset_bottom = 1024.0
+color = Color(0, 1, 0, 1)
+
+[node name="LabelBackground" type="ColorRect" parent="Healthbar" unique_id=671363717]
+offset_left = 8.0
+offset_top = 984.0
+offset_right = 56.0
+offset_bottom = 1032.0
+color = Color(0.43137255, 0.43137255, 0.43137255, 1)
+
+[node name="Label" type="Label" parent="Healthbar" unique_id=1818948883]
+offset_left = 8.0
+offset_top = 984.0
+offset_right = 56.0
+offset_bottom = 1032.0
+text = "HP"
+label_settings = SubResource("LabelSettings_8sq4i")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HealthNumber" type="Label" parent="Healthbar" unique_id=276617158]
+offset_left = 64.0
+offset_top = 992.0
+offset_right = 384.0
+offset_bottom = 1024.0
+text = "0/0"
+label_settings = SubResource("LabelSettings_64ctp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Expbar" type="Node" parent="." unique_id=1354900856]
+
+[node name="ExpbarBorder" type="ColorRect" parent="Expbar" unique_id=1094061249]
+offset_left = 62.0
+offset_top = 942.0
+offset_right = 386.0
+offset_bottom = 962.0
+color = Color(0.56890786, 0.39463556, 0.19286576, 1)
+
+[node name="ExpbarBackground" type="ColorRect" parent="Expbar" unique_id=1457106063]
+offset_left = 64.0
+offset_top = 944.0
+offset_right = 384.0
+offset_bottom = 960.0
+color = Color(0.69803923, 0.69803923, 0.69803923, 0.6431373)
+
+[node name="Expbar" type="ColorRect" parent="Expbar" unique_id=669858541]
+offset_left = 64.0
+offset_top = 944.0
+offset_right = 384.0
+offset_bottom = 960.0
+color = Color(0.9605369, 0.72905713, 0.2368663, 1)
+
+[node name="LabelBackground" type="ColorRect" parent="Expbar" unique_id=859721760]
+offset_left = 8.0
+offset_top = 928.0
+offset_right = 56.0
+offset_bottom = 976.0
+color = Color(0.43134022, 0.43134025, 0.43134025, 1)
+
+[node name="Label" type="Label" parent="Expbar" unique_id=278145525]
+anchors_preset = -1
+offset_left = 8.0
+offset_top = 928.0
+offset_right = 56.0
+offset_bottom = 976.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.75)
+text = "1"
+label_settings = SubResource("LabelSettings_37p78")
+horizontal_alignment = 1

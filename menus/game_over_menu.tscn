@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://cgk1omwfjpuvs"]
+
+[ext_resource type="Script" uid="uid://bndcksd85y3bl" path="res://menus/game_over_menu.gd" id="1_kqwex"]
+
+[node name="GameOverMenu" type="CanvasLayer" unique_id=1157017034]
+process_mode = 3
+script = ExtResource("1_kqwex")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1180204477]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.29411766, 0.15294118, 0.15294118, 0.3137255)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=770363570]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -156.43945
+offset_top = -59.0
+offset_right = 156.43945
+offset_bottom = 59.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LoadButton" type="Button" parent="VBoxContainer" unique_id=810295199]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Load last save"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer" unique_id=139199834]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Main Menu"
+
+[connection signal="pressed" from="VBoxContainer/LoadButton" to="." method="_on_load_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

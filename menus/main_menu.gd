@@ -16,19 +16,12 @@ func _start_game(scene: String) -> void:
 	get_tree().change_scene_to_file(scene)
 
 func _on_continue_button_pressed() -> void:
-	var file = "res://save_data.json"
-	var save_data_text = FileAccess.get_file_as_string(file)
-	var save_data_json = JSON.parse_string(save_data_text)
-
-	var persistent_nodes = get_tree().get_nodes_in_group("persistent")
-	for node in persistent_nodes:
-		if node.has_method("load_data"):
-			node.load_data(save_data_json)
-
-	_start_game(save_data_json["current_map"])
+	var load_data = WorldManager.get_load_data()
+	_start_game(load_data["current_map"])
 
 
 func _on_new_game_button_pressed() -> void:
+	PlayerVariables.reset_player_variables()
 	_start_game(MAIN_LEVEL)
 
 

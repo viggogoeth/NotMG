@@ -15,6 +15,7 @@ func _ready() -> void:
 	$IFrameTimer.wait_time = PlayerVariables.I_FRAMES
 	$HealthComponent.set_health(PlayerVariables.max_health, PlayerVariables.current_health)
 	PlayerVariables.can_attack = true
+	PlayerVariables.can_take_damage = true
 	
 func _physics_process(delta: float) -> void:
 	var direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -89,11 +90,12 @@ func take_damage(amount: float) -> void:
 		PlayerVariables.current_health = $HealthComponent.current_health
 		$IFrameTimer.start()
 		
-		$AnimatedSprite2D.scale = Vector2(1.1, 1.1)
-		await get_tree().create_timer(0.1).timeout
-		$AnimatedSprite2D.scale = Vector2(1, 1)
+		var tween = create_tween()
+		tween.tween_property($AnimatedSprite2D, "scale", Vector2(1.2, 1.2), 0.1)
+		tween.tween_property($AnimatedSprite2D, "scale", Vector2(1, 1), 0.05)
 
 func die() -> void:
+	PlayerVariables.is_dead = true
 	print("THE PLAYER IS DEAD")
 
 
@@ -107,10 +109,12 @@ func _on_i_frame_timer_timeout() -> void:
 		
 
 func save_data() -> Dictionary:
-	return {"current_health": PlayerVariables.current_health}
+	return {"current_health": PlayerVariables.current_health, 
+			"current_level": PlayerVariables.current_level,
+			"current_exp": PlayerVariables.current_exp}
 	
 func load_data(save_data: Dictionary) -> void:
-	PlayerVariables.current_health = save_data["current_health"]
+	pass
 
 
 func _on_regen_timer_timeout() -> void:

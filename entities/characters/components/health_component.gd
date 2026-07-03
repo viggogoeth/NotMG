@@ -1,5 +1,7 @@
 extends Node2D
 
+@export var healthbar_shown: bool = true
+
 @export var max_health: float
 var current_health: float
 
@@ -8,7 +10,8 @@ var default_healthbar_height: int = 8
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	$HealthbarBackground.visible = healthbar_shown
+	$Healthbar.visible = healthbar_shown
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

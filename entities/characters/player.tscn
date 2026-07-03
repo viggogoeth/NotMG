@@ -48,6 +48,7 @@
 [ext_resource type="Texture2D" uid="uid://bk20idp1heakk" path="res://sprites/wizard/wizard_walk_side/wizard_walk_side5.png" id="46_sc53x"]
 [ext_resource type="Script" uid="uid://cqv3rck705tfd" path="res://entities/characters/camera_2d.gd" id="47_fwlip"]
 [ext_resource type="PackedScene" uid="uid://qxwiaux0yv7h" path="res://entities/characters/components/health_component.tscn" id="48_48k2y"]
+[ext_resource type="PackedScene" uid="uid://cmi0lerhhabpo" path="res://hud.tscn" id="49_ar761"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2wuci"]
 animations = [{
@@ -263,6 +264,8 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=1279814173]
 shape = SubResource("CapsuleShape2D_48k2y")
+
+[node name="Hud" parent="." unique_id=970906071 instance=ExtResource("49_ar761")]
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="IFrameTimer" to="." method="_on_i_frame_timer_timeout"]

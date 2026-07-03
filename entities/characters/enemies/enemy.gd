@@ -15,6 +15,8 @@ var RNG = RandomNumberGenerator.new()
 @export var resistance: float = 0.15
 @export var contact_damage: float = 5.0
 
+@export var exp_amount: float = 10.0
+
 @export var color: Color = Color(1,1,1)
 
 func _ready() -> void:
@@ -56,6 +58,7 @@ func take_damage(amount: float) -> void:
 	print("Enemy took damage, remaining health: %f" % $HealthComponent.current_health)
 	
 func die() -> void:
+	PlayerVariables.add_exp(exp_amount)
 	queue_free()
 
 

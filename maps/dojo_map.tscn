@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://barck7peqm2lo" path="res://entities/characters/player.tscn" id="4_5s6ly"]
 [ext_resource type="PackedScene" uid="uid://dylgyekwjt2qm" path="res://menus/pause_menu.tscn" id="5_ejwhk"]
 [ext_resource type="PackedScene" uid="uid://b8rjrpsoqbdvw" path="res://maps/portal.tscn" id="6_c8ogg"]
+[ext_resource type="PackedScene" uid="uid://cgk1omwfjpuvs" path="res://menus/game_over_menu.tscn" id="8_dcwwk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c8ogg"]
 texture = ExtResource("1_o2efn")
@@ -79,3 +80,5 @@ position = Vector2(654, 640)
 [node name="Portal" parent="." unique_id=1364127591 instance=ExtResource("6_c8ogg")]
 position = Vector2(960, 233)
 target_world_path = "uid://cp3hry8is5m7f"
+
+[node name="GameOverMenu" parent="." unique_id=1157017034 instance=ExtResource("8_dcwwk")]
