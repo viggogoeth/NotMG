@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 var target_player: CharacterBody2D
+var exp_range_player: CharacterBody2D
 
 @export var speed = 400.0
 @export var health: float = 100.0
@@ -58,7 +59,7 @@ func take_damage(amount: float) -> void:
 	print("Enemy took damage, remaining health: %f" % $HealthComponent.current_health)
 	
 func die() -> void:
-	PlayerVariables.add_exp(exp_amount)
+	exp_range_player.add_exp(exp_amount)
 	queue_free()
 
 
@@ -80,7 +81,9 @@ func _on_move_duration_timeout() -> void:
 
 func _on_vision_body_entered(body: Node2D) -> void:
 	target_player = body
+	exp_range_player = body # TODO: give this a different hitbox
 
 
 func _on_vision_body_exited(body: Node2D) -> void:
 	target_player = null
+	exp_range_player = null

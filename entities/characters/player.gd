@@ -1,9 +1,20 @@
-extends CharacterBody2D
+class_name Player extends CharacterBody2D
 
 @export var projectile_scene : PackedScene = preload("res://entities/projectile.tscn")
 @onready var projectile_spawn : Marker2D = $ProjectileSpawn
 
+const I_FRAMES: float = 0.4
 
+@export var attack_cooldown: float = 0.25
+var can_attack: bool = true
+@export var current_health: float = 100.0
+@export var max_health: float = 100.0
+@export var regen_rate: float = 2.5
+var can_take_damage: bool = true
+@export var movement_speed: float = 400.0
+@export var is_dead: bool = false
+@export var current_level: int = 1
+@export var current_exp: float = 0.0
 
 # For animation
 enum Direction {LEFT, RIGHT, UP, DOWN}
@@ -11,22 +22,22 @@ var last_direction = Direction.DOWN
 
 func _ready() -> void:
 	$AnimatedSprite2D.play()
-	$AttackTimer.wait_time = PlayerVariables.attack_cooldown
-	$IFrameTimer.wait_time = PlayerVariables.I_FRAMES
-	$HealthComponent.set_health(PlayerVariables.max_health, PlayerVariables.current_health)
-	PlayerVariables.can_attack = true
-	PlayerVariables.can_take_damage = true
+	$AttackTimer.wait_time = attack_cooldown
+	$IFrameTimer.wait_time = I_FRAMES
+	$HealthComponent.set_health(max_health, current_health)
+	can_attack = true
+	can_take_damage = true
 	
 func _physics_process(delta: float) -> void:
 	var direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	velocity = direction * PlayerVariables.movement_speed
+	velocity = direction * movement_speed
 
 	_handle_animation_direction(velocity)
 
 	move_and_slide()
 	
-	if Input.is_action_pressed("main_attack") and PlayerVariables.can_attack:
-		PlayerVariables.can_attack = false
+	if Input.is_action_pressed("main_attack") and can_attack:
+		can_attack = false
 		$AttackTimer.start()
 		_attack()
 		
@@ -81,13 +92,13 @@ func _handle_animation_direction(velocity: Vector2) -> void:
 
 
 func _on_attack_timer_timeout() -> void:
-	PlayerVariables.can_attack = true
+	can_attack = true
 
 func take_damage(amount: float) -> void:
-	if PlayerVariables.can_take_damage:
+	if can_take_damage:
 		$HealthComponent.take_damage(amount)
-		PlayerVariables.can_take_damage = false
-		PlayerVariables.current_health = $HealthComponent.current_health
+		can_take_damage = false
+		current_health = $HealthComponent.current_health
 		$IFrameTimer.start()
 		
 		var tween = create_tween()
@@ -95,12 +106,20 @@ func take_damage(amount: float) -> void:
 		tween.tween_property($AnimatedSprite2D, "scale", Vector2(1, 1), 0.05)
 
 func die() -> void:
-	PlayerVariables.is_dead = true
+	is_dead = true
 	print("THE PLAYER IS DEAD")
 
+func needed_exp_to_level() -> float:
+	return CommonFuncs._fib(current_level) * 100.0
+
+func add_exp(amount: float) -> void:
+	current_exp += amount
+	if current_exp >= needed_exp_to_level():
+		current_level += 1
+		current_exp = current_exp - needed_exp_to_level()
 
 func _on_i_frame_timer_timeout() -> void:
-	PlayerVariables.can_take_damage = true
+	can_take_damage = true
 	
 	var bodies = $HitBox.get_overlapping_bodies()
 	if not bodies.is_empty():
@@ -108,15 +127,6 @@ func _on_i_frame_timer_timeout() -> void:
 		take_damage(body.contact_damage)
 		
 
-func save_data() -> Dictionary:
-	return {"current_health": PlayerVariables.current_health, 
-			"current_level": PlayerVariables.current_level,
-			"current_exp": PlayerVariables.current_exp}
-	
-func load_data(save_data: Dictionary) -> void:
-	pass
-
-
 func _on_regen_timer_timeout() -> void:
-	$HealthComponent.heal(PlayerVariables.regen_rate)
-	PlayerVariables.current_health = $HealthComponent.current_health
+	$HealthComponent.heal(regen_rate)
+	current_health = $HealthComponent.current_health

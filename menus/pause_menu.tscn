@@ -32,10 +32,22 @@ layout_mode = 2
 size_flags_vertical = 3
 text = "Resume"
 
+[node name="QuickSaveButton" type="Button" parent="VBoxContainer" unique_id=1339682265]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Quicksave"
+
+[node name="SaveQuitButton" type="Button" parent="VBoxContainer" unique_id=1695919082]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Save and Quit"
+
 [node name="QuitButton" type="Button" parent="VBoxContainer" unique_id=1630062843]
 layout_mode = 2
 size_flags_vertical = 3
-text = "Main Menu"
+text = "Force Quit"
 
 [connection signal="pressed" from="VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuickSaveButton" to="." method="_on_quick_save_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/SaveQuitButton" to="." method="_on_save_quit_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

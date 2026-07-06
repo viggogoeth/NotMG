@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://barck7peqm2lo" path="res://entities/characters/player.tscn" id="4_edqsn"]
 [ext_resource type="PackedScene" uid="uid://dylgyekwjt2qm" path="res://menus/pause_menu.tscn" id="5_inif8"]
 [ext_resource type="PackedScene" uid="uid://cgk1omwfjpuvs" path="res://menus/game_over_menu.tscn" id="7_8jmup"]
+[ext_resource type="PackedScene" uid="uid://cmi0lerhhabpo" path="res://hud.tscn" id="8_edqsn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pqgwf"]
 texture = ExtResource("1_xcytv")
@@ -68,10 +69,14 @@ contact_damage = 25.0
 exp_amount = 250.0
 color = Color(0.9314931, 0.24568924, 0.5608222, 1)
 
-[node name="Player" parent="." unique_id=8722019 instance=ExtResource("4_edqsn")]
+[node name="Player" parent="." unique_id=8722019 groups=["player"] instance=ExtResource("4_edqsn")]
 position = Vector2(960, 240)
 
 [node name="PauseMenu" parent="." unique_id=1548480180 instance=ExtResource("5_inif8")]
 process_mode = 3
 
-[node name="GameOverMenu" parent="." unique_id=1157017034 instance=ExtResource("7_8jmup")]
+[node name="GameOverMenu" parent="." unique_id=1157017034 node_paths=PackedStringArray("player") instance=ExtResource("7_8jmup")]
+player = NodePath("../Player")
+
+[node name="Hud" parent="." unique_id=970906071 node_paths=PackedStringArray("player") instance=ExtResource("8_edqsn")]
+player = NodePath("../Player")

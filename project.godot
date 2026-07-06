@@ -18,7 +18,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 WorldManager="*uid://c0u05346lweyl"
-PlayerVariables="*uid://b4wgvnsvva0y4"
 
 [display]
 
@@ -34,6 +33,7 @@ window/stretch/aspect="expand"
 friendly_entities=""
 hostile_entities=""
 persistent="Contains data to be saved on close"
+player=""
 
 [input]
 
