@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://barck7peqm2lo"]
 
 [ext_resource type="Script" uid="uid://ct5270d1hep3u" path="res://entities/characters/player.gd" id="1_o21vo"]
+[ext_resource type="Script" uid="uid://dcga17qy0qre6" path="res://entities/characters/player_stats.gd" id="2_8rlf6"]
 [ext_resource type="Texture2D" uid="uid://b4qydkcyd122q" path="res://sprites/wizard/wizard_idle_back/wizard_idle_back0.png" id="2_bfour"]
 [ext_resource type="Texture2D" uid="uid://ciavxsyt25ibb" path="res://sprites/wizard/wizard_idle_back/wizard_idle_back1.png" id="3_8gr2b"]
 [ext_resource type="Texture2D" uid="uid://cstno8n1idpgg" path="res://sprites/wizard/wizard_idle_back/wizard_idle_back2.png" id="4_vl8ci"]
@@ -49,6 +50,10 @@
 [ext_resource type="Script" uid="uid://cqv3rck705tfd" path="res://entities/characters/camera_2d.gd" id="47_fwlip"]
 [ext_resource type="PackedScene" uid="uid://qxwiaux0yv7h" path="res://entities/characters/components/health_component.tscn" id="48_48k2y"]
 [ext_resource type="PackedScene" uid="uid://cmi0lerhhabpo" path="res://hud.tscn" id="49_ar761"]
+
+[sub_resource type="Resource" id="Resource_nufr6"]
+script = ExtResource("2_8rlf6")
+metadata/_custom_type_script = "uid://dcga17qy0qre6"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2wuci"]
 animations = [{
@@ -230,6 +235,7 @@ height = 112.0
 position = Vector2(111, 75)
 collision_mask = 2
 script = ExtResource("1_o21vo")
+stats = SubResource("Resource_nufr6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=439149585]
 texture_filter = 1

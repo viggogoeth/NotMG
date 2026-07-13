@@ -38,9 +38,11 @@ func _save_data() -> void:
 	data.current_health = player.current_health
 	data.current_level = player.current_level
 	data.current_exp = player.current_exp
+	data.stats = player.stats
+	
+	data.map_cleared = get_tree().current_scene.map_cleared
 	
 	data.current_scene = get_tree().current_scene.scene_file_path
-	# TODO: add the rest of the stuff
 
 	ResourceSaver.save(data, "user://save_data.tres")
 	print("Saving data.")

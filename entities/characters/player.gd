@@ -16,6 +16,9 @@ var can_take_damage: bool = true
 @export var current_level: int = 1
 @export var current_exp: float = 0.0
 
+# stats
+@export var stats: PlayerStats
+
 # For animation
 enum Direction {LEFT, RIGHT, UP, DOWN}
 var last_direction = Direction.DOWN
@@ -30,7 +33,7 @@ func _ready() -> void:
 	
 func _physics_process(delta: float) -> void:
 	var direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	velocity = direction * movement_speed
+	velocity = direction * (movement_speed + (stats.agility * 5))
 
 	_handle_animation_direction(velocity)
 
@@ -38,12 +41,15 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_pressed("main_attack") and can_attack:
 		can_attack = false
+		$AttackTimer.wait_time = attack_cooldown / (stats.dexterity / 10)
 		$AttackTimer.start()
 		_attack()
 		
 func _attack():
 	var projectile1 = projectile_scene.instantiate()
+	projectile1.damage = 2.5 * stats.strength
 	var projectile2 = projectile_scene.instantiate()
+	projectile1.damage = 2.5 * stats.strength
 	
 	var attack_direction = (get_global_mouse_position() - projectile_spawn.global_position).normalized()
 	
@@ -109,14 +115,20 @@ func die() -> void:
 	is_dead = true
 	print("THE PLAYER IS DEAD")
 
+func _level_up() -> void:
+	current_exp = current_exp - needed_exp_to_level()
+	current_level += 1
+	stats.increase_all(1)
+
 func needed_exp_to_level() -> float:
 	return CommonFuncs._fib(current_level) * 100.0
 
 func add_exp(amount: float) -> void:
 	current_exp += amount
+	print("Current exp: ", current_exp)
+	print("Exp needed: ", needed_exp_to_level())
 	if current_exp >= needed_exp_to_level():
-		current_level += 1
-		current_exp = current_exp - needed_exp_to_level()
+		_level_up()
 
 func _on_i_frame_timer_timeout() -> void:
 	can_take_damage = true

@@ -18,6 +18,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	_update_healthbar()
 	_update_expbar()
+	_update_stats()
 
 func _update_healthbar() -> void:
 	if player.current_health < 25:
@@ -52,3 +53,10 @@ func _update_expbar() -> void:
 		tween.tween_property($Expbar/Label, "scale", Vector2(3.0, 3.0), 0.5)
 		tween.tween_property($Expbar/Label, "scale", Vector2(1.0, 1.0), 0.2)
 	last_level = player.current_level
+
+func _update_stats() -> void:
+	$Stats/Agility.text = "Agility: %d" % player.stats.agility
+	$Stats/Strength.text = "Strength: %d" % player.stats.strength
+	$Stats/Dexterity.text = "Dexterity: %d" % player.stats.dexterity
+	$Stats/Vitality.text = "Vitality: %d" % player.stats.vitality
+	$Stats/Vigor.text = "Vigor: %d" % player.stats.vigor

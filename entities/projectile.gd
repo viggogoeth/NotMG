@@ -8,7 +8,7 @@ extends Area2D
 var time_elapsed: float = 0.0
 @onready var spawn_position: Vector2 = global_position
 
-const DAMAGE: float = 200.0
+@export var damage: float = 25.0
 
 var inversed: bool = false
 
@@ -43,7 +43,7 @@ func _physics_process(delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	# damage logic
 	if body.has_method("take_damage"):
-		body.take_damage(DAMAGE)
+		body.take_damage(damage)
 		
 	queue_free()
 	

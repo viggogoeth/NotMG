@@ -10,6 +10,7 @@ var movement_cooldown: float = 0.65
 var movement_duration: float = 0.5
 var should_update_movement: bool = false
 var moving: bool = false
+var dead: bool = false
 
 var RNG = RandomNumberGenerator.new()
 
@@ -56,9 +57,11 @@ func _physics_process(delta: float) -> void:
 func take_damage(amount: float) -> void:
 	var resist_adjusted_damage = amount * (1 - resistance)
 	$HealthComponent.take_damage(resist_adjusted_damage)
-	print("Enemy took damage, remaining health: %f" % $HealthComponent.current_health)
 	
 func die() -> void:
+	if dead:
+		return
+	dead = true
 	exp_range_player.add_exp(exp_amount)
 	queue_free()
 

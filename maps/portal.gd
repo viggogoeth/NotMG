@@ -36,7 +36,9 @@ func _save_data() -> void:
 	data.current_health = player.current_health
 	data.current_level = player.current_level
 	data.current_exp = player.current_exp
+	data.stats = player.stats
 	
+	data.map_cleared = false
 	data.current_scene = target_world_path
 
 	ResourceSaver.save(data, "user://save_data.tres")

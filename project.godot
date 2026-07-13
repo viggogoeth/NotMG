@@ -33,7 +33,7 @@ window/stretch/aspect="expand"
 friendly_entities=""
 hostile_entities=""
 persistent="Contains data to be saved on close"
-player=""
+enemy=""
 
 [input]
 

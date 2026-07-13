@@ -43,6 +43,7 @@ size_flags_vertical = 3
 text = "Save and Quit"
 
 [node name="QuitButton" type="Button" parent="VBoxContainer" unique_id=1630062843]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 text = "Force Quit"
