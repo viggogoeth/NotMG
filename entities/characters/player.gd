@@ -1,6 +1,6 @@
 class_name Player extends CharacterBody2D
 
-@export var projectile_scene : PackedScene = preload("res://entities/projectile.tscn")
+@export var projectile_scene : PackedScene = preload("res://entities/projectiles/projectile.tscn")
 @onready var projectile_spawn : Marker2D = $ProjectileSpawn
 
 const I_FRAMES: float = 0.4
@@ -58,7 +58,9 @@ func _attack():
 	projectile1.direction = attack_direction
 	projectile2.direction = attack_direction
 	
-	projectile2.inversed = true
+	projectile2.inverted = true
+	projectile1.set_pattern("sine_pattern")
+	projectile2.set_pattern("sine_pattern")
 	
 	
 	get_owner().add_child(projectile1)

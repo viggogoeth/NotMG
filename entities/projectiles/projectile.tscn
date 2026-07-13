@@ -1,12 +1,16 @@
 [gd_scene format=3 uid="uid://duuga3j05yrok"]
 
-[ext_resource type="Script" uid="uid://br3cfvw8co5xj" path="res://entities/projectile.gd" id="1_a85iw"]
+[ext_resource type="Script" uid="uid://br3cfvw8co5xj" path="res://entities/projectiles/projectile.gd" id="1_a85iw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qxf0c"]
 size = Vector2(16, 16)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ek2yu"]
+radius = 250.0
+
 [node name="Projectile" type="Area2D" unique_id=910072545]
 z_index = 1
+collision_layer = 0
 collision_mask = 6
 script = ExtResource("1_a85iw")
 
@@ -20,5 +24,14 @@ color = Color(0.9999998, 0.40651324, 0.99845725, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=302735942]
 shape = SubResource("RectangleShape2D_qxf0c")
+
+[node name="Pattern" type="Node" parent="." unique_id=256374287]
+
+[node name="HomingRadius" type="Area2D" parent="." unique_id=1602077275]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HomingRadius" unique_id=1814784714]
+shape = SubResource("CircleShape2D_ek2yu")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
