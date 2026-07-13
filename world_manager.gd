@@ -22,3 +22,17 @@ func _deferred_switch(path: String) -> void:
 	var error = get_tree().change_scene_to_file(path)
 	if error != OK:
 		print("Error loading scene: %s" % path)
+
+func save_data(player: Player, map_scene: String, map_cleared: bool) -> void:
+	var data = SaveData.new()
+	data.current_health = player.current_health
+	data.current_level = player.current_level
+	data.current_exp = player.current_exp
+	data.stats = player.stats
+	data.equipped_weapon = player.equipped_weapon
+	
+	data.map_cleared = map_cleared
+	data.current_scene = map_scene
+
+	ResourceSaver.save(data, "user://save_data.tres")
+	print("Saving data.")

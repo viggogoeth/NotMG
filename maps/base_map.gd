@@ -23,6 +23,7 @@ func _load_data() -> void:
 		player.current_level = data.current_level
 		player.current_exp = data.current_exp
 		player.stats = data.stats as PlayerStats
+		player.equipped_weapon = data.equipped_weapon as WeaponData
 		print("loaded player with vigor = ", player.stats.vigor)
 		
 		if data.map_cleared:

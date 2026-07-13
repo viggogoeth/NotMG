@@ -1,5 +1,6 @@
 class_name Projectile extends Area2D
 
+const STRAIGHT_PATTERN = preload("res://entities/projectiles/patterns/straight_pattern.gd")
 const SINE_PATTERN = preload("res://entities/projectiles/patterns/sine_pattern.gd")
 const HOMING_PATTERN = preload("res://entities/projectiles/patterns/homing_pattern.gd")
 
@@ -31,6 +32,8 @@ func set_pattern(pattern: String) -> void:
 		$Pattern.set_script(SINE_PATTERN)
 	if pattern == "homing_pattern":
 		$Pattern.set_script(HOMING_PATTERN)
+	if pattern == "straight_pattern":
+		$Pattern.set_script(STRAIGHT_PATTERN)
 
 func _on_body_entered(body: Node2D) -> void:
 	# damage logic

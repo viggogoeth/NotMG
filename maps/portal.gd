@@ -32,14 +32,4 @@ func _on_body_exited(body: Node2D) -> void:
 	$InteractPrompt.hide()
 
 func _save_data() -> void:
-	var data = SaveData.new()
-	data.current_health = player.current_health
-	data.current_level = player.current_level
-	data.current_exp = player.current_exp
-	data.stats = player.stats
-	
-	data.map_cleared = false
-	data.current_scene = target_world_path
-
-	ResourceSaver.save(data, "user://save_data.tres")
-	print("Saving data.")
+	WorldManager.save_data(player, target_world_path, false)

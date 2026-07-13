@@ -5,7 +5,6 @@ class_name Player extends CharacterBody2D
 
 const I_FRAMES: float = 0.4
 
-@export var attack_cooldown: float = 0.25
 var can_attack: bool = true
 @export var current_health: float = 100.0
 @export var max_health: float = 100.0
@@ -16,6 +15,8 @@ var can_take_damage: bool = true
 @export var current_level: int = 1
 @export var current_exp: float = 0.0
 
+@export var equipped_weapon: WeaponData
+
 # stats
 @export var stats: PlayerStats
 
@@ -25,7 +26,7 @@ var last_direction = Direction.DOWN
 
 func _ready() -> void:
 	$AnimatedSprite2D.play()
-	$AttackTimer.wait_time = attack_cooldown
+	$AttackTimer.wait_time = equipped_weapon.base_attack_rate / (stats.dexterity / 10)
 	$IFrameTimer.wait_time = I_FRAMES
 	$HealthComponent.set_health(max_health, current_health)
 	can_attack = true
@@ -41,30 +42,25 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_pressed("main_attack") and can_attack:
 		can_attack = false
-		$AttackTimer.wait_time = attack_cooldown / (stats.dexterity / 10)
+		$AttackTimer.wait_time = equipped_weapon.base_attack_rate / (stats.dexterity / 10)
 		$AttackTimer.start()
 		_attack()
 		
 func _attack():
-	var projectile1 = projectile_scene.instantiate()
-	projectile1.damage = 2.5 * stats.strength
-	var projectile2 = projectile_scene.instantiate()
-	projectile1.damage = 2.5 * stats.strength
+	var invert_projectile = false
+	for num_projectiles in equipped_weapon.projectiles_count:
+		var projectile = projectile_scene.instantiate()
+		projectile.damage = equipped_weapon.base_damage * (0.1 * stats.strength)
+		
+		var attack_direction = (get_global_mouse_position() - projectile_spawn.global_position).normalized()
+		projectile.direction = attack_direction
+		projectile.global_position = projectile_spawn.global_position
+		
+		projectile.set_pattern(equipped_weapon.pattern)
+		projectile.inverted = invert_projectile
+		invert_projectile = not invert_projectile
+		get_owner().add_child(projectile)
 	
-	var attack_direction = (get_global_mouse_position() - projectile_spawn.global_position).normalized()
-	
-	projectile1.global_position = projectile_spawn.global_position
-	projectile2.global_position = projectile_spawn.global_position
-	projectile1.direction = attack_direction
-	projectile2.direction = attack_direction
-	
-	projectile2.inverted = true
-	projectile1.set_pattern("sine_pattern")
-	projectile2.set_pattern("sine_pattern")
-	
-	
-	get_owner().add_child(projectile1)
-	get_owner().add_child(projectile2)
 
 func _handle_animation_direction(velocity: Vector2) -> void:
 	if velocity.length() == 0:

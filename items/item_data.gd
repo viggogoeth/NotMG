@@ -1,13 +1,11 @@
-extends Node
-class_name Item
+class_name ItemData extends Resource
 
-@export var item_name: String = ""
-@export var icon: Texture2D
-@export var is_stackable: bool = false
+@export var item_id: String
+@export var item_stats: ItemStats
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	add_to_group("items")
+	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -34,15 +34,4 @@ func _on_save_quit_button_pressed() -> void:
 	get_tree().change_scene_to_file(WorldManager.MAIN_MENU)
 
 func _save_data() -> void:
-	var data = SaveData.new()
-	data.current_health = player.current_health
-	data.current_level = player.current_level
-	data.current_exp = player.current_exp
-	data.stats = player.stats
-	
-	data.map_cleared = get_tree().current_scene.map_cleared
-	
-	data.current_scene = get_tree().current_scene.scene_file_path
-
-	ResourceSaver.save(data, "user://save_data.tres")
-	print("Saving data.")
+	WorldManager.save_data(player, get_tree().current_scene.scene_file_path, get_tree().current_scene.map_cleared)

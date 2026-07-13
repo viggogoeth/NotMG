@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://ct5270d1hep3u" path="res://entities/characters/player.gd" id="1_o21vo"]
 [ext_resource type="Script" uid="uid://dcga17qy0qre6" path="res://entities/characters/player_stats.gd" id="2_8rlf6"]
 [ext_resource type="Texture2D" uid="uid://b4qydkcyd122q" path="res://sprites/wizard/wizard_idle_back/wizard_idle_back0.png" id="2_bfour"]
+[ext_resource type="Resource" uid="uid://bkyv2bter0ugc" path="res://items/concrete_items/weapons/staff.tres" id="2_nufr6"]
 [ext_resource type="Texture2D" uid="uid://ciavxsyt25ibb" path="res://sprites/wizard/wizard_idle_back/wizard_idle_back1.png" id="3_8gr2b"]
 [ext_resource type="Texture2D" uid="uid://cstno8n1idpgg" path="res://sprites/wizard/wizard_idle_back/wizard_idle_back2.png" id="4_vl8ci"]
 [ext_resource type="Texture2D" uid="uid://bamj3gv8i7qas" path="res://sprites/wizard/wizard_idle_back/wizard_idle_back3.png" id="5_ieltc"]
@@ -235,6 +236,7 @@ height = 112.0
 position = Vector2(111, 75)
 collision_mask = 2
 script = ExtResource("1_o21vo")
+equipped_weapon = ExtResource("2_nufr6")
 stats = SubResource("Resource_nufr6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=439149585]
