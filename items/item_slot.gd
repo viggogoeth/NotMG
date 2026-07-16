@@ -3,7 +3,6 @@ class_name ItemSlot extends TextureRect
 @export var slot_data: SlotData
 
 var hovered: bool = false
-var dragged: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -16,8 +15,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if $Tooltip.visible:
 		$Tooltip.global_position = get_global_mouse_position() + Vector2(5, 5)
-	if dragged:
-		global_position = get_global_mouse_position()
 
 func set_data(data: SlotData) -> void:
 	if is_instance_valid(data):
@@ -25,17 +22,12 @@ func set_data(data: SlotData) -> void:
 		if is_instance_valid(slot_data.item_in_slot):
 			var item = slot_data.item_in_slot
 			$Tooltip/VBoxContainer/ItemName.text = item.item_name
-			# TODO: instance_of is not that nice? what happens when there are 30 different item archetypes
-			if item is WeaponData:
-				_set_stats_on_weapon(item)
+			$Tooltip/VBoxContainer/Stats.text = item.get_stats_text()
 			# TODO: set the texture here based on ID (using a map?)
 			_set_texture(item)
 			_set_rarity_color(item.rarity)
 		else:
 			texture = null
-
-func _set_stats_on_weapon(item: WeaponData) -> void:
-	$Tooltip/VBoxContainer/Stats.text = "Damage: %.1f\nFire Rate: %.2f\nProjectiles: %d\nRange: %1.f" % [item.base_damage, item.base_attack_rate, item.projectiles_count, item.range]
 
 func _set_texture(item: ItemData) -> void:
 	texture = item.texture
@@ -64,3 +56,33 @@ func _on_mouse_entered() -> void:
 func _on_mouse_exited() -> void:
 	hovered = false
 	$Tooltip.hide()
+
+func _get_drag_data(at_position: Vector2) -> Variant:
+	if not is_instance_valid(slot_data.item_in_slot):
+		return null
+		
+	var drag_data = {
+		"origin_slot": self,
+		"item_data": slot_data.item_in_slot
+	}
+	
+	# add texture dragging
+	
+	return drag_data
+
+func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
+	return data is Dictionary and data.has("origin_slot")
+	
+func _drop_data(at_position: Vector2, data: Variant) -> void:
+	var origin_slot = data["origin_slot"]
+	
+	if origin_slot == self:
+		return
+		
+	var temp_item = self.slot_data.item_in_slot
+	
+	self.slot_data.item_in_slot = origin_slot.slot_data.item_in_slot
+	
+	origin_slot.slot_data.item_in_slot = temp_item
+	self.set_data(self.slot_data)
+	origin_slot.set_data(origin_slot.slot_data)

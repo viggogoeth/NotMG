@@ -32,7 +32,7 @@ func _input(event) -> void:
 	if event.is_action_pressed("pause") and self.visible:
 		pass # TODO: make escape close the inventory as well
 		
-	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
+	if event is InputEventMouseButton and event.double_click and event.button_index == MOUSE_BUTTON_LEFT:
 		for item in $InventoryContainer/InventoryGrid.get_children():
 			if item.hovered:
 				_equip_weapon(item)

@@ -382,6 +382,7 @@ autostart = true
 
 [node name="HealthComponent" parent="." unique_id=334772244 instance=ExtResource("48_48k2y")]
 position = Vector2(0, 68)
+healthbar_shown = false
 
 [node name="HitBox" type="Area2D" parent="." unique_id=476129413]
 collision_layer = 0

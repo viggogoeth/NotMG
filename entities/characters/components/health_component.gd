@@ -12,7 +12,6 @@ var default_healthbar_height: int = 8
 func _ready() -> void:
 	$HealthbarBackground.visible = healthbar_shown
 	$Healthbar.visible = healthbar_shown
-	_update_healthbar()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
