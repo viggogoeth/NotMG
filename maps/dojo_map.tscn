@@ -5,9 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://beedo2hlpvcgj" path="res://tilesets/dojo_top.png" id="2_bv3fa"]
 [ext_resource type="PackedScene" uid="uid://bm2857742v0ai" path="res://entities/characters/enemies/enemy.tscn" id="3_uds71"]
 [ext_resource type="PackedScene" uid="uid://barck7peqm2lo" path="res://entities/characters/player.tscn" id="4_5s6ly"]
-[ext_resource type="PackedScene" uid="uid://dylgyekwjt2qm" path="res://menus/pause_menu.tscn" id="5_ejwhk"]
 [ext_resource type="PackedScene" uid="uid://b8rjrpsoqbdvw" path="res://maps/portal.tscn" id="6_c8ogg"]
-[ext_resource type="PackedScene" uid="uid://cgk1omwfjpuvs" path="res://menus/game_over_menu.tscn" id="8_dcwwk"]
 [ext_resource type="PackedScene" uid="uid://cmi0lerhhabpo" path="res://hud.tscn" id="9_sw2mr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c8ogg"]
@@ -61,7 +59,7 @@ tile_map_data = PackedByteArray("AAAAAAgAAgAAAAAAAAABAAgAAgAAAAAAAAACAAgAAgAAAAA
 tile_set = SubResource("TileSet_aast1")
 
 [node name="Enemy" parent="." unique_id=720180946 instance=ExtResource("3_uds71")]
-position = Vector2(1222, 574)
+position = Vector2(1218, 566)
 exp_amount = 25.0
 
 [node name="Enemy2" parent="." unique_id=367175494 instance=ExtResource("3_uds71")]
@@ -69,25 +67,19 @@ position = Vector2(1333, 672)
 exp_amount = 25.0
 
 [node name="Enemy3" parent="." unique_id=1419912736 instance=ExtResource("3_uds71")]
-position = Vector2(1336, 574)
+position = Vector2(1334, 558)
 exp_amount = 25.0
 
 [node name="Enemy4" parent="." unique_id=288205096 instance=ExtResource("3_uds71")]
 position = Vector2(1219, 678)
 exp_amount = 25.0
 
-[node name="PauseMenu" parent="." unique_id=1548480180 instance=ExtResource("5_ejwhk")]
-process_mode = 3
-
 [node name="Player" parent="." unique_id=8722019 instance=ExtResource("4_5s6ly")]
-position = Vector2(654, 640)
+position = Vector2(628, 626)
 
 [node name="Portal" parent="." unique_id=1364127591 instance=ExtResource("6_c8ogg")]
-position = Vector2(960, 233)
+position = Vector2(964, 229)
 target_world_path = "uid://cp3hry8is5m7f"
-
-[node name="GameOverMenu" parent="." unique_id=1157017034 node_paths=PackedStringArray("player") instance=ExtResource("8_dcwwk")]
-player = NodePath("../Player")
 
 [node name="Hud" parent="." unique_id=970906071 node_paths=PackedStringArray("player") instance=ExtResource("9_sw2mr")]
 player = NodePath("../Player")

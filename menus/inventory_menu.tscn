@@ -1,0 +1,236 @@
+[gd_scene format=3 uid="uid://drhn4p4epvle6"]
+
+[ext_resource type="Script" uid="uid://mp0cglnq0q01" path="res://menus/inventory_menu.gd" id="1_0fdhb"]
+[ext_resource type="PackedScene" uid="uid://c4inr5avwh4ge" path="res://items/item.tscn" id="2_rfwhd"]
+[ext_resource type="Resource" uid="uid://bkyv2bter0ugc" path="res://items/concrete_items/weapons/staff.tres" id="3_w616q"]
+[ext_resource type="Script" uid="uid://b7xlakifl5pew" path="res://items/slot_data.gd" id="4_dfwsl"]
+
+[sub_resource type="Resource" id="Resource_e0cb0"]
+script = ExtResource("4_dfwsl")
+item_in_slot = ExtResource("3_w616q")
+metadata/_custom_type_script = "uid://b7xlakifl5pew"
+
+[node name="InventoryMenu" type="CanvasLayer" unique_id=335479412 groups=["menu"]]
+process_mode = 3
+script = ExtResource("1_0fdhb")
+
+[node name="MenuOverlay" type="ColorRect" parent="." unique_id=1155320862]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.29411766, 0.15294118, 0.15294118, 0.3137255)
+
+[node name="InventoryContainer" type="Control" parent="." unique_id=1339152045]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -250.0
+offset_right = 500.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InventoryBackground" type="ColorRect" parent="InventoryContainer" unique_id=845922547]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -250.0
+offset_right = 250.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.99607843, 0.7529412, 0.54901963)
+
+[node name="InventoryGrid" type="GridContainer" parent="InventoryContainer" unique_id=1414115393]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -250.0
+offset_right = 250.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 5
+
+[node name="Item" parent="InventoryContainer/InventoryGrid" unique_id=825401434 instance=ExtResource("2_rfwhd")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+slot_data = SubResource("Resource_e0cb0")
+
+[node name="Item2" parent="InventoryContainer/InventoryGrid" unique_id=1804836360 instance=ExtResource("2_rfwhd")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Item3" parent="InventoryContainer/InventoryGrid" unique_id=1633080817 instance=ExtResource("2_rfwhd")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Item4" parent="InventoryContainer/InventoryGrid" unique_id=1115435936 instance=ExtResource("2_rfwhd")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Item5" parent="InventoryContainer/InventoryGrid" unique_id=247781164 instance=ExtResource("2_rfwhd")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Item6" parent="InventoryContainer/InventoryGrid" unique_id=1195768286 instance=ExtResource("2_rfwhd")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Item7" parent="InventoryContainer/InventoryGrid" unique_id=1033252984 instance=ExtResource("2_rfwhd")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Item8" parent="InventoryContainer/InventoryGrid" unique_id=208287330 instance=ExtResource("2_rfwhd")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Item9" parent="InventoryContainer/InventoryGrid" unique_id=1746049668 instance=ExtResource("2_rfwhd")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Item10" parent="InventoryContainer/InventoryGrid" unique_id=1464189615 instance=ExtResource("2_rfwhd")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Item11" parent="InventoryContainer/InventoryGrid" unique_id=414520926 instance=ExtResource("2_rfwhd")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Item12" parent="InventoryContainer/InventoryGrid" unique_id=612091706 instance=ExtResource("2_rfwhd")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Item13" parent="InventoryContainer/InventoryGrid" unique_id=502042127 instance=ExtResource("2_rfwhd")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Item14" parent="InventoryContainer/InventoryGrid" unique_id=2025748564 instance=ExtResource("2_rfwhd")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Item15" parent="InventoryContainer/InventoryGrid" unique_id=940780261 instance=ExtResource("2_rfwhd")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Item16" parent="InventoryContainer/InventoryGrid" unique_id=1974234138 instance=ExtResource("2_rfwhd")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Item17" parent="InventoryContainer/InventoryGrid" unique_id=90615781 instance=ExtResource("2_rfwhd")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Item18" parent="InventoryContainer/InventoryGrid" unique_id=26949532 instance=ExtResource("2_rfwhd")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Item19" parent="InventoryContainer/InventoryGrid" unique_id=1315260540 instance=ExtResource("2_rfwhd")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Item20" parent="InventoryContainer/InventoryGrid" unique_id=1531751565 instance=ExtResource("2_rfwhd")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Item21" parent="InventoryContainer/InventoryGrid" unique_id=441243440 instance=ExtResource("2_rfwhd")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Item22" parent="InventoryContainer/InventoryGrid" unique_id=1865394176 instance=ExtResource("2_rfwhd")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Item23" parent="InventoryContainer/InventoryGrid" unique_id=1273011287 instance=ExtResource("2_rfwhd")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Item24" parent="InventoryContainer/InventoryGrid" unique_id=2054187422 instance=ExtResource("2_rfwhd")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Item25" parent="InventoryContainer/InventoryGrid" unique_id=62766370 instance=ExtResource("2_rfwhd")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="EquippedContainer" type="Control" parent="." unique_id=201878624]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -495.0
+offset_top = -73.0
+offset_right = -365.0
+offset_bottom = 63.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_group_ = true
+
+[node name="EquippedBackground" type="ColorRect" parent="EquippedContainer" unique_id=1612213454]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.8509804, 0.07058824, 0.09411765, 0.5803922)
+
+[node name="EquippedGrid" type="VBoxContainer" parent="EquippedContainer" unique_id=523209276]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Weapon" parent="EquippedContainer/EquippedGrid" unique_id=1230137908 instance=ExtResource("2_rfwhd")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3

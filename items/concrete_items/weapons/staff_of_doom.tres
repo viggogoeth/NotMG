@@ -1,12 +1,17 @@
 [gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://bts4iomg62u2b"]
 
 [ext_resource type="Script" uid="uid://8wgunjpyurfa" path="res://items/weapon_data.gd" id="1_5hpyr"]
+[ext_resource type="Texture2D" uid="uid://cj74f3wctghpf" path="res://sprites/items/staff.png" id="2_dw4hk"]
 
 [resource]
 script = ExtResource("1_5hpyr")
 base_damage = 50.0
 base_attack_rate = 0.05
 projectiles_count = 2
+range = 20.0
 pattern = "sine_pattern"
 item_id = "900"
+item_name = "Staff of Doom"
+rarity = 5
+texture = ExtResource("2_dw4hk")
 metadata/_custom_type_script = "uid://8wgunjpyurfa"

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bndcksd85y3bl" path="res://menus/game_over_menu.gd" id="1_kqwex"]
 
-[node name="GameOverMenu" type="CanvasLayer" unique_id=1157017034]
+[node name="GameOverMenu" type="CanvasLayer" unique_id=1157017034 groups=["menu"]]
 process_mode = 3
 script = ExtResource("1_kqwex")
 

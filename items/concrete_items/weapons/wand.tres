@@ -1,12 +1,17 @@
 [gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://ch0t2hr7uusqq"]
 
 [ext_resource type="Script" uid="uid://8wgunjpyurfa" path="res://items/weapon_data.gd" id="1_gfarn"]
+[ext_resource type="Texture2D" uid="uid://dkiw0pside6cw" path="res://sprites/items/wand.png" id="2_qiac2"]
 
 [resource]
 script = ExtResource("1_gfarn")
 base_damage = 20.0
 base_attack_rate = 0.15
 projectiles_count = 1
+range = 10.0
 pattern = "homing_pattern"
 item_id = "2"
+item_name = "Wand"
+rarity = 3
+texture = ExtResource("2_qiac2")
 metadata/_custom_type_script = "uid://8wgunjpyurfa"

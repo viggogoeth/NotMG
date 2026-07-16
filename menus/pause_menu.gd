@@ -8,10 +8,15 @@ const MAIN_MENU: String = "res://menus/main_menu.tscn"
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
 	hide()
+	print(visible)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _input(event) -> void:
 	if event.is_action_pressed("pause"):
+		var menus = get_tree().get_nodes_in_group("menu")
+		for menu in menus:
+			if menu.visible == true and menu != self:
+				return
 		toggle_pause()
 
 func toggle_pause() -> void:

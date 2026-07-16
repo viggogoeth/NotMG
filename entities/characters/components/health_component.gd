@@ -3,7 +3,7 @@ extends Node2D
 @export var healthbar_shown: bool = true
 
 @export var max_health: float
-var current_health: float
+@export var current_health: float
 
 var default_healthbar_width: int = 64
 var default_healthbar_height: int = 8
@@ -12,6 +12,7 @@ var default_healthbar_height: int = 8
 func _ready() -> void:
 	$HealthbarBackground.visible = healthbar_shown
 	$Healthbar.visible = healthbar_shown
+	_update_healthbar()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

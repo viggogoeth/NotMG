@@ -15,10 +15,12 @@ var can_take_damage: bool = true
 @export var current_level: int = 1
 @export var current_exp: float = 0.0
 
-@export var equipped_weapon: WeaponData
-
 # stats
 @export var stats: PlayerStats
+
+# items
+@export var equipped_weapon: SlotData
+@export var inventory: InventoryData
 
 # For animation
 enum Direction {LEFT, RIGHT, UP, DOWN}
@@ -26,7 +28,8 @@ var last_direction = Direction.DOWN
 
 func _ready() -> void:
 	$AnimatedSprite2D.play()
-	$AttackTimer.wait_time = equipped_weapon.base_attack_rate / (stats.dexterity / 10)
+	if is_instance_valid(equipped_weapon.item_in_slot):
+		$AttackTimer.wait_time = equipped_weapon.item_in_slot.base_attack_rate / (stats.dexterity / 10)
 	$IFrameTimer.wait_time = I_FRAMES
 	$HealthComponent.set_health(max_health, current_health)
 	can_attack = true
@@ -40,23 +43,25 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 	
-	if Input.is_action_pressed("main_attack") and can_attack:
+	if Input.is_action_pressed("main_attack") and is_instance_valid(equipped_weapon.item_in_slot) and can_attack:
 		can_attack = false
-		$AttackTimer.wait_time = equipped_weapon.base_attack_rate / (stats.dexterity / 10)
+		$AttackTimer.wait_time = equipped_weapon.item_in_slot.base_attack_rate / (stats.dexterity / 10)
 		$AttackTimer.start()
 		_attack()
 		
 func _attack():
+	var weapon = equipped_weapon.item_in_slot
 	var invert_projectile = false
-	for num_projectiles in equipped_weapon.projectiles_count:
+	for num_projectiles in weapon.projectiles_count:
 		var projectile = projectile_scene.instantiate()
-		projectile.damage = equipped_weapon.base_damage * (0.1 * stats.strength)
+		projectile.damage = weapon.base_damage * (0.1 * stats.strength)
+		projectile.max_range = weapon.range * 100
 		
 		var attack_direction = (get_global_mouse_position() - projectile_spawn.global_position).normalized()
 		projectile.direction = attack_direction
 		projectile.global_position = projectile_spawn.global_position
 		
-		projectile.set_pattern(equipped_weapon.pattern)
+		projectile.set_pattern(weapon.pattern)
 		projectile.inverted = invert_projectile
 		invert_projectile = not invert_projectile
 		get_owner().add_child(projectile)
@@ -109,6 +114,12 @@ func take_damage(amount: float) -> void:
 		tween.tween_property($AnimatedSprite2D, "scale", Vector2(1.2, 1.2), 0.1)
 		tween.tween_property($AnimatedSprite2D, "scale", Vector2(1, 1), 0.05)
 
+func set_health(max_health: float, current_health: float) -> void:
+	self.current_health = current_health
+	self.max_health = max_health
+	$HealthComponent.current_health = current_health
+	$HealthComponent.max_health = max_health
+
 func die() -> void:
 	is_dead = true
 	print("THE PLAYER IS DEAD")
@@ -123,8 +134,6 @@ func needed_exp_to_level() -> float:
 
 func add_exp(amount: float) -> void:
 	current_exp += amount
-	print("Current exp: ", current_exp)
-	print("Exp needed: ", needed_exp_to_level())
 	if current_exp >= needed_exp_to_level():
 		_level_up()
 
