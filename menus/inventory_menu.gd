@@ -30,7 +30,9 @@ func _input(event) -> void:
 				return
 		toggle_pause()
 	if event.is_action_pressed("pause") and self.visible:
-		pass # TODO: make escape close the inventory as well
+		toggle_pause()
+		get_viewport().set_input_as_handled()
+		
 		
 	if event is InputEventMouseButton and event.double_click and event.button_index == MOUSE_BUTTON_LEFT:
 		for item in $InventoryContainer/InventoryGrid.get_children():
@@ -40,35 +42,26 @@ func _input(event) -> void:
 	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_RIGHT:
 		for item in $InventoryContainer/InventoryGrid.get_children():
 			if item.hovered:
-				_drop_item(item)
-	
+				item.show_menu()
 
 func _equip_weapon(item: ItemSlot) -> void:
 	if is_instance_valid(item.slot_data.item_in_slot):
 		print("Equipping weapon: %s" % item.slot_data.item_in_slot.item_name)
-		var eq = player.equipped_weapon
-		var inv_item = item.slot_data
-		player.equipped_weapon = item.slot_data
-		item.set_data(eq)
+		var eq = player.equipped_weapon.item_in_slot
+		player.equipped_weapon.item_in_slot = item.slot_data.item_in_slot
+		item.slot_data.item_in_slot = eq
 		
-		
-		for idx in len(inventory_resource.inventory_slots):
-			if inv_item == inventory_resource.inventory_slots[idx]:
-				print("Found it")
-				inventory_resource.inventory_slots[idx] = eq
-		
+		item.set_data(item.slot_data)
 		$EquippedContainer/EquippedGrid/Weapon.set_data(player.equipped_weapon)
-
-func _drop_item(item: ItemSlot) -> void:
-	var inv_item = item.slot_data
-	var new_empty_slot = SlotData.new()
-	item.set_data(new_empty_slot)
-	for idx in len(inventory_resource.inventory_slots):
-		if inv_item == inventory_resource.inventory_slots[idx]:
-			print("Found it")
-			inventory_resource.inventory_slots[idx] = new_empty_slot
 
 func toggle_pause() -> void:
 	var new_pause_state = not get_tree().paused
 	visible = new_pause_state
 	get_tree().paused = new_pause_state
+	update_item_slots()
+
+func _get_first_free_slot() -> ItemSlot:
+	for slot in $InventoryContainer/InventoryGrid.get_children():
+		if not slot.slot_data.item_in_slot:
+			return slot
+	return null

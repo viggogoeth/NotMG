@@ -60,6 +60,7 @@ tile_set = SubResource("TileSet_0xgh2")
 [node name="Enemy" parent="." unique_id=720180946 instance=ExtResource("3_8jmup")]
 position = Vector2(960, 1432)
 scale = Vector2(3, 3)
+enemy_id = "slime_boss"
 speed = 750.0
 health = 500.0
 resistance = 0.75

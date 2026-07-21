@@ -3,6 +3,8 @@ extends CharacterBody2D
 var target_player: CharacterBody2D
 var exp_range_player: CharacterBody2D
 
+@export var enemy_id: String
+
 @export var speed = 400.0
 @export var health: float = 100.0
 
@@ -20,6 +22,8 @@ var RNG = RandomNumberGenerator.new()
 @export var exp_amount: float = 10.0
 
 @export var color: Color = Color(1,1,1)
+
+const LOOT_BAG_SCENE = preload("res://entities/loot_bag.tscn")
 
 func _ready() -> void:
 	$AnimatedSprite2D.play()
@@ -63,6 +67,14 @@ func die() -> void:
 		return
 	dead = true
 	exp_range_player.add_exp(exp_amount)
+	
+	var drop = DropTables.get_drop(self.enemy_id)
+	if drop.size() > 0:
+		var lootbag: LootContainer = LOOT_BAG_SCENE.instantiate()
+		lootbag.global_position = global_position
+		lootbag.add_items(drop)
+		get_tree().current_scene.add_child.call_deferred(lootbag)
+	
 	queue_free()
 
 

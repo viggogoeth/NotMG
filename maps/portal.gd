@@ -11,9 +11,12 @@ func _ready() -> void:
 	$InteractPrompt.hide()
 
 func _process(delta: float) -> void:
-	if player_in_range and Input.is_action_just_pressed("interact"):
-		switch_world()
+	pass
 
+func _input(event: InputEvent) -> void:
+	if player_in_range and event.is_action_pressed("interact"):
+		switch_world()
+		
 func switch_world() -> void:
 	if target_world_path != "":
 		_save_data()

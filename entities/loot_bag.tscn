@@ -1,0 +1,112 @@
+[gd_scene format=3 uid="uid://dpbwv6xj5rys6"]
+
+[ext_resource type="Script" uid="uid://1x4c87vodvjr" path="res://entities/loot_bag.gd" id="1_fxde3"]
+[ext_resource type="Script" uid="uid://b7xlakifl5pew" path="res://items/slot_data.gd" id="2_j87tw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ngygo"]
+radius = 20.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_fxde3"]
+font_size = 44
+font_color = Color(0.73300546, 0.7330054, 0.7330054, 1)
+shadow_color = Color(0, 0, 0, 0.22745098)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3kpvb"]
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="LootBag" type="Area2D" unique_id=933105766 groups=["loot_bag"]]
+collision_layer = 0
+script = ExtResource("1_fxde3")
+slots_in_bag = Array[ExtResource("2_j87tw")]([null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])
+
+[node name="Highlight" type="ColorRect" parent="." unique_id=124146241]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -22.0
+offset_top = -22.0
+offset_right = 22.0
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.81960785, 0.2627451, 1)
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1518549889]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=82655495]
+shape = SubResource("CircleShape2D_ngygo")
+
+[node name="InteractPrompt" type="Control" parent="." unique_id=309029809]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -64.0
+offset_right = 64.0
+grow_vertical = 0
+
+[node name="ColorRect" type="ColorRect" parent="InteractPrompt" unique_id=500068553]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.29219002, 0.29219005, 0.29218993, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="InteractPrompt" unique_id=251048751]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.0
+offset_top = -26.0
+offset_right = 26.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.34033912, 0.3403394, 0.34033918, 1)
+
+[node name="Label" type="Label" parent="InteractPrompt" unique_id=512981732]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -8.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "[E]"
+label_settings = SubResource("LabelSettings_fxde3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="." unique_id=34449542]
+z_index = 2
+texture_filter = 1
+offset_left = 34.0
+offset_top = -1.0
+offset_right = 181.0
+offset_bottom = 22.0
+text = "<- This is a loot bag"
+label_settings = SubResource("LabelSettings_3kpvb")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

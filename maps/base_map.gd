@@ -7,6 +7,7 @@ class_name Map extends Node
 const PAUSE_MENU_SCENE = preload("res://menus/pause_menu.tscn")
 const INVENTORY_MENU_SCENE = preload("res://menus/inventory_menu.tscn")
 const GAME_OVER_MENU_SCENE = preload("res://menus/game_over_menu.tscn")
+const LOOT_BAG_MENU_SCENE = preload("res://menus/loot_bag_menu.tscn")
 
 var inventory_node: InventoryMenu
 
@@ -16,6 +17,7 @@ func _ready() -> void:
 	inventory_node = INVENTORY_MENU_SCENE.instantiate()
 	add_child(inventory_node)
 	add_child(GAME_OVER_MENU_SCENE.instantiate())
+	add_child(LOOT_BAG_MENU_SCENE.instantiate())
 	player = get_tree().get_first_node_in_group("player")
 	await get_tree().process_frame
 	_load_data()

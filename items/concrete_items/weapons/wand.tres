@@ -5,12 +5,12 @@
 
 [resource]
 script = ExtResource("1_gfarn")
-base_damage = 20.0
-base_attack_rate = 0.15
+base_damage = 25.0
+base_attack_rate = 0.1
 projectiles_count = 1
 range = 10.0
 pattern = "homing_pattern"
-item_id = "2"
+item_id = "wand"
 item_name = "Wand"
 rarity = 3
 texture = ExtResource("2_qiac2")

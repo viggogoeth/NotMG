@@ -10,6 +10,11 @@ font_size = 44
 font_color = Color(0.73300546, 0.7330054, 0.7330054, 1)
 shadow_color = Color(0, 0, 0, 0.22745098)
 
+[sub_resource type="LabelSettings" id="LabelSettings_maxlu"]
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 1)
+
 [node name="Portal" type="Area2D" unique_id=1364127591]
 collision_layer = 0
 script = ExtResource("1_0r486")
@@ -71,6 +76,15 @@ text = "[E]"
 label_settings = SubResource("LabelSettings_352g6")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Label" type="Label" parent="." unique_id=1291456680]
+z_index = 2
+texture_filter = 1
+offset_left = 48.0
+offset_right = 184.0
+offset_bottom = 23.0
+text = "<- This is a portal!"
+label_settings = SubResource("LabelSettings_maxlu")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

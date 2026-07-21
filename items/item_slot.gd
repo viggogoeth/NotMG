@@ -1,4 +1,4 @@
-class_name ItemSlot extends TextureRect
+class_name ItemSlot extends PanelContainer
 
 @export var slot_data: SlotData
 
@@ -23,14 +23,14 @@ func set_data(data: SlotData) -> void:
 			var item = slot_data.item_in_slot
 			$Tooltip/VBoxContainer/ItemName.text = item.item_name
 			$Tooltip/VBoxContainer/Stats.text = item.get_stats_text()
-			# TODO: set the texture here based on ID (using a map?)
+
 			_set_texture(item)
 			_set_rarity_color(item.rarity)
 		else:
-			texture = null
+			$ItemIcon.texture = null
 
 func _set_texture(item: ItemData) -> void:
-	texture = item.texture
+	$ItemIcon.texture = item.texture
 	
 func _set_rarity_color(rarity: int) -> void:
 	match rarity:
@@ -67,6 +67,17 @@ func _get_drag_data(at_position: Vector2) -> Variant:
 	}
 	
 	# add texture dragging
+	var preview = TextureRect.new()
+	preview.texture = $ItemIcon.texture
+	preview.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	preview.custom_minimum_size = Vector2(64, 64)
+	preview.position = -preview.custom_minimum_size / 2
+	preview.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	
+	var preview_container = Control.new()
+	preview_container.add_child(preview)
+	preview_container.z_index = 10
+	set_drag_preview(preview_container)
 	
 	return drag_data
 
@@ -86,3 +97,6 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 	origin_slot.slot_data.item_in_slot = temp_item
 	self.set_data(self.slot_data)
 	origin_slot.set_data(origin_slot.slot_data)
+
+func show_menu() -> void:
+	$RightClickMenu.show()

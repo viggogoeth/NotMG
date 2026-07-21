@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cmi0lerhhabpo"]
 
 [ext_resource type="Script" uid="uid://dqlo3r3p6mcni" path="res://hud.gd" id="1_37p78"]
+[ext_resource type="Texture2D" uid="uid://ts4f4ppkcpdl" path="res://sprites/dodge_icon.png" id="2_64ctp"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_8sq4i"]
 font_size = 28
@@ -134,3 +135,58 @@ text = "Agility: 10"
 [node name="Vitality" type="Label" parent="Stats" unique_id=617655406]
 layout_mode = 2
 text = "Vitality: 10"
+
+[node name="AbilityBar" type="Node" parent="." unique_id=2130227809]
+
+[node name="DodgeContainer" type="Control" parent="AbilityBar" unique_id=1476916032]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -544.0
+offset_top = 420.0
+offset_right = -484.0
+offset_bottom = 480.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+
+[node name="DodgeBackground" type="ColorRect" parent="AbilityBar/DodgeContainer" unique_id=202264160]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.79739183, 0.00052886066, 0.80352396, 1)
+
+[node name="DodgeOverlay" type="ColorRect" parent="AbilityBar/DodgeContainer" unique_id=1086872906]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(0.8, 0.8)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+color = Color(0.93932474, 0.45395017, 0.7066764, 1)
+
+[node name="DodgeIcon" type="TextureRect" parent="AbilityBar/DodgeContainer" unique_id=687558420]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("2_64ctp")

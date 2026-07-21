@@ -28,7 +28,7 @@ outline_color = Color(0, 0, 0, 1)
 shadow_size = 4
 shadow_color = Color(0, 0, 0, 0.29411766)
 
-[node name="Item" type="TextureRect" unique_id=1230137908]
+[node name="Item" type="PanelContainer" unique_id=1436527251]
 z_index = 1
 texture_filter = 1
 anchors_preset = 15
@@ -36,14 +36,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("1_pxpuq")
 
 [node name="Tooltip" type="PanelContainer" parent="." unique_id=1349786606]
 visible = false
+top_level = true
 z_index = 10
-layout_mode = 0
-offset_right = 138.0
-offset_bottom = 121.0
+layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_pxpuq")
 metadata/_edit_group_ = true
@@ -70,14 +71,14 @@ label_settings = SubResource("LabelSettings_buahv")
 horizontal_alignment = 3
 
 [node name="TextureRect" type="ColorRect" parent="." unique_id=1151453011]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+visible = false
+layout_mode = 2
 mouse_filter = 2
 color = Color(1, 1, 1, 0.21960784)
+
+[node name="ItemIcon" type="TextureRect" parent="." unique_id=2100796921]
+layout_mode = 2
+expand_mode = 2
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

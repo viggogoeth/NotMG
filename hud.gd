@@ -60,3 +60,9 @@ func _update_stats() -> void:
 	$Stats/Dexterity.text = "Dexterity: %d" % player.stats.dexterity
 	$Stats/Vitality.text = "Vitality: %d" % player.stats.vitality
 	$Stats/Vigor.text = "Vigor: %d" % player.stats.vigor
+
+func dodge_used() -> void:
+	$AbilityBar/DodgeContainer.modulate = Color(0.329, 0.329, 0.329, 1.0)
+
+func dodge_ready() -> void:
+	$AbilityBar/DodgeContainer.modulate = Color(1.0, 1.0, 1.0, 1.0)
