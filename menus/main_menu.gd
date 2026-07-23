@@ -7,8 +7,12 @@ var current_scene: String = ""
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$MarginContainer/HBoxContainer/HBoxContainer/AnimatedSprite2D.play()
-	$ColorPickerButton.color = Color("red")
-	$MarginContainer/HBoxContainer/HBoxContainer/AnimatedSprite2D.modulate = Color("red")
+	if Config.player_color:
+		$ColorPickerButton.color = Config.player_color
+		$MarginContainer/HBoxContainer/HBoxContainer/AnimatedSprite2D.modulate = Config.player_color
+	else:
+		$ColorPickerButton.color = Color("red")
+		$MarginContainer/HBoxContainer/HBoxContainer/AnimatedSprite2D.modulate = Color("red")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
