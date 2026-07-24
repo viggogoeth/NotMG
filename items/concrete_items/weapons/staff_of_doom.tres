@@ -10,6 +10,7 @@ base_attack_rate = 0.05
 projectiles_count = 2
 range = 20.0
 pattern = "sine_pattern"
+type = "staff"
 item_id = "staff_of_doom"
 item_name = "Staff of Doom"
 rarity = 5

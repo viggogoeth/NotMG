@@ -10,6 +10,7 @@ base_attack_rate = 0.25
 projectiles_count = 2
 range = 8.0
 pattern = "sine_pattern"
+type = "staff"
 item_id = "staff"
 item_name = "Staff"
 texture = ExtResource("2_vbwvr")

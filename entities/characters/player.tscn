@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://sps0dtnvb6ct" path="res://sprites/wizard/walk_back.png" id="9_8ug6l"]
 [ext_resource type="Texture2D" uid="uid://depayl0l66ruw" path="res://sprites/wizard/walk_front.png" id="10_g5okp"]
 [ext_resource type="Texture2D" uid="uid://cilqdx44gfsd4" path="res://sprites/wizard/walk_side.png" id="11_eiif7"]
+[ext_resource type="Texture2D" uid="uid://dm4h0i6rews8l" path="res://sprites/mage_hand/mage_hand_sword.png" id="12_jq748"]
 [ext_resource type="Script" uid="uid://cqv3rck705tfd" path="res://entities/characters/camera_2d.gd" id="47_fwlip"]
 [ext_resource type="PackedScene" uid="uid://qxwiaux0yv7h" path="res://entities/characters/components/health_component.tscn" id="48_48k2y"]
 [ext_resource type="PackedScene" uid="uid://cmi0lerhhabpo" path="res://hud.tscn" id="49_ar761"]
@@ -478,6 +479,42 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_nt0jd"]
+atlas = ExtResource("12_jq748")
+region = Rect2(0, 0, 80, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2nc7j"]
+atlas = ExtResource("12_jq748")
+region = Rect2(80, 0, 80, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v8l5j"]
+atlas = ExtResource("12_jq748")
+region = Rect2(0, 40, 80, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cund2"]
+atlas = ExtResource("12_jq748")
+region = Rect2(80, 40, 80, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jwuy3"]
+atlas = ExtResource("12_jq748")
+region = Rect2(0, 80, 80, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f0xee"]
+atlas = ExtResource("12_jq748")
+region = Rect2(80, 80, 80, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nssv8"]
+atlas = ExtResource("12_jq748")
+region = Rect2(0, 120, 80, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eaefr"]
+atlas = ExtResource("12_jq748")
+region = Rect2(80, 120, 80, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qwny2"]
+atlas = ExtResource("12_jq748")
+region = Rect2(0, 160, 80, 40)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_noh6d"]
 atlas = ExtResource("51_0k77t")
 region = Rect2(0, 0, 13, 22)
@@ -504,6 +541,38 @@ region = Rect2(26, 22, 13, 22)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_y5erd"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nt0jd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2nc7j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v8l5j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cund2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jwuy3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f0xee")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nssv8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eaefr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qwny2")
+}],
+"loop": true,
+"name": &"attack_sword",
+"speed": 20.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_noh6d")
@@ -536,6 +605,10 @@ height = 112.0
 radius = 36.0
 height = 112.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jq748"]
+radius = 70.0
+height = 268.0
+
 [node name="Player" type="CharacterBody2D" unique_id=8722019 groups=["persistent", "player"]]
 position = Vector2(665, 345)
 collision_mask = 2
@@ -552,11 +625,12 @@ animation = &"walk_side"
 
 [node name="MageHandSprite" type="AnimatedSprite2D" parent="." unique_id=773953269]
 texture_filter = 1
-position = Vector2(68, -97)
+position = Vector2(500, -100)
+rotation = 1.5707964
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_y5erd")
-animation = &"attack_up"
-offset = Vector2(2, 8)
+animation = &"attack_sword"
+frame_progress = 0.49444103
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1686537352]
 shape = SubResource("CapsuleShape2D_o21vo")
@@ -597,8 +671,21 @@ shape = SubResource("CapsuleShape2D_48k2y")
 
 [node name="Hud" parent="." unique_id=970906071 instance=ExtResource("49_ar761")]
 
+[node name="SwordHitbox" type="Area2D" parent="." unique_id=742207270]
+position = Vector2(500, -100)
+rotation = 1.5707964
+collision_layer = 0
+collision_mask = 4
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SwordHitbox" unique_id=738766412]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_jq748")
+disabled = true
+
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="IFrameTimer" to="." method="_on_i_frame_timer_timeout"]
 [connection signal="timeout" from="DodgeTimer" to="." method="_on_dodge_timer_timeout"]
 [connection signal="timeout" from="RegenTimer" to="." method="_on_regen_timer_timeout"]
 [connection signal="timeout" from="DodgeCooldown" to="." method="_on_dodge_cooldown_timeout"]
+[connection signal="body_entered" from="SwordHitbox" to="." method="_on_sword_hitbox_body_entered"]

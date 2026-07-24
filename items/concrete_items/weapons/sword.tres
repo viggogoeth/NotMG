@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://b7q66d3lk51ry"]
+
+[ext_resource type="Script" uid="uid://8wgunjpyurfa" path="res://items/weapon_data.gd" id="1_olgsc"]
+
+[resource]
+script = ExtResource("1_olgsc")
+base_damage = 30.0
+base_attack_rate = 0.4
+type = "sword"
+metadata/_custom_type_script = "uid://8wgunjpyurfa"

@@ -10,6 +10,7 @@ base_attack_rate = 0.1
 projectiles_count = 1
 range = 10.0
 pattern = "homing_pattern"
+type = "staff"
 item_id = "wand"
 item_name = "Wand"
 rarity = 3

@@ -93,6 +93,10 @@ func _dodge() -> void:
 
 func _attack() -> void:
 	var weapon = equipped_weapon.item_in_slot
+	if weapon.type == "sword":
+		_sword_attack()
+		return
+	
 	var invert_projectile = false
 	for num_projectiles in weapon.projectiles_count:
 		var projectile = projectile_scene.instantiate()
@@ -107,6 +111,9 @@ func _attack() -> void:
 		projectile.inverted = invert_projectile
 		invert_projectile = not invert_projectile
 		get_owner().add_child(projectile)
+	
+func _sword_attack() -> void:
+	$SwordHitbox/CollisionShape2D.disabled = false
 	
 
 func _handle_animation_direction(velocity: Vector2) -> void:
@@ -197,6 +204,8 @@ func update_mage_hand() -> void:
 	$MageHandSprite.rotation = direction.angle() + PI / 2
 	$MageHandSprite.global_position = global_position + direction * 80
 	projectile_spawn.global_position = $MageHandSprite.global_position
+	$SwordHitbox.global_position = $MageHandSprite.global_position
+	$SwordHitbox.rotation = $MageHandSprite.rotation
 	
 
 func _on_i_frame_timer_timeout() -> void:
@@ -224,3 +233,8 @@ func _on_dodge_timer_timeout() -> void:
 	dodging = false
 	_overlapping_enemies_damage()
 	$AnimatedSprite2D.modulate = Config.player_color
+
+
+func _on_sword_hitbox_body_entered(body: Node2D) -> void:
+	if body.has_method("take_damage"):
+		body.take_damage(equipped_weapon.damage)
