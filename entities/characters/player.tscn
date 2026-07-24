@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ct5270d1hep3u" path="res://entities/characters/player.gd" id="1_o21vo"]
 [ext_resource type="Script" uid="uid://dcga17qy0qre6" path="res://entities/characters/player_stats.gd" id="2_8rlf6"]
-[ext_resource type="Resource" uid="uid://bkyv2bter0ugc" path="res://items/concrete_items/weapons/staff.tres" id="2_nufr6"]
+[ext_resource type="Resource" uid="uid://b7q66d3lk51ry" path="res://items/concrete_items/weapons/sword.tres" id="3_jq748"]
 [ext_resource type="Script" uid="uid://b7xlakifl5pew" path="res://items/slot_data.gd" id="5_noh6d"]
 [ext_resource type="Script" uid="uid://ds1f0nfr3slp0" path="res://items/inventory_data.gd" id="6_0s3p3"]
 [ext_resource type="Texture2D" uid="uid://cdiv30scc6k1" path="res://sprites/wizard/idle_back.png" id="6_bjbbu"]
@@ -23,7 +23,7 @@ metadata/_custom_type_script = "uid://dcga17qy0qre6"
 
 [sub_resource type="Resource" id="Resource_jyl6a"]
 script = ExtResource("5_noh6d")
-item_in_slot = ExtResource("2_nufr6")
+item_in_slot = ExtResource("3_jq748")
 metadata/_custom_type_script = "uid://b7xlakifl5pew"
 
 [sub_resource type="Resource" id="Resource_1vlwv"]
@@ -681,11 +681,9 @@ metadata/_edit_group_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SwordHitbox" unique_id=738766412]
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_jq748")
-disabled = true
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="IFrameTimer" to="." method="_on_i_frame_timer_timeout"]
 [connection signal="timeout" from="DodgeTimer" to="." method="_on_dodge_timer_timeout"]
 [connection signal="timeout" from="RegenTimer" to="." method="_on_regen_timer_timeout"]
 [connection signal="timeout" from="DodgeCooldown" to="." method="_on_dodge_cooldown_timeout"]
-[connection signal="body_entered" from="SwordHitbox" to="." method="_on_sword_hitbox_body_entered"]

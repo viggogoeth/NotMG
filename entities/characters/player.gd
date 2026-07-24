@@ -72,6 +72,7 @@ func _physics_process(delta: float) -> void:
 		$MageHandSprite.speed_scale = 0.5 / attack_cooldown
 		
 	if Input.is_action_just_released("main_attack"):
+		# TODO: stop animation only after the full animation played
 		$MageHandSprite.stop()
 		#await get_tree().create_timer(0.6).timeout # let magehand stay for a second
 		$MageHandSprite.hide()
@@ -113,7 +114,10 @@ func _attack() -> void:
 		get_owner().add_child(projectile)
 	
 func _sword_attack() -> void:
-	$SwordHitbox/CollisionShape2D.disabled = false
+	var enemies_in_sword_range = $SwordHitbox.get_overlapping_bodies()
+	for enemy in enemies_in_sword_range:
+		if enemy.has_method("take_damage"):
+			enemy.take_damage(equipped_weapon.item_in_slot.base_damage)
 	
 
 func _handle_animation_direction(velocity: Vector2) -> void:
@@ -233,8 +237,3 @@ func _on_dodge_timer_timeout() -> void:
 	dodging = false
 	_overlapping_enemies_damage()
 	$AnimatedSprite2D.modulate = Config.player_color
-
-
-func _on_sword_hitbox_body_entered(body: Node2D) -> void:
-	if body.has_method("take_damage"):
-		body.take_damage(equipped_weapon.damage)
