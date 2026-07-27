@@ -4,10 +4,6 @@ extends InventoryMenu
 func _ready() -> void:
 	super._ready()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 func _input(event) -> void:
 	# only close using keyboard actions
 	if (event.is_action_pressed("pause") or event.is_action_pressed("inventory") or event.is_action_pressed("interact")) and self.visible:
@@ -18,6 +14,11 @@ func _input(event) -> void:
 		for item in $LootBagContainer/LootBagGrid.get_children():
 			if item.hovered:
 				_add_item(item)
+				return
+
+		for item in $InventoryContainer/InventoryGrid.get_children():
+			if item.hovered:
+				_equip_weapon(item)
 
 func _add_item(item: ItemSlot) -> void:
 	var free_slot = _get_first_free_slot()
