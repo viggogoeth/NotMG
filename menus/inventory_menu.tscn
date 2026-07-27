@@ -2,12 +2,14 @@
 
 [ext_resource type="Script" uid="uid://mp0cglnq0q01" path="res://menus/inventory_menu.gd" id="1_0fdhb"]
 [ext_resource type="PackedScene" uid="uid://c4inr5avwh4ge" path="res://items/item.tscn" id="2_rfwhd"]
-[ext_resource type="Resource" uid="uid://bkyv2bter0ugc" path="res://items/concrete_items/weapons/staff.tres" id="3_w616q"]
 [ext_resource type="Script" uid="uid://b7xlakifl5pew" path="res://items/slot_data.gd" id="4_dfwsl"]
+
+[sub_resource type="Resource" id="Resource_rfwhd"]
+metadata/__load_path__ = "res://items/concrete_items/weapons/staff.tres"
 
 [sub_resource type="Resource" id="Resource_e0cb0"]
 script = ExtResource("4_dfwsl")
-item_in_slot = ExtResource("3_w616q")
+item_in_slot = SubResource("Resource_rfwhd")
 metadata/_custom_type_script = "uid://b7xlakifl5pew"
 
 [node name="InventoryMenu" type="CanvasLayer" unique_id=335479412 groups=["menu"]]

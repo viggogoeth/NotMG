@@ -3,7 +3,7 @@ extends Node
 var items: Dictionary[String, ItemData] = {}
 
 func _ready() -> void:
-	_load_items("res://items/")
+	_load_items("res://items/concrete_items")
 	print("loaded items into ItemDatabase")
 	print(items)
 	

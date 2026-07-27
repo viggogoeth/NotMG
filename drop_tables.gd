@@ -2,10 +2,11 @@ extends Node
 
 var drop_tables = {
 	"slime_1": {
-		"wand": 0.30
+		"wood_wand": 0.3,
+		"copper_sword": 0.3,
 	},
 	"slime_boss": {
-		"staff_of_doom": 1.0
+		"staff": 1.0
 	}
 }
 

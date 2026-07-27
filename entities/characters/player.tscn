@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ct5270d1hep3u" path="res://entities/characters/player.gd" id="1_o21vo"]
 [ext_resource type="Script" uid="uid://dcga17qy0qre6" path="res://entities/characters/player_stats.gd" id="2_8rlf6"]
-[ext_resource type="Resource" uid="uid://b7q66d3lk51ry" path="res://items/concrete_items/weapons/sword.tres" id="3_jq748"]
+[ext_resource type="Resource" uid="uid://c5eh8376wnjnk" path="res://items/concrete_items/weapons/wood_staff.tres" id="3_jq748"]
 [ext_resource type="Script" uid="uid://b7xlakifl5pew" path="res://items/slot_data.gd" id="5_noh6d"]
 [ext_resource type="Script" uid="uid://ds1f0nfr3slp0" path="res://items/inventory_data.gd" id="6_0s3p3"]
 [ext_resource type="Texture2D" uid="uid://cdiv30scc6k1" path="res://sprites/wizard/idle_back.png" id="6_bjbbu"]
@@ -569,9 +569,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qwny2")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack_sword",
-"speed": 20.0
+"speed": 40.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -592,7 +592,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_s521s")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack_up",
 "speed": 12.0
 }]
@@ -630,7 +630,8 @@ rotation = 1.5707964
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_y5erd")
 animation = &"attack_sword"
-frame_progress = 0.49444103
+frame = 8
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1686537352]
 shape = SubResource("CapsuleShape2D_o21vo")
@@ -682,6 +683,7 @@ metadata/_edit_group_ = true
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_jq748")
 
+[connection signal="animation_finished" from="MageHandSprite" to="." method="_on_mage_hand_sprite_animation_finished"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="IFrameTimer" to="." method="_on_i_frame_timer_timeout"]
 [connection signal="timeout" from="DodgeTimer" to="." method="_on_dodge_timer_timeout"]

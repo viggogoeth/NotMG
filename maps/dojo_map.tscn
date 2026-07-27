@@ -9,9 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://dpbwv6xj5rys6" path="res://entities/loot_bag.tscn" id="8_dcwwk"]
 [ext_resource type="Script" uid="uid://b7xlakifl5pew" path="res://items/slot_data.gd" id="9_r2yfa"]
 [ext_resource type="PackedScene" uid="uid://cmi0lerhhabpo" path="res://hud.tscn" id="9_sw2mr"]
-[ext_resource type="Resource" uid="uid://bts4iomg62u2b" path="res://items/concrete_items/weapons/staff_of_doom.tres" id="10_fufcu"]
-[ext_resource type="Resource" uid="uid://ch0t2hr7uusqq" path="res://items/concrete_items/weapons/wand.tres" id="11_fufcu"]
-[ext_resource type="Resource" uid="uid://bkyv2bter0ugc" path="res://items/concrete_items/weapons/staff.tres" id="12_0nnwn"]
+[ext_resource type="Resource" uid="uid://b7f4ca5y6qn4e" path="res://items/concrete_items/weapons/wood_wand.tres" id="10_r2yfa"]
+[ext_resource type="Resource" uid="uid://dhayg8klujp56" path="res://items/concrete_items/weapons/copper_sword.tres" id="11_fufcu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c8ogg"]
 texture = ExtResource("1_o2efn")
@@ -57,17 +56,12 @@ sources/2 = SubResource("TileSetAtlasSource_pin1i")
 
 [sub_resource type="Resource" id="Resource_fufcu"]
 script = ExtResource("9_r2yfa")
-item_in_slot = ExtResource("11_fufcu")
+item_in_slot = ExtResource("10_r2yfa")
 metadata/_custom_type_script = "uid://b7xlakifl5pew"
 
 [sub_resource type="Resource" id="Resource_0nnwn"]
 script = ExtResource("9_r2yfa")
-item_in_slot = ExtResource("12_0nnwn")
-metadata/_custom_type_script = "uid://b7xlakifl5pew"
-
-[sub_resource type="Resource" id="Resource_gil6c"]
-script = ExtResource("9_r2yfa")
-item_in_slot = ExtResource("10_fufcu")
+item_in_slot = ExtResource("11_fufcu")
 metadata/_custom_type_script = "uid://b7xlakifl5pew"
 
 [node name="DojoMap" type="Node" unique_id=1849988854 groups=["persistent"]]
@@ -109,8 +103,8 @@ player = NodePath("../Player")
 
 [node name="LootBag" parent="." unique_id=933105766 instance=ExtResource("8_dcwwk")]
 position = Vector2(1608, 443)
-slots_in_bag = Array[ExtResource("9_r2yfa")]([SubResource("Resource_fufcu"), SubResource("Resource_0nnwn"), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])
+slots_in_bag = Array[ExtResource("9_r2yfa")]([SubResource("Resource_fufcu"), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])
 
 [node name="LootBag2" parent="." unique_id=1226001785 instance=ExtResource("8_dcwwk")]
 position = Vector2(1633, 830)
-slots_in_bag = Array[ExtResource("9_r2yfa")]([SubResource("Resource_gil6c"), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])
+slots_in_bag = Array[ExtResource("9_r2yfa")]([SubResource("Resource_0nnwn"), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])

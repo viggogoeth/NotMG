@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="SwordData" format=3 uid="uid://dhayg8klujp56"]
+
+[ext_resource type="Script" uid="uid://dnqcgxvfqi1ds" path="res://items/types/weapons/sword_data.gd" id="1_rxxjb"]
+[ext_resource type="Texture2D" uid="uid://by8y7i4rvkksp" path="res://sprites/wizard/wizard_idle_side/wizard_idle_side2.png" id="2_4kmhm"]
+
+[resource]
+script = ExtResource("1_rxxjb")
+base_damage = 30.0
+base_attack_rate = 0.4
+range = 4.0
+item_id = "copper_sword"
+item_name = "Copper Sword"
+texture = ExtResource("2_4kmhm")
+metadata/_custom_type_script = "uid://dnqcgxvfqi1ds"

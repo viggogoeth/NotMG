@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="WandData" format=3 uid="uid://b7f4ca5y6qn4e"]
+
+[ext_resource type="Script" uid="uid://dlwfy6gs7myl7" path="res://items/types/weapons/wand_data.gd" id="1_bcghn"]
+[ext_resource type="Texture2D" uid="uid://dkiw0pside6cw" path="res://sprites/items/wand.png" id="2_fm14s"]
+
+[resource]
+script = ExtResource("1_bcghn")
+base_damage = 15.0
+base_attack_rate = 0.2
+range = 11.0
+item_id = "wood_wand"
+item_name = "Wood Wand"
+rarity = 1
+texture = ExtResource("2_fm14s")
+metadata/_custom_type_script = "uid://dlwfy6gs7myl7"

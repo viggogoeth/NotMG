@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="StaffData" format=3 uid="uid://c5eh8376wnjnk"]
+
+[ext_resource type="Script" uid="uid://d2p6plbmjhe5p" path="res://items/types/weapons/staff_data.gd" id="1_ymnvl"]
+[ext_resource type="Texture2D" uid="uid://cj74f3wctghpf" path="res://sprites/items/staff.png" id="2_m8v36"]
+
+[resource]
+script = ExtResource("1_ymnvl")
+base_damage = 10.0
+base_attack_rate = 0.25
+range = 8.25
+item_id = "wood_staff"
+item_name = "Wood Staff"
+texture = ExtResource("2_m8v36")
+metadata/_custom_type_script = "uid://d2p6plbmjhe5p"

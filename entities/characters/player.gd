@@ -65,17 +65,11 @@ func _physics_process(delta: float) -> void:
 		var attack_cooldown = equipped_weapon.item_in_slot.base_attack_rate / ((stats.dexterity + 100.0) / 110.0)
 		$AttackTimer.wait_time = attack_cooldown
 		$AttackTimer.start()
-		_attack()
 		$MageHandSprite.play()
 		$MageHandSprite.show()
 		var weapon: WeaponData = equipped_weapon.item_in_slot
+		weapon.attack(self)
 		$MageHandSprite.speed_scale = 0.5 / attack_cooldown
-		
-	if Input.is_action_just_released("main_attack"):
-		# TODO: stop animation only after the full animation played
-		$MageHandSprite.stop()
-		#await get_tree().create_timer(0.6).timeout # let magehand stay for a second
-		$MageHandSprite.hide()
 		
 	if Input.is_action_just_pressed("dodge") and not dodging and can_dodge:
 		_dodge()
@@ -91,33 +85,6 @@ func _dodge() -> void:
 	$DodgeCooldown.start()
 	$Hud.dodge_used()
 	$AnimatedSprite2D.modulate = Color(1.207, 0.212, 1.154, 1.0) # TODO: fix when sprite is changed
-
-func _attack() -> void:
-	var weapon = equipped_weapon.item_in_slot
-	if weapon.type == "sword":
-		_sword_attack()
-		return
-	
-	var invert_projectile = false
-	for num_projectiles in weapon.projectiles_count:
-		var projectile = projectile_scene.instantiate()
-		projectile.damage = weapon.base_damage * (0.1 * stats.strength)
-		projectile.max_range = weapon.range * 100
-		
-		var attack_direction = (get_global_mouse_position() - global_position).normalized()
-		projectile.direction = attack_direction
-		projectile.global_position = projectile_spawn.global_position
-		
-		projectile.set_pattern(weapon.pattern)
-		projectile.inverted = invert_projectile
-		invert_projectile = not invert_projectile
-		get_owner().add_child(projectile)
-	
-func _sword_attack() -> void:
-	var enemies_in_sword_range = $SwordHitbox.get_overlapping_bodies()
-	for enemy in enemies_in_sword_range:
-		if enemy.has_method("take_damage"):
-			enemy.take_damage(equipped_weapon.item_in_slot.base_damage)
 	
 
 func _handle_animation_direction(velocity: Vector2) -> void:
@@ -194,22 +161,17 @@ func add_exp(amount: float) -> void:
 		_level_up()
 
 func update_mage_hand() -> void:
-	# if the direction is calculated based on the mage_hand position
-	#var abs_vec = abs(get_global_mouse_position() - global_position)
-	#$MageHandSprite.flip_v = abs_vec.x < 80 and abs_vec.y < 80
-	#if abs_vec.x < 80 and abs_vec.y < 80:
-	#	if $MageHandSprite.offset.y > 0:
-	#		$MageHandSprite.offset.y = -$MageHandSprite.offset.y
-	#else:
-	#	if $MageHandSprite.offset.y < 0:
-	#			$MageHandSprite.offset.y = -$MageHandSprite.offset.y
-		
 	var direction = (get_global_mouse_position() - global_position).normalized()
 	$MageHandSprite.rotation = direction.angle() + PI / 2
 	$MageHandSprite.global_position = global_position + direction * 80
 	projectile_spawn.global_position = $MageHandSprite.global_position
 	$SwordHitbox.global_position = $MageHandSprite.global_position
 	$SwordHitbox.rotation = $MageHandSprite.rotation
+	
+	if direction.x < 0:
+		$MageHandSprite.flip_h = true
+	else:
+		$MageHandSprite.flip_h = false
 	
 
 func _on_i_frame_timer_timeout() -> void:
@@ -237,3 +199,42 @@ func _on_dodge_timer_timeout() -> void:
 	dodging = false
 	_overlapping_enemies_damage()
 	$AnimatedSprite2D.modulate = Config.player_color
+
+
+func _on_mage_hand_sprite_animation_finished() -> void:
+	$MageHandSprite.hide()
+
+
+# attacks
+
+func _attack_ranged(weapon: WeaponData, pattern: String, invert_pattern: bool = false) -> void:
+	var projectile = projectile_scene.instantiate()
+	projectile.damage = weapon.base_damage * (0.1 * stats.strength)
+	projectile.max_range = weapon.range * 100
+	
+	var attack_direction = (get_global_mouse_position() - global_position).normalized()
+	projectile.direction = attack_direction
+	projectile.global_position = projectile_spawn.global_position
+	
+	projectile.set_pattern(pattern)
+	projectile.inverted = invert_pattern
+	get_owner().add_child(projectile)
+
+func attack_staff(staff: StaffData) -> void:
+	print("Attacking with a staff")
+	$MageHandSprite.animation = "attack_up"
+	_attack_ranged(staff, "sine_pattern", false)
+	_attack_ranged(staff, "sine_pattern", true)
+
+func attack_wand(wand: WandData) -> void:
+	print("Attacking with a wand")
+	$MageHandSprite.animation = "attack_up"
+	_attack_ranged(wand, "homing_pattern")
+
+func attack_sword(sword: SwordData) -> void:
+	print("Attacking with a sword")
+	$MageHandSprite.animation = "attack_sword"
+	var enemies_in_sword_range = $SwordHitbox.get_overlapping_bodies()
+	for enemy in enemies_in_sword_range:
+		if enemy.has_method("take_damage"):
+			enemy.take_damage(equipped_weapon.item_in_slot.base_damage)

@@ -2,12 +2,14 @@
 
 [ext_resource type="Script" uid="uid://3j2pd48gklak" path="res://menus/loot_bag_menu.gd" id="1_11svx"]
 [ext_resource type="PackedScene" uid="uid://c4inr5avwh4ge" path="res://items/item.tscn" id="2_lelhl"]
-[ext_resource type="Resource" uid="uid://bkyv2bter0ugc" path="res://items/concrete_items/weapons/staff.tres" id="3_0k1gt"]
 [ext_resource type="Script" uid="uid://b7xlakifl5pew" path="res://items/slot_data.gd" id="4_e5lyh"]
+
+[sub_resource type="Resource" id="Resource_0gqyg"]
+metadata/__load_path__ = "res://items/concrete_items/weapons/staff.tres"
 
 [sub_resource type="Resource" id="Resource_exv0h"]
 script = ExtResource("4_e5lyh")
-item_in_slot = ExtResource("3_0k1gt")
+item_in_slot = SubResource("Resource_0gqyg")
 metadata/_custom_type_script = "uid://b7xlakifl5pew"
 
 [node name="LootBagMenu" type="CanvasLayer" unique_id=1073904386 groups=["loot_bag_menu"]]

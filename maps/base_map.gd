@@ -23,10 +23,6 @@ func _ready() -> void:
 	_load_data()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 func _load_data() -> void:
 	var data = ResourceLoader.load("user://save_data.tres") as SaveData
 	
