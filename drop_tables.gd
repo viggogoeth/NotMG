@@ -6,7 +6,7 @@ var drop_tables = {
 		"copper_sword": 0.3,
 	},
 	"slime_boss": {
-		"staff": 1.0
+		"wood_staff": 1.0
 	}
 }
 

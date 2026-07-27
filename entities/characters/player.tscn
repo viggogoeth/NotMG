@@ -479,6 +479,14 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o21vo"]
+radius = 36.0
+height = 112.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_48k2y"]
+radius = 36.0
+height = 112.0
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_nt0jd"]
 atlas = ExtResource("12_jq748")
 region = Rect2(0, 0, 80, 40)
@@ -597,14 +605,6 @@ animations = [{
 "speed": 12.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o21vo"]
-radius = 36.0
-height = 112.0
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_48k2y"]
-radius = 36.0
-height = 112.0
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jq748"]
 radius = 70.0
 height = 268.0
@@ -622,16 +622,6 @@ texture_filter = 1
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_2wuci")
 animation = &"walk_side"
-
-[node name="MageHandSprite" type="AnimatedSprite2D" parent="." unique_id=773953269]
-texture_filter = 1
-position = Vector2(500, -100)
-rotation = 1.5707964
-scale = Vector2(3, 3)
-sprite_frames = SubResource("SpriteFrames_y5erd")
-animation = &"attack_sword"
-frame = 8
-frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1686537352]
 shape = SubResource("CapsuleShape2D_o21vo")
@@ -670,10 +660,20 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=1279814173]
 shape = SubResource("CapsuleShape2D_48k2y")
 
-[node name="Hud" parent="." unique_id=970906071 instance=ExtResource("49_ar761")]
+[node name="MageHandSprite" type="AnimatedSprite2D" parent="." unique_id=773953269]
+visible = false
+texture_filter = 1
+position = Vector2(127, -11)
+rotation = 1.5707964
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_y5erd")
+animation = &"attack_sword"
+frame = 8
+frame_progress = 1.0
 
 [node name="SwordHitbox" type="Area2D" parent="." unique_id=742207270]
-position = Vector2(500, -100)
+visible = false
+position = Vector2(127, -11)
 rotation = 1.5707964
 collision_layer = 0
 collision_mask = 4
@@ -683,9 +683,11 @@ metadata/_edit_group_ = true
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_jq748")
 
-[connection signal="animation_finished" from="MageHandSprite" to="." method="_on_mage_hand_sprite_animation_finished"]
+[node name="Hud" parent="." unique_id=970906071 instance=ExtResource("49_ar761")]
+
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="IFrameTimer" to="." method="_on_i_frame_timer_timeout"]
 [connection signal="timeout" from="DodgeTimer" to="." method="_on_dodge_timer_timeout"]
 [connection signal="timeout" from="RegenTimer" to="." method="_on_regen_timer_timeout"]
 [connection signal="timeout" from="DodgeCooldown" to="." method="_on_dodge_cooldown_timeout"]
+[connection signal="animation_finished" from="MageHandSprite" to="." method="_on_mage_hand_sprite_animation_finished"]
