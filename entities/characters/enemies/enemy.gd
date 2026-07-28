@@ -18,10 +18,14 @@ var RNG = RandomNumberGenerator.new()
 @export var exp_amount: float = 10.0
 
 @export var color: Color = Color(1,1,1)
+@export var enemy_scale: float = 1
 
 const LOOT_BAG_SCENE = preload("res://entities/loot_bag.tscn")
 
 func _ready() -> void:
+	$AnimatedSprite2D.scale *= enemy_scale
+	$CollisionShape2D.scale *= enemy_scale
+	$LineOfSight.collide_with_areas = true
 	$HitboxComponent.contact_damage = contact_damage
 	$AnimatedSprite2D.play()
 	$AnimatedSprite2D.speed_scale = 0.5 / $JumpMovementComponent.movement_duration
@@ -29,7 +33,15 @@ func _ready() -> void:
 	$AnimatedSprite2D.self_modulate = color
 
 func _physics_process(delta: float) -> void:
-	$JumpMovementComponent.move(self)
+	var target = target_player
+	
+	if target_player:
+		print("has target_player")
+		$LineOfSight.target_position = target_player.global_position - $LineOfSight.global_position
+		if $LineOfSight.is_colliding():
+			target = null 
+			
+	$JumpMovementComponent.move(self, target)
 		
 	if velocity.x < 0:
 		$AnimatedSprite2D.flip_h = true

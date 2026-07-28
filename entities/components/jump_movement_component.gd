@@ -13,7 +13,7 @@ func _ready() -> void:
 	$MoveCooldown.start()
 
 
-func move(enemy: CharacterBody2D) -> void:
+func move(enemy: CharacterBody2D, target: CharacterBody2D) -> void:
 	if should_update_movement and not moving:
 		should_update_movement = false
 		moving = true
@@ -21,8 +21,8 @@ func move(enemy: CharacterBody2D) -> void:
 		var random_move_delay_offset = RNG.randf_range(-0.1, 0.1)
 		$MoveCooldown.wait_time = movement_cooldown + random_move_delay_offset
 		
-		if enemy.target_player != null:
-			var direction = enemy.global_position.direction_to(enemy.target_player.global_position)
+		if target != null:
+			var direction = enemy.global_position.direction_to(target.global_position)
 			enemy.velocity = direction * enemy.speed
 		else: # idle movement
 			var dir_x = RNG.randf_range(-0.5, 0.5)

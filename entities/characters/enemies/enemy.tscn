@@ -95,6 +95,9 @@ size = Vector2(48, 48)
 [sub_resource type="CircleShape2D" id="CircleShape2D_uuco2"]
 radius = 855.1497
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_02vvn"]
+radius = 4.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3n866"]
 size = Vector2(48, 48)
 
@@ -132,6 +135,11 @@ collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Vision" unique_id=25452412]
 shape = SubResource("CircleShape2D_uuco2")
+
+[node name="LineOfSight" type="ShapeCast2D" parent="." unique_id=1569172687]
+shape = SubResource("CircleShape2D_02vvn")
+collision_mask = 2
+collide_with_areas = true
 
 [node name="JumpMovementComponent" parent="." unique_id=473034222 instance=ExtResource("4_5tkof")]
 

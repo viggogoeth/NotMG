@@ -18,7 +18,6 @@ var direction: Vector2
 var straight_distance_traveled: float = 0.0
 
 func _ready() -> void:
-	#$HomingRadius/CollisionShape2D.disabled = true
 	pass
 
 func _physics_process(delta: float) -> void:
@@ -36,7 +35,8 @@ func set_pattern(pattern: String) -> void:
 		$Pattern.set_script(SINE_PATTERN)
 	if pattern == "homing_pattern":
 		$Pattern.set_script(HOMING_PATTERN)
-		#$HomingRadius/CollisionShape2D.disabled = false
+	else:
+		$HomingRadius.queue_free()
 	if pattern == "straight_pattern":
 		$Pattern.set_script(STRAIGHT_PATTERN)
 
