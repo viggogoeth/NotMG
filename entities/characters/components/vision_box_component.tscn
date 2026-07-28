@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bfdqgkscuo4jc"]
+
+[node name="VisionBoxComponent" type="Area2D" unique_id=1268107380]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1494884005]

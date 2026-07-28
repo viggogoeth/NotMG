@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bt860mh3ihxku"]
+
+[ext_resource type="Script" uid="uid://bt33x21m47k2m" path="res://entities/characters/components/jump_movement_component.gd" id="1_jsnxk"]
+
+[node name="JumpMovementComponent" type="Node" unique_id=473034222]
+script = ExtResource("1_jsnxk")
+
+[node name="MoveCooldown" type="Timer" parent="." unique_id=314661713]
+wait_time = 0.2
+one_shot = true
+
+[node name="MoveDuration" type="Timer" parent="." unique_id=1363660806]
+wait_time = 0.2
+one_shot = true
+
+[connection signal="timeout" from="MoveCooldown" to="." method="_on_move_cooldown_timeout"]
+[connection signal="timeout" from="MoveDuration" to="." method="_on_move_duration_timeout"]
