@@ -22,19 +22,23 @@ var RNG = RandomNumberGenerator.new()
 const LOOT_BAG_SCENE = preload("res://entities/loot_bag.tscn")
 
 func _ready() -> void:
-	$JumpMovementComponent.set_host(self)
 	$AnimatedSprite2D.play()
 	$HealthComponent.set_health(health, health)
 	$AnimatedSprite2D.self_modulate = color
 
 func _physics_process(delta: float) -> void:
-	$JumpMovementComponent.move()
+	$JumpMovementComponent.move(self)
 		
 	if velocity.x < 0:
 		$AnimatedSprite2D.flip_h = true
 	else:
 		$AnimatedSprite2D.flip_h = false
-
+	
+	if $JumpMovementComponent.moving:
+		$AnimatedSprite2D.animation = "move"
+	else:
+		$AnimatedSprite2D.animation = "idle"
+	
 func take_damage(amount: float) -> void:
 	var resist_adjusted_damage = amount * (1 - resistance)
 	$HealthComponent.take_damage(resist_adjusted_damage)
