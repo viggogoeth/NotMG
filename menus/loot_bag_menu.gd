@@ -1,5 +1,7 @@
 extends InventoryMenu
 
+var current_container: LootContainer
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	super._ready()
@@ -7,6 +9,8 @@ func _ready() -> void:
 func _input(event) -> void:
 	# only close using keyboard actions
 	if (event.is_action_pressed("pause") or event.is_action_pressed("inventory") or event.is_action_pressed("interact")) and self.visible:
+		if current_container and current_container.is_empty():
+			current_container.queue_free()
 		toggle_pause()
 		get_viewport().set_input_as_handled()
 		
@@ -30,7 +34,9 @@ func _add_item(item: ItemSlot) -> void:
 		item.set_data(item.slot_data)
 		
 
-func open_loot_bag(content: Array[SlotData]) -> void:
+func open_loot_bag(container: LootContainer) -> void:
+	current_container = container
+	var content = container.slots_in_bag
 	toggle_pause()
 	var i: int = 0
 	for item in $LootBagContainer/LootBagGrid.get_children():

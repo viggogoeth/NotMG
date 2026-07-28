@@ -28,7 +28,7 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact") and player_in_range:
 		get_viewport().set_input_as_handled()
 		var loot_bag_menu = get_tree().get_first_node_in_group("loot_bag_menu")
-		loot_bag_menu.open_loot_bag(self.slots_in_bag)
+		loot_bag_menu.open_loot_bag(self)
 
 func _on_body_entered(body: Node2D) -> void:
 	var loot_bags = get_tree().get_nodes_in_group("loot_bag")
@@ -39,6 +39,11 @@ func _on_body_entered(body: Node2D) -> void:
 	$InteractPrompt.show()
 	$Highlight.show()
 
+func is_empty() -> bool:
+	for slot in slots_in_bag:
+		if slot.item_in_slot:
+			return false
+	return true
 
 func _on_body_exited(body: Node2D) -> void:
 	player_in_range = false
