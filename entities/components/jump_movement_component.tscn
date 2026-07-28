@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bt860mh3ihxku"]
 
-[ext_resource type="Script" uid="uid://bt33x21m47k2m" path="res://entities/characters/components/jump_movement_component.gd" id="1_jsnxk"]
+[ext_resource type="Script" uid="uid://bt33x21m47k2m" path="res://entities/components/jump_movement_component.gd" id="1_jsnxk"]
 
 [node name="JumpMovementComponent" type="Node" unique_id=473034222]
 script = ExtResource("1_jsnxk")

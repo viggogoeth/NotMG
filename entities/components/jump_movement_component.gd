@@ -1,7 +1,7 @@
 extends Node
 
-var movement_cooldown: float = 0.65
-var movement_duration: float = 0.5
+@export var movement_cooldown: float = 0.65
+@export var movement_duration: float = 0.5
 var should_update_movement: bool = false
 var moving: bool = false
 

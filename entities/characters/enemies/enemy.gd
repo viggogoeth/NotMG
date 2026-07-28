@@ -22,7 +22,9 @@ var RNG = RandomNumberGenerator.new()
 const LOOT_BAG_SCENE = preload("res://entities/loot_bag.tscn")
 
 func _ready() -> void:
+	$HitboxComponent.contact_damage = contact_damage
 	$AnimatedSprite2D.play()
+	$AnimatedSprite2D.speed_scale = 0.5 / $JumpMovementComponent.movement_duration
 	$HealthComponent.set_health(health, health)
 	$AnimatedSprite2D.self_modulate = color
 
@@ -58,16 +60,9 @@ func die() -> void:
 	
 	queue_free()
 
-
-func _on_hit_box_body_entered(body: Node2D) -> void:
-	if body.has_method("take_damage"):
-		body.take_damage(contact_damage)
-
-
 func _on_vision_body_entered(body: Node2D) -> void:
 	target_player = body
 	exp_range_player = body # TODO: give this a different hitbox
-
 
 func _on_vision_body_exited(body: Node2D) -> void:
 	target_player = null

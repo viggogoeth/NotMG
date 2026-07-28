@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://b8rjrpsoqbdvw" path="res://maps/portal.tscn" id="6_c8ogg"]
 [ext_resource type="PackedScene" uid="uid://dpbwv6xj5rys6" path="res://entities/loot_bag.tscn" id="8_dcwwk"]
 [ext_resource type="Script" uid="uid://b7xlakifl5pew" path="res://items/slot_data.gd" id="9_r2yfa"]
-[ext_resource type="PackedScene" uid="uid://cmi0lerhhabpo" path="res://hud.tscn" id="9_sw2mr"]
 [ext_resource type="Resource" uid="uid://b7f4ca5y6qn4e" path="res://items/concrete_items/weapons/wood_wand.tres" id="10_r2yfa"]
 [ext_resource type="Resource" uid="uid://dhayg8klujp56" path="res://items/concrete_items/weapons/copper_sword.tres" id="11_fufcu"]
 
@@ -97,9 +96,6 @@ position = Vector2(628, 626)
 [node name="Portal" parent="." unique_id=1364127591 instance=ExtResource("6_c8ogg")]
 position = Vector2(964, 229)
 target_world_path = "uid://cp3hry8is5m7f"
-
-[node name="Hud" parent="." unique_id=970906071 node_paths=PackedStringArray("player") instance=ExtResource("9_sw2mr")]
-player = NodePath("../Player")
 
 [node name="LootBag" parent="." unique_id=933105766 instance=ExtResource("8_dcwwk")]
 position = Vector2(1608, 443)

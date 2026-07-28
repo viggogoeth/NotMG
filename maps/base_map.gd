@@ -43,4 +43,7 @@ func _load_data() -> void:
 
 func _on_enemy_tree_exited() -> void:
 	map_cleared = true
+	var exit_portal = get_tree().get_first_node_in_group("exit_portal")
+	if exit_portal:
+		exit_portal.set_available()
 	print("Map Cleared!")

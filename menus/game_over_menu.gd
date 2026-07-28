@@ -7,7 +7,6 @@ func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
 	hide()
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if player.is_dead:
@@ -21,4 +20,5 @@ func _on_quit_button_pressed() -> void:
 
 func _on_load_button_pressed() -> void:
 	get_tree().paused = false
-	get_tree().change_scene_to_file("res://maps/dojo_map.tscn")
+	print("Load last save not implemented yet")
+	get_tree().change_scene_to_file("res://menus/main_menu.tscn")

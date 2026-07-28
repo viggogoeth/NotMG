@@ -13,10 +13,6 @@ func _ready() -> void:
 	$HealthbarBackground.visible = healthbar_shown
 	$Healthbar.visible = healthbar_shown
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 func take_damage(amount: float) -> void:
 	current_health -= amount
 	

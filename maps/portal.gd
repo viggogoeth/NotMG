@@ -1,17 +1,19 @@
-extends Area2D
+class_name Portal extends Area2D
 
 @export_file("*.tscn") var target_world_path: String
 
 var player_in_range: bool = false
 @export var player: Player
 
+@export var available: bool = true
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if not available:
+		print("uan")
+		visible = false
 	player = get_tree().get_first_node_in_group("player")
 	$InteractPrompt.hide()
-
-func _process(delta: float) -> void:
-	pass
 
 func _input(event: InputEvent) -> void:
 	if player_in_range and event.is_action_pressed("interact"):
@@ -36,3 +38,7 @@ func _on_body_exited(body: Node2D) -> void:
 
 func _save_data() -> void:
 	WorldManager.save_data(player, target_world_path, false)
+
+func set_available() -> void:
+	available = true
+	visible = true

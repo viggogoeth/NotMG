@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://beedo2hlpvcgj" path="res://tilesets/dojo_top.png" id="2_ls07c"]
 [ext_resource type="PackedScene" uid="uid://bm2857742v0ai" path="res://entities/characters/enemies/enemy.tscn" id="3_8jmup"]
 [ext_resource type="PackedScene" uid="uid://barck7peqm2lo" path="res://entities/characters/player.tscn" id="4_edqsn"]
-[ext_resource type="PackedScene" uid="uid://cmi0lerhhabpo" path="res://hud.tscn" id="8_edqsn"]
+[ext_resource type="PackedScene" uid="uid://b8rjrpsoqbdvw" path="res://maps/portal.tscn" id="6_chvee"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pqgwf"]
 texture = ExtResource("1_xcytv")
@@ -68,10 +68,20 @@ contact_damage = 25.0
 exp_amount = 250.0
 color = Color(0.9314931, 0.24568924, 0.5608222, 1)
 
+[node name="JumpMovementComponent" parent="Enemy" index="5" unique_id=473034222]
+movement_cooldown = 0.9
+movement_duration = 0.7
+
 [node name="Player" parent="." unique_id=8722019 instance=ExtResource("4_edqsn")]
 position = Vector2(960, 240)
 
-[node name="Hud" parent="." unique_id=970906071 node_paths=PackedStringArray("player") instance=ExtResource("8_edqsn")]
+[node name="Portal" parent="." unique_id=1364127591 node_paths=PackedStringArray("player") groups=["exit_portal"] instance=ExtResource("6_chvee")]
+position = Vector2(959, 889)
+target_world_path = "uid://dtr068763sn4x"
 player = NodePath("../Player")
+available = false
 
 [connection signal="tree_exited" from="Enemy" to="." method="_on_enemy_tree_exited"]
+
+[editable path="Enemy"]
+[editable path="Enemy/HitboxComponent"]

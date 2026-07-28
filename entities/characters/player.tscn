@@ -11,9 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://sps0dtnvb6ct" path="res://sprites/wizard/walk_back.png" id="9_8ug6l"]
 [ext_resource type="Texture2D" uid="uid://depayl0l66ruw" path="res://sprites/wizard/walk_front.png" id="10_g5okp"]
 [ext_resource type="Texture2D" uid="uid://cilqdx44gfsd4" path="res://sprites/wizard/walk_side.png" id="11_eiif7"]
-[ext_resource type="Texture2D" uid="uid://dm4h0i6rews8l" path="res://sprites/mage_hand/mage_hand_sword.png" id="12_jq748"]
+[ext_resource type="Texture2D" uid="uid://bsj7qcfdjk73h" path="res://sprites/mage_hand/mage_hand_sword_new.png" id="14_jq748"]
 [ext_resource type="Script" uid="uid://cqv3rck705tfd" path="res://entities/characters/camera_2d.gd" id="47_fwlip"]
-[ext_resource type="PackedScene" uid="uid://qxwiaux0yv7h" path="res://entities/characters/components/health_component.tscn" id="48_48k2y"]
+[ext_resource type="PackedScene" uid="uid://qxwiaux0yv7h" path="res://entities/components/health_component.tscn" id="48_48k2y"]
 [ext_resource type="PackedScene" uid="uid://cmi0lerhhabpo" path="res://hud.tscn" id="49_ar761"]
 [ext_resource type="Texture2D" uid="uid://cao13cns1sgsw" path="res://sprites/mage_hand/mage_hand_new.png" id="51_0k77t"]
 
@@ -488,39 +488,39 @@ radius = 36.0
 height = 112.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nt0jd"]
-atlas = ExtResource("12_jq748")
+atlas = ExtResource("14_jq748")
 region = Rect2(0, 0, 80, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2nc7j"]
-atlas = ExtResource("12_jq748")
+atlas = ExtResource("14_jq748")
 region = Rect2(80, 0, 80, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v8l5j"]
-atlas = ExtResource("12_jq748")
+atlas = ExtResource("14_jq748")
 region = Rect2(0, 40, 80, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cund2"]
-atlas = ExtResource("12_jq748")
+atlas = ExtResource("14_jq748")
 region = Rect2(80, 40, 80, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jwuy3"]
-atlas = ExtResource("12_jq748")
+atlas = ExtResource("14_jq748")
 region = Rect2(0, 80, 80, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f0xee"]
-atlas = ExtResource("12_jq748")
+atlas = ExtResource("14_jq748")
 region = Rect2(80, 80, 80, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nssv8"]
-atlas = ExtResource("12_jq748")
+atlas = ExtResource("14_jq748")
 region = Rect2(0, 120, 80, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eaefr"]
-atlas = ExtResource("12_jq748")
+atlas = ExtResource("14_jq748")
 region = Rect2(80, 120, 80, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qwny2"]
-atlas = ExtResource("12_jq748")
+atlas = ExtResource("14_jq748")
 region = Rect2(0, 160, 80, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_noh6d"]
@@ -610,8 +610,9 @@ radius = 70.0
 height = 268.0
 
 [node name="Player" type="CharacterBody2D" unique_id=8722019 groups=["persistent", "player"]]
+y_sort_enabled = true
 position = Vector2(665, 345)
-collision_mask = 2
+collision_mask = 10
 script = ExtResource("1_o21vo")
 stats = SubResource("Resource_nufr6")
 equipped_weapon = SubResource("Resource_jyl6a")
@@ -668,8 +669,6 @@ rotation = 1.5707964
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_y5erd")
 animation = &"attack_sword"
-frame = 8
-frame_progress = 1.0
 
 [node name="SwordHitbox" type="Area2D" parent="." unique_id=742207270]
 visible = false

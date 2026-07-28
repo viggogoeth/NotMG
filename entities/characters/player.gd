@@ -48,7 +48,9 @@ func _ready() -> void:
 	
 func _physics_process(delta: float) -> void:
 	if dodging:
-		global_position += dodge_direction * DODGE_DISTANCE_PER_FRAME * delta
+		velocity = dodge_direction * DODGE_DISTANCE_PER_FRAME
+		#global_position += dodge_direction * DODGE_DISTANCE_PER_FRAME * delta
+		move_and_slide()
 		return
 	
 	var direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -182,6 +184,7 @@ func _overlapping_enemies_damage() -> void:
 	var bodies = $HitBox.get_overlapping_bodies()
 	if not bodies.is_empty():
 		var body = bodies[0]
+		print("taking damage after i-frames")
 		take_damage(body.contact_damage)
 
 func _on_regen_timer_timeout() -> void:
@@ -221,20 +224,18 @@ func _attack_ranged(weapon: WeaponData, pattern: String, invert_pattern: bool = 
 	get_owner().add_child(projectile)
 
 func attack_staff(staff: StaffData) -> void:
-	print("Attacking with a staff")
 	$MageHandSprite.animation = "attack_up"
 	_attack_ranged(staff, "sine_pattern", false)
 	_attack_ranged(staff, "sine_pattern", true)
 
 func attack_wand(wand: WandData) -> void:
-	print("Attacking with a wand")
 	$MageHandSprite.animation = "attack_up"
 	_attack_ranged(wand, "homing_pattern")
 
 func attack_sword(sword: SwordData) -> void:
-	print("Attacking with a sword")
 	$MageHandSprite.animation = "attack_sword"
 	var enemies_in_sword_range = $SwordHitbox.get_overlapping_bodies()
+	var damage = sword.base_damage * 0.1 * stats.strength
 	for enemy in enemies_in_sword_range:
 		if enemy.has_method("take_damage"):
-			enemy.take_damage(equipped_weapon.item_in_slot.base_damage)
+			enemy.take_damage(damage)
