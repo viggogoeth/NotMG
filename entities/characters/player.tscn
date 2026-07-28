@@ -479,9 +479,6 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_jq748"]
-polygon = PackedVector2Array(22, -64, -18, -64, -18, -61.8, -37.8, -42, -40, -42, -40, -14.799999, -36, -12.799999, -36, -7.0999985, -22, 5.9000015, -29.8, 14, -32, 14, -32, 21.099998, -37.7, 26, -40, 26, -40, 36.9, -41.7, 38, -44, 38, -44, 44.9, -45.7, 46, -48, 46, -48, 64, 52, 64, 52, 58.800003, 48, 56.699997, 48, 50.800003, 44, 48.699997, 44, 39.300003, 36, 29.300003, 36, 23.199997, 24.800003, 12, 23.699997, 12, 22.900002, 6.5, 29.900002, -2, 32, -2, 32, -9.299999, 40, -19.3, 40, -44.9, 22, -62)
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o21vo"]
 radius = 36.0
 height = 112.0
@@ -626,9 +623,6 @@ texture_filter = 1
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_2wuci")
 animation = &"walk_side"
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=890302751]
-occluder = SubResource("OccluderPolygon2D_jq748")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1686537352]
 shape = SubResource("CapsuleShape2D_o21vo")
