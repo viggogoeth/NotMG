@@ -80,3 +80,5 @@ rotation = -0.15707964
 color = Color(0.68168175, 0.4527521, 0.2023279, 1)
 shadow_enabled = true
 shadow_filter = 1
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=265455934]
