@@ -188,3 +188,5 @@ size_flags_vertical = 3
 
 [node name="Weapon" parent="EquippedContainer/EquippedGrid" unique_id=1230137908 instance=ExtResource("2_rfwhd")]
 layout_mode = 2
+accepts_all = false
+accepts_weapons = true

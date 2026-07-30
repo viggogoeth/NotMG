@@ -1,6 +1,8 @@
 class_name ItemSlot extends PanelContainer
 
 @export var slot_data: SlotData
+@export var accepts_all: bool = true
+@export var accepts_weapons: bool
 
 var hovered: bool = false
 
@@ -89,6 +91,11 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 	
 	if origin_slot == self:
 		return
+	
+	# TODO: dont make a giant switch case for all different item types
+	if not accepts_all:
+		if accepts_weapons and not data["item_data"] is WeaponData:
+			return
 		
 	var temp_item = self.slot_data.item_in_slot
 	
@@ -99,4 +106,4 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 	origin_slot.set_data(origin_slot.slot_data)
 
 func show_menu() -> void:
-	$RightClickMenu.show()
+	pass

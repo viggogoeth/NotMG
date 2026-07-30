@@ -4,8 +4,6 @@ class_name InventoryMenu extends CanvasLayer
 @export var inventory_resource: InventoryData
 @export var equipped_weapon: SlotData
 
-var dragged_item: ItemSlot = null
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
@@ -45,7 +43,7 @@ func _input(event) -> void:
 				item.show_menu()
 
 func _equip_weapon(item: ItemSlot) -> void:
-	if is_instance_valid(item.slot_data.item_in_slot):
+	if item.slot_data.item_in_slot is WeaponData:
 		print("Equipping weapon: %s" % item.slot_data.item_in_slot.item_name)
 		var eq = player.equipped_weapon.item_in_slot
 		player.equipped_weapon.item_in_slot = item.slot_data.item_in_slot

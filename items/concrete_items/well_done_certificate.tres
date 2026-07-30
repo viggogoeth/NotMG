@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://bm42y7or2d41g"]
+
+[ext_resource type="Script" uid="uid://cyhqw01xgo132" path="res://items/item_data.gd" id="1_8ywhg"]
+[ext_resource type="Texture2D" uid="uid://beedo2hlpvcgj" path="res://tilesets/dojo_top.png" id="2_u8k4d"]
+
+[resource]
+script = ExtResource("1_8ywhg")
+item_id = "well_done_certificate"
+item_name = "Well Done Certificate"
+texture = ExtResource("2_u8k4d")
+metadata/_custom_type_script = "uid://cyhqw01xgo132"
