@@ -1,6 +1,6 @@
 extends Control
 
-const MAIN_LEVEL: String = "res://maps/dojo_world/dojo_map.tscn"
+const MAIN_LEVEL: String = "res://maps/dojo_world/dojo_map_1.tscn"
 
 var current_scene: String = ""
 

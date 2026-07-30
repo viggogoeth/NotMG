@@ -94,7 +94,7 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 	
 	# TODO: dont make a giant switch case for all different item types
 	if not accepts_all:
-		if accepts_weapons and not data["item_data"] is WeaponData:
+		if not data["item_data"].can_go_in_slot(self):
 			return
 		
 	var temp_item = self.slot_data.item_in_slot

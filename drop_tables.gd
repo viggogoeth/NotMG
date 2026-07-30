@@ -1,12 +1,11 @@
 extends Node
 
 var drop_tables = {
-	"slime_1": {
-		"wood_wand": 0.3,
-		"copper_sword": 0.3,
-	},
 	"slime_boss": {
 		"wood_staff": 1.0
+	},
+	"slime_drop_tut": {
+		"wood_wand": 1.0
 	},
 	"slime_joke": {
 		"well_done_certificate": 1.0

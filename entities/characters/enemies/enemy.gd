@@ -18,19 +18,19 @@ var RNG = RandomNumberGenerator.new()
 @export var exp_amount: float = 10.0
 
 @export var color: Color = Color(1,1,1)
-@export var enemy_scale: float = 1
+@export var enemy_scale: int = 1
 
 const LOOT_BAG_SCENE = preload("res://entities/loot_bag.tscn")
 
 func _ready() -> void:
-	$AnimatedSprite2D.scale *= enemy_scale
 	$CollisionShape2D.scale *= enemy_scale
+	$Scalables.scale *= enemy_scale
 	$LineOfSight.collide_with_areas = true
-	$HitboxComponent.contact_damage = contact_damage
-	$AnimatedSprite2D.play()
-	$AnimatedSprite2D.speed_scale = 0.5 / $JumpMovementComponent.movement_duration
-	$HealthComponent.set_health(health, health)
-	$AnimatedSprite2D.self_modulate = color
+	$Scalables/HitboxComponent.contact_damage = contact_damage
+	$Scalables/AnimatedSprite2D.play()
+	$Scalables/AnimatedSprite2D.speed_scale = 0.5 / $JumpMovementComponent.movement_duration
+	$Scalables/HealthComponent.set_health(health, health)
+	$Scalables/AnimatedSprite2D.self_modulate = color
 
 func _physics_process(delta: float) -> void:
 	var target = target_player
@@ -44,18 +44,18 @@ func _physics_process(delta: float) -> void:
 	$JumpMovementComponent.move(self, target)
 		
 	if velocity.x < 0:
-		$AnimatedSprite2D.flip_h = true
+		$Scalables/AnimatedSprite2D.flip_h = true
 	else:
-		$AnimatedSprite2D.flip_h = false
+		$Scalables/AnimatedSprite2D.flip_h = false
 	
 	if $JumpMovementComponent.moving:
-		$AnimatedSprite2D.animation = "move"
+		$Scalables/AnimatedSprite2D.animation = "move"
 	else:
-		$AnimatedSprite2D.animation = "idle"
+		$Scalables/AnimatedSprite2D.animation = "idle"
 	
 func take_damage(amount: float) -> void:
 	var resist_adjusted_damage = amount * (1 - resistance)
-	$HealthComponent.take_damage(resist_adjusted_damage)
+	$Scalables/HealthComponent.take_damage(resist_adjusted_damage)
 	
 func die() -> void:
 	if dead:
@@ -81,7 +81,7 @@ func _on_vision_body_exited(body: Node2D) -> void:
 	exp_range_player = null
 
 func move_start() -> void:
-	$AnimatedSprite2D.animation = "move"
+	$Scalables/AnimatedSprite2D.animation = "move"
 
 func move_stop() -> void:
-	$AnimatedSprite2D.animation = "idle"
+	$Scalables/AnimatedSprite2D.animation = "idle"

@@ -8,3 +8,6 @@ class_name ItemData extends Resource
 
 func get_stats_text() -> String:
 	return ""
+
+func can_go_in_slot(slot: ItemSlot) -> bool:
+	return slot.accepts_all

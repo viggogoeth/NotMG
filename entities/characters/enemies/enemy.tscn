@@ -6,6 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://bt860mh3ihxku" path="res://entities/components/jump_movement_component.tscn" id="4_5tkof"]
 [ext_resource type="PackedScene" uid="uid://c02efoks2xrqt" path="res://entities/components/hitbox_component.tscn" id="5_02vvn"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i0y61"]
+size = Vector2(48, 48)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_k6q6l"]
 atlas = ExtResource("2_k6q6l")
 region = Rect2(0, 0, 16, 16)
@@ -89,17 +92,26 @@ animations = [{
 "speed": 16.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_i0y61"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3n866"]
 size = Vector2(48, 48)
+
+[sub_resource type="Gradient" id="Gradient_02vvn"]
+offsets = PackedFloat32Array(0.38333333, 0.95)
+colors = PackedColorArray(0, 0, 0, 1, 0.2509804, 0.2509804, 0.2509804, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3n866"]
+gradient = SubResource("Gradient_02vvn")
+width = 70
+height = 24
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.75, 0)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uuco2"]
 radius = 855.1497
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_02vvn"]
 radius = 4.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3n866"]
-size = Vector2(48, 48)
 
 [node name="Enemy" type="CharacterBody2D" unique_id=720180946 groups=["enemy", "hostile_entities"]]
 position = Vector2(296, 134)
@@ -116,18 +128,31 @@ offset_bottom = 24.0
 color = Color(0, 0.39532185, 0.022088934, 1)
 metadata/_edit_use_anchors_ = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=452934368]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1713658057 groups=["scalables"]]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_i0y61")
+
+[node name="Scalables" type="Node2D" parent="." unique_id=373234577]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Scalables" unique_id=452934368 groups=["scalables"]]
 texture_filter = 1
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_jwbx2")
 animation = &"move"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1713658057]
-position = Vector2(0, 8)
-shape = SubResource("RectangleShape2D_i0y61")
-
-[node name="HealthComponent" parent="." unique_id=334772244 instance=ExtResource("2_wv5ky")]
+[node name="HealthComponent" parent="Scalables" unique_id=334772244 groups=["scalables"] instance=ExtResource("2_wv5ky")]
 position = Vector2(0, 34)
+
+[node name="HitboxComponent" parent="Scalables" unique_id=1058904513 groups=["scalables"] instance=ExtResource("5_02vvn")]
+
+[node name="CollisionShape2D" parent="Scalables/HitboxComponent" index="0" unique_id=103943116]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_3n866")
+
+[node name="Shadow" type="Sprite2D" parent="Scalables" unique_id=991253485]
+z_index = -1
+position = Vector2(0, 32)
+texture = SubResource("GradientTexture2D_3n866")
 
 [node name="Vision" type="Area2D" parent="." unique_id=1534447643]
 visible = false
@@ -143,13 +168,7 @@ collide_with_areas = true
 
 [node name="JumpMovementComponent" parent="." unique_id=473034222 instance=ExtResource("4_5tkof")]
 
-[node name="HitboxComponent" parent="." unique_id=1058904513 instance=ExtResource("5_02vvn")]
-
-[node name="CollisionShape2D" parent="HitboxComponent" index="0" unique_id=103943116]
-position = Vector2(0, 8)
-shape = SubResource("RectangleShape2D_3n866")
-
 [connection signal="body_entered" from="Vision" to="." method="_on_vision_body_entered"]
 [connection signal="body_exited" from="Vision" to="." method="_on_vision_body_exited"]
 
-[editable path="HitboxComponent"]
+[editable path="Scalables/HitboxComponent"]
