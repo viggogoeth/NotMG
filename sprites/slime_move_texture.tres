@@ -1,0 +1,8 @@
+[gd_resource type="CanvasTexture" format=3 uid="uid://c7b0pm6p6y0v6"]
+
+[ext_resource type="Texture2D" uid="uid://cj4mba2pvi75" path="res://sprites/slime_move.png" id="1_hg5ej"]
+[ext_resource type="Texture2D" uid="uid://bpasfopb22vfv" path="res://sprites/slime_move_normal_map.png" id="2_s8fis"]
+
+[resource]
+diffuse_texture = ExtResource("1_hg5ej")
+normal_texture = ExtResource("2_s8fis")

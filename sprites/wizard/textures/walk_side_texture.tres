@@ -1,0 +1,8 @@
+[gd_resource type="CanvasTexture" format=3 uid="uid://bvp2etd3ef3ip"]
+
+[ext_resource type="Texture2D" uid="uid://cilqdx44gfsd4" path="res://sprites/wizard/walk_side.png" id="1_tq2lc"]
+[ext_resource type="Texture2D" uid="uid://b4v2eowbgpkpu" path="res://sprites/wizard/normal_maps/walk_side.png" id="2_t0e7x"]
+
+[resource]
+diffuse_texture = ExtResource("1_tq2lc")
+normal_texture = ExtResource("2_t0e7x")

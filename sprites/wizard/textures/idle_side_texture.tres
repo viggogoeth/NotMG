@@ -1,0 +1,8 @@
+[gd_resource type="CanvasTexture" format=3 uid="uid://dwsd88iwnsbax"]
+
+[ext_resource type="Texture2D" uid="uid://mmjfht3c42ql" path="res://sprites/wizard/idle_side.png" id="1_3nn41"]
+[ext_resource type="Texture2D" uid="uid://bjpj3kov42s0c" path="res://sprites/wizard/normal_maps/idle_side.png" id="2_c2nbd"]
+
+[resource]
+diffuse_texture = ExtResource("1_3nn41")
+normal_texture = ExtResource("2_c2nbd")

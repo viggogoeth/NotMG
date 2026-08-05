@@ -75,6 +75,11 @@ tile_set = SubResource("TileSet_aswen")
 [node name="Player" parent="." unique_id=8722019 instance=ExtResource("3_a6acs")]
 position = Vector2(515, 83)
 
+[node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=1445410487]
+texture_filter = 1
+position = Vector2(2.000061, 4)
+scale = Vector2(6.84375, 6.59375)
+
 [node name="Enemy3" parent="." unique_id=856358990 instance=ExtResource("4_tqi5d")]
 position = Vector2(1342, 1561)
 enemy_id = "slime_drop_tut"
@@ -155,3 +160,7 @@ position = Vector2(3721, 108)
 [node name="Portal" parent="." unique_id=1364127591 instance=ExtResource("7_s8k3j")]
 position = Vector2(3079, -25)
 target_world_path = "uid://di1nyywsurxsk"
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=522616897]
+rotation = -0.7853982
+energy = 0.2
