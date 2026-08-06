@@ -97,7 +97,7 @@ contact_damage = 1.0
 exp_amount = 1.0
 
 [node name="Slime10" parent="Enemies" unique_id=747197423 instance=ExtResource("4_w48uw")]
-position = Vector2(993, -903)
+position = Vector2(1053, -837)
 enemy_id = "slime_small"
 speed = 50.0
 health = 20.0
@@ -105,7 +105,7 @@ contact_damage = 1.0
 exp_amount = 1.0
 
 [node name="Slime11" parent="Enemies" unique_id=1725028430 instance=ExtResource("4_w48uw")]
-position = Vector2(1083, -1176)
+position = Vector2(1149, -1050)
 enemy_id = "slime_small"
 speed = 50.0
 health = 20.0
@@ -152,12 +152,13 @@ contact_damage = 20.0
 exp_amount = 75.0
 
 [node name="AnimatedArmour2" parent="Enemies" unique_id=605795955 instance=ExtResource("5_702yh")]
-position = Vector2(1713, -1148)
+position = Vector2(1716, -1173)
 enemy_id = "animated_armour"
 speed = 380.0
 health = 450.0
 contact_damage = 20.0
 exp_amount = 75.0
+metadata/_edit_group_ = true
 
 [node name="VisionBoxComponent" parent="Enemies/AnimatedArmour2" index="2" unique_id=1268107380]
 visible = true

@@ -39,14 +39,18 @@ func closest_target() -> CharacterBody2D:
 	if targets.is_empty():
 		return null
 	
-	var closest = targets[0]
+	var closest = null
 	
 	for target in targets:
+		if not $VisionBoxComponent.has_line_of_sight(target):
+			continue
 		if dist(target) < dist(closest):
 			closest = target
-	return closest if $VisionBoxComponent.has_line_of_sight(closest) else null
+	return closest
 
 func dist(target: CharacterBody2D) -> float:
+	if not is_instance_valid(target):
+		return INF
 	var dist_x = (global_position.x - target.global_position.x)**2
 	var dist_y = (global_position.y - target.global_position.y)**2
 	return sqrt(dist_x + dist_y)

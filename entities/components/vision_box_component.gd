@@ -5,8 +5,8 @@ var exp_range_player: CharacterBody2D
 
 func has_line_of_sight(target: CharacterBody2D) -> bool:
 	if target:
-		#$LineOfSight.force_shapecast_update()
 		$LineOfSight.target_position = target.global_position - $LineOfSight.global_position
+		$LineOfSight.force_shapecast_update()
 		if $LineOfSight.is_colliding():
 			return false
 		else:
