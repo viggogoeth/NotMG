@@ -10,6 +10,9 @@ var drop_tables = {
 	"slime_joke": {
 		"well_done_certificate": 1.0
 	},
+	"animated_armour": {
+		"copper_sword": 0.3
+	}
 }
 
 func get_drop(enemy_id: String) -> Array[ItemData]:

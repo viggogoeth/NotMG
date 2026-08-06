@@ -1,0 +1,195 @@
+[gd_scene format=3 uid="uid://cqh1dl6iway76"]
+
+[ext_resource type="Script" uid="uid://ckc1tktvgp28h" path="res://entities/characters/enemies/animated_armour.gd" id="1_3s0t7"]
+[ext_resource type="PackedScene" uid="uid://bfdqgkscuo4jc" path="res://entities/components/vision_box_component.tscn" id="2_hkvjr"]
+[ext_resource type="PackedScene" uid="uid://qxwiaux0yv7h" path="res://entities/components/health_component.tscn" id="3_fltc6"]
+[ext_resource type="Texture2D" uid="uid://bsj7qcfdjk73h" path="res://sprites/mage_hand/mage_hand_sword_new.png" id="5_oqrh0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3s0t7"]
+size = Vector2(82, 131)
+
+[sub_resource type="Gradient" id="Gradient_02vvn"]
+offsets = PackedFloat32Array(0.38333333, 0.95)
+colors = PackedColorArray(0, 0, 0, 1, 0.2509804, 0.2509804, 0.2509804, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_oqrh0"]
+gradient = SubResource("Gradient_02vvn")
+width = 70
+height = 24
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.75, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qktlv"]
+atlas = ExtResource("5_oqrh0")
+region = Rect2(0, 0, 80, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1bo45"]
+atlas = ExtResource("5_oqrh0")
+region = Rect2(80, 0, 80, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5qbvs"]
+atlas = ExtResource("5_oqrh0")
+region = Rect2(0, 40, 80, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_egw64"]
+atlas = ExtResource("5_oqrh0")
+region = Rect2(80, 40, 80, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l7ama"]
+atlas = ExtResource("5_oqrh0")
+region = Rect2(0, 80, 80, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fuoci"]
+atlas = ExtResource("5_oqrh0")
+region = Rect2(80, 80, 80, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dy5xa"]
+atlas = ExtResource("5_oqrh0")
+region = Rect2(0, 120, 80, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k7c6s"]
+atlas = ExtResource("5_oqrh0")
+region = Rect2(80, 120, 80, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6xqb0"]
+atlas = ExtResource("5_oqrh0")
+region = Rect2(0, 160, 80, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m7plt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qktlv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1bo45")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5qbvs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_egw64")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l7ama")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fuoci")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dy5xa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k7c6s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6xqb0")
+}],
+"loop": false,
+"name": &"default",
+"speed": 25.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ly1v5"]
+radius = 134.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oqrh0"]
+radius = 159.05031
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qktlv"]
+radius = 163.0
+
+[node name="AnimatedArmour" type="CharacterBody2D" unique_id=1455663875]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_3s0t7")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=497496835]
+offset_left = -41.0
+offset_top = -66.0
+offset_right = 41.0
+offset_bottom = 65.0
+color = Color(0.5132329, 0.5132329, 0.5132329, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=26852740]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_3s0t7")
+
+[node name="VisionBoxComponent" parent="." unique_id=1268107380 instance=ExtResource("2_hkvjr")]
+collision_mask = 5
+
+[node name="HealthComponent" parent="." unique_id=807587943 instance=ExtResource("3_fltc6")]
+position = Vector2(0, 70)
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=613797103]
+z_index = -1
+position = Vector2(0, 65)
+texture = SubResource("GradientTexture2D_oqrh0")
+
+[node name="Melee" type="Node2D" parent="." unique_id=722320973]
+
+[node name="AttackWindup" type="Timer" parent="Melee" unique_id=546799112]
+wait_time = 0.15
+one_shot = true
+
+[node name="AttackCooldown" type="Timer" parent="Melee" unique_id=1019359801]
+one_shot = true
+
+[node name="AttackAnimation" type="AnimatedSprite2D" parent="Melee" unique_id=59887080]
+position = Vector2(-1, -0.50000954)
+scale = Vector2(4.15, 8.275001)
+sprite_frames = SubResource("SpriteFrames_m7plt")
+
+[node name="Eyes" type="Control" parent="Melee" unique_id=455371317]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="Melee/Eyes" unique_id=183743244]
+layout_mode = 0
+offset_left = -17.0
+offset_top = -39.0
+offset_right = -4.0
+offset_bottom = -28.0
+color = Color(0.7789535, 0, 0.085031204, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Melee/Eyes" unique_id=136061264]
+layout_mode = 0
+offset_left = 5.0
+offset_top = -39.0
+offset_right = 18.0
+offset_bottom = -28.0
+color = Color(0.7789535, 0, 0.085031204, 1)
+
+[node name="MeleeRange" type="Area2D" parent="Melee" unique_id=1569847496]
+visible = false
+collision_layer = 0
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Melee/MeleeRange" unique_id=1843309801]
+shape = SubResource("CircleShape2D_ly1v5")
+
+[node name="DamageRange" type="Area2D" parent="Melee" unique_id=2138581338]
+visible = false
+collision_layer = 0
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Melee/DamageRange" unique_id=798045625]
+shape = SubResource("CircleShape2D_oqrh0")
+
+[node name="WakeUpRange" type="Area2D" parent="." unique_id=1051178219]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WakeUpRange" unique_id=954812559]
+shape = SubResource("CircleShape2D_qktlv")
+
+[connection signal="body_entered" from="VisionBoxComponent" to="." method="_on_vision_box_component_body_entered"]
+[connection signal="body_exited" from="VisionBoxComponent" to="." method="_on_vision_box_component_body_exited"]
+[connection signal="timeout" from="Melee/AttackWindup" to="." method="_on_attack_windup_timeout"]
+[connection signal="timeout" from="Melee/AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
+[connection signal="animation_finished" from="Melee/AttackAnimation" to="." method="_on_attack_indicator_animation_finished"]
+[connection signal="body_entered" from="Melee/MeleeRange" to="." method="_on_melee_range_body_entered"]
+[connection signal="body_exited" from="Melee/MeleeRange" to="." method="_on_melee_range_body_exited"]
+[connection signal="body_entered" from="WakeUpRange" to="." method="_on_wake_up_range_body_entered"]

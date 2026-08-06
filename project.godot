@@ -121,7 +121,7 @@ rotate_reset={
 2d_physics/layer_1="player"
 2d_physics/layer_2="world"
 2d_physics/layer_3="enemies"
-2d_physics/layer_4="walk_boundary"
+2d_physics/layer_4="super_enemies"
 
 [physics]
 

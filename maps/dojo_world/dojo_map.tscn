@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bwnoawte3jlkk" path="res://tilesets/dojo_tiles.png" id="1_o2efn"]
 [ext_resource type="Script" uid="uid://rcfke560iet0" path="res://maps/base_map.gd" id="1_pin1i"]
 [ext_resource type="Texture2D" uid="uid://beedo2hlpvcgj" path="res://tilesets/dojo_top.png" id="2_bv3fa"]
-[ext_resource type="PackedScene" uid="uid://bm2857742v0ai" path="res://entities/characters/enemies/enemy.tscn" id="3_uds71"]
+[ext_resource type="PackedScene" uid="uid://bm2857742v0ai" path="res://entities/characters/enemies/slime.tscn" id="3_uds71"]
 [ext_resource type="PackedScene" uid="uid://barck7peqm2lo" path="res://entities/characters/player.tscn" id="4_5s6ly"]
 [ext_resource type="PackedScene" uid="uid://b8rjrpsoqbdvw" path="res://maps/portal.tscn" id="6_c8ogg"]
 [ext_resource type="PackedScene" uid="uid://dpbwv6xj5rys6" path="res://entities/loot_bag.tscn" id="8_dcwwk"]

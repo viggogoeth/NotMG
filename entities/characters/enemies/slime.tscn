@@ -1,10 +1,11 @@
 [gd_scene format=3 uid="uid://bm2857742v0ai"]
 
-[ext_resource type="Script" uid="uid://cm6fvr1ixmh6a" path="res://entities/characters/enemies/enemy.gd" id="1_w0cf2"]
+[ext_resource type="Script" uid="uid://cm6fvr1ixmh6a" path="res://entities/characters/enemies/slime.gd" id="1_w0cf2"]
 [ext_resource type="PackedScene" uid="uid://qxwiaux0yv7h" path="res://entities/components/health_component.tscn" id="2_wv5ky"]
 [ext_resource type="Texture2D" uid="uid://c7b0pm6p6y0v6" path="res://sprites/slime_move_texture.tres" id="3_3n866"]
 [ext_resource type="PackedScene" uid="uid://bt860mh3ihxku" path="res://entities/components/jump_movement_component.tscn" id="4_5tkof"]
 [ext_resource type="PackedScene" uid="uid://c02efoks2xrqt" path="res://entities/components/hitbox_component.tscn" id="5_02vvn"]
+[ext_resource type="PackedScene" uid="uid://bfdqgkscuo4jc" path="res://entities/components/vision_box_component.tscn" id="6_3hn33"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i0y61"]
 size = Vector2(48, 48)
@@ -113,8 +114,7 @@ radius = 855.1497
 [sub_resource type="CircleShape2D" id="CircleShape2D_02vvn"]
 radius = 4.0
 
-[node name="Enemy" type="CharacterBody2D" unique_id=720180946 groups=["enemy", "hostile_entities"]]
-position = Vector2(296, 134)
+[node name="Slime" type="CharacterBody2D" unique_id=720180946 groups=["enemy", "hostile_entities"]]
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_w0cf2")
@@ -167,6 +167,8 @@ collision_mask = 2
 collide_with_areas = true
 
 [node name="JumpMovementComponent" parent="." unique_id=473034222 instance=ExtResource("4_5tkof")]
+
+[node name="VisionBoxComponent" parent="." unique_id=1268107380 instance=ExtResource("6_3hn33")]
 
 [connection signal="body_entered" from="Vision" to="." method="_on_vision_body_entered"]
 [connection signal="body_exited" from="Vision" to="." method="_on_vision_body_exited"]

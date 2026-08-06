@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://beedo2hlpvcgj" path="res://tilesets/dojo_top.png" id="1_pjn1k"]
 [ext_resource type="Texture2D" uid="uid://bwnoawte3jlkk" path="res://tilesets/dojo_tiles.png" id="2_tqi5d"]
 [ext_resource type="PackedScene" uid="uid://barck7peqm2lo" path="res://entities/characters/player.tscn" id="3_a6acs"]
-[ext_resource type="PackedScene" uid="uid://bm2857742v0ai" path="res://entities/characters/enemies/enemy.tscn" id="4_tqi5d"]
+[ext_resource type="PackedScene" uid="uid://bm2857742v0ai" path="res://entities/characters/enemies/slime.tscn" id="4_tqi5d"]
 [ext_resource type="PackedScene" uid="uid://r6qt5n01hodp" path="res://maps/components/dojo_light.tscn" id="4_urx0c"]
 [ext_resource type="PackedScene" uid="uid://b8rjrpsoqbdvw" path="res://maps/portal.tscn" id="7_s8k3j"]
 
@@ -74,11 +74,6 @@ tile_set = SubResource("TileSet_aswen")
 
 [node name="Player" parent="." unique_id=8722019 instance=ExtResource("3_a6acs")]
 position = Vector2(515, 83)
-
-[node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=1445410487]
-texture_filter = 1
-position = Vector2(2.000061, 4)
-scale = Vector2(6.84375, 6.59375)
 
 [node name="Enemy3" parent="." unique_id=856358990 instance=ExtResource("4_tqi5d")]
 position = Vector2(1342, 1561)
@@ -157,10 +152,11 @@ position = Vector2(2440, 101)
 [node name="DojoLight13" parent="LightingEffect" unique_id=2045526223 instance=ExtResource("4_urx0c")]
 position = Vector2(3721, 108)
 
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="LightingEffect" unique_id=522616897]
+rotation = -0.7853982
+scale = Vector2(0.99999994, 0.99999994)
+energy = 0.2
+
 [node name="Portal" parent="." unique_id=1364127591 instance=ExtResource("7_s8k3j")]
 position = Vector2(3079, -25)
 target_world_path = "uid://di1nyywsurxsk"
-
-[node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=522616897]
-rotation = -0.7853982
-energy = 0.2

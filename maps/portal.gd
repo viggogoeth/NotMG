@@ -10,7 +10,6 @@ var player_in_range: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if not available:
-		print("uan")
 		visible = false
 	player = get_tree().get_first_node_in_group("player")
 	$InteractPrompt.hide()

@@ -9,9 +9,4 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Input.is_action_pressed("rotate_left"):
-		rotate_y(rotation_speed * delta)
-	if Input.is_action_pressed("rotate_right"):
-		rotate_y(-rotation_speed * delta)
-	if Input.is_action_pressed("rotate_reset"):
-		rotation.y = 0
+	pass
