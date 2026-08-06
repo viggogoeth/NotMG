@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://cp2jwjmg6gnwi"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_r0ebp"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_17bm4"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_r0ebp"]
+size = Vector2(1, 1)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_r0ebp"]
+data = PackedVector3Array(0.5, 0, 0.5, -0.5, 0, 0.5, 0.5, 0, -0.5, -0.5, 0, 0.5, -0.5, 0, -0.5, 0.5, 0, -0.5)
+
+[node name="PlainMesh" type="Node3D" unique_id=2004549422]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1838586989]
+mesh = SubResource("BoxMesh_r0ebp")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" unique_id=517717573]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" unique_id=743815960]
+shape = SubResource("ConcavePolygonShape3D_17bm4")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1083310976]
+mesh = SubResource("PlaneMesh_r0ebp")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2" unique_id=894126375]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D" unique_id=172181743]
+shape = SubResource("ConcavePolygonShape3D_r0ebp")
