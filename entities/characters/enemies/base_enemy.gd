@@ -16,7 +16,12 @@ var dead: bool = false
 
 @export var health_component: Node2D
 
-func add_exp(player: Player) -> void:
+var player: Player
+
+func _ready() -> void:
+	player = get_tree().get_first_node_in_group("player")
+
+func add_exp() -> void:
 	if player:
 		player.add_exp(exp_amount)
 	
@@ -24,7 +29,7 @@ func die() -> void:
 	if dead:
 		return
 	dead = true
-	add_exp($VisionBoxComponent.exp_range_player)
+	add_exp()
 	
 	var drop = DropTables.get_drop(self.enemy_id)
 	if drop.size() > 0:

@@ -158,13 +158,12 @@ speed = 380.0
 health = 450.0
 contact_damage = 20.0
 exp_amount = 75.0
-metadata/_edit_group_ = true
 
 [node name="VisionBoxComponent" parent="Enemies/AnimatedArmour2" index="2" unique_id=1268107380]
 visible = true
 
 [node name="WakeUpRange" parent="Enemies/AnimatedArmour2" index="6" unique_id=1051178219]
-position = Vector2(-1797, 113)
+position = Vector2(-2667, 26)
 metadata/_edit_group_ = true
 
 [editable path="Enemies/AnimatedArmour2"]

@@ -9,6 +9,7 @@ var RNG = RandomNumberGenerator.new()
 @export var enemy_scale: int = 1
 
 func _ready() -> void:
+	super._ready()
 	health_component = $Scalables/HealthComponent
 	$CollisionShape2D.scale *= enemy_scale
 	$Scalables.scale *= enemy_scale

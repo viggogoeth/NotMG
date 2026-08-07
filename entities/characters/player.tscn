@@ -692,7 +692,7 @@ visible = false
 position = Vector2(127, -11)
 rotation = 1.5707964
 collision_layer = 0
-collision_mask = 4
+collision_mask = 12
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SwordHitbox" unique_id=738766412]

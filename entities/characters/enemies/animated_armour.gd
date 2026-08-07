@@ -8,6 +8,7 @@ var player_in_attack_range: bool = false
 var targets: Array[CharacterBody2D]
 
 func _ready() -> void:
+	super._ready()
 	health_component = $HealthComponent
 	health_component.set_health(health, health)
 	$Melee/Eyes.hide()
