@@ -7,13 +7,17 @@ var player_in_attack_range: bool = false
 
 var targets: Array[CharacterBody2D]
 
+@onready var glowing_eyes = $Eyes
+@onready var animation_player = $AnimationPlayer
+
 func _ready() -> void:
 	super._ready()
 	health_component = $HealthComponent
 	health_component.set_health(health, health)
-	$Melee/Eyes.hide()
+	health_component.hide()
+	glowing_eyes.hide()
 	resistance = 0.99
-	$Melee/AttackAnimation.hide()
+	animation_player.play("idle")
 
 func _physics_process(delta: float) -> void:
 	if sleeping:
@@ -23,8 +27,6 @@ func _physics_process(delta: float) -> void:
 	if target:
 		var dir = global_position.direction_to(target.global_position)
 		velocity = dir * speed
-		# temp for magehand
-		$Melee/AttackAnimation.rotation = dir.angle() + PI / 2
 	else:
 		velocity = Vector2(0,0)
 	
@@ -32,8 +34,10 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		
 	if player_in_attack_range and can_attack:
-		$Melee/Eyes.show()
+		print("Should attack")
+		glowing_eyes.show()
 		$Melee/AttackWindup.start()
+		animation_player.play("hint")
 		can_attack = false
 	
 func closest_target() -> CharacterBody2D:
@@ -68,30 +72,29 @@ func _on_attack_cooldown_timeout() -> void:
 	can_attack = true
 
 
-func _on_attack_indicator_animation_finished() -> void:
-	$Melee/AttackAnimation.stop()
-
-
 func _on_attack_windup_timeout() -> void:
-	$Melee/AttackAnimation.play()
-	$Melee/AttackCooldown.start()
-	$Melee/Eyes.hide()
+	glowing_eyes.hide()
 	attack()
 	
 func attack() -> void:
 	var bodies = $Melee/DamageRange.get_overlapping_bodies()
 	for body in bodies:
 		body.take_damage(contact_damage)
+	animation_player.play("attack")
+	$Sprites/AttackSprite.show()
+	$Sprites/HintSprite.hide()
+	$Melee/AttackCooldown.start()
+	$Melee/AttackAnimationTimer.start()
 
 
 func _on_wake_up_range_body_entered(body: Node2D) -> void:
 	if not sleeping:
 		return
-	$Melee/Eyes.show()
+	glowing_eyes.show()
 	await get_tree().create_timer(2).timeout
 	sleeping = false
-	$Melee/Eyes.hide()
-	$Melee/AttackAnimation.show()
+	glowing_eyes.hide()
+	health_component.show()
 	resistance = 0
 
 
@@ -101,3 +104,9 @@ func _on_vision_box_component_body_entered(body: Node2D) -> void:
 	
 func _on_vision_box_component_body_exited(body: Node2D) -> void:
 	targets.remove_at(targets.find(body))
+
+
+func _on_attack_animation_timer_timeout() -> void:
+	animation_player.play("idle")
+	$Sprites/HintSprite.show()
+	$Sprites/AttackSprite.hide()
