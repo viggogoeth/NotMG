@@ -5,6 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://qxwiaux0yv7h" path="res://entities/components/health_component.tscn" id="3_fltc6"]
 [ext_resource type="Texture2D" uid="uid://p5motyths847" path="res://sprites/ideas/animated_armour_samurai_hint.png" id="5_oqrh0"]
 [ext_resource type="Texture2D" uid="uid://bdpu0o2hiavy2" path="res://sprites/ideas/animated_armour_samurai_attack.png" id="5_qktlv"]
+[ext_resource type="Texture2D" uid="uid://b0qye60d2otyt" path="res://sprites/animated_armour/animated_armour_samurai_side_attack.png" id="6_1bo45"]
+[ext_resource type="PackedScene" uid="uid://d1ajlb5wwlefd" path="res://entities/components/thrust_attack_component.tscn" id="6_qktlv"]
+[ext_resource type="Texture2D" uid="uid://dmsyqg485vvmk" path="res://sprites/animated_armour/animated_armour_samurai_side_hintt.png" id="7_5qbvs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3s0t7"]
 size = Vector2(112, 255)
@@ -21,14 +24,8 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.75, 0)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ly1v5"]
-radius = 134.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_oqrh0"]
-radius = 159.05031
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_qktlv"]
-radius = 163.0
+radius = 248.29015
 
 [sub_resource type="Animation" id="Animation_1bo45"]
 length = 0.001
@@ -44,10 +41,70 @@ tracks/0/keys = {
 "update": 1,
 "values": [1]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../HintSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../SideSprites/SideAttackSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../SideSprites/SideAttackSprite:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(208, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../SideSprites/SideHintSprite:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../SideSprites/SideHintSprite:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(80, -64)]
+}
 
 [sub_resource type="Animation" id="Animation_5qbvs"]
 resource_name = "attack"
-length = 1.3
+length = 0.5
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -56,7 +113,7 @@ tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.90000004, 1, 1.1, 1.2),
+"times": PackedFloat32Array(0, 0.03490316, 0.06980632, 0.099999994, 0.13635778, 0.17234588, 0.20399418, 0.23998228, 0.2759704, 0.3119585, 0.3490315, 0.38610458, 0.42209268),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
@@ -69,14 +126,14 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
+tracks/0/path = NodePath("../HintSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": []
+"values": [0, 1, 2, 3]
 }
 
 [sub_resource type="Animation" id="Animation_ly1v5"]
@@ -96,28 +153,84 @@ tracks/0/keys = {
 "values": [12]
 }
 
+[sub_resource type="Animation" id="Animation_l7ama"]
+resource_name = "side_attack"
+length = 0.5
+step = 0.035
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../SideSprites/SideAttackSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.035, 0.07, 0.105000004, 0.14, 0.175, 0.21000001, 0.245, 0.28, 0.315, 0.35, 0.385, 0.42000002),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../SideSprites/SideAttackSprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.03448276, 0.13793103, 0.37931034),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(191, 0), Vector2(208, 0), Vector2(232, 0), Vector2(207, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_fuoci"]
+resource_name = "side_hint"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../SideSprites/SideHintSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../SideSprites/SideHintSprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(80, -64), Vector2(80, -64), Vector2(56, -64)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_l7ama"]
 _data = {
 &"RESET": SubResource("Animation_1bo45"),
 &"attack": SubResource("Animation_5qbvs"),
 &"hint": SubResource("Animation_egw64"),
-&"idle": SubResource("Animation_ly1v5")
+&"idle": SubResource("Animation_ly1v5"),
+&"side_attack": SubResource("Animation_l7ama"),
+&"side_hint": SubResource("Animation_fuoci")
 }
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ly1v5"]
+radius = 247.8084
 
 [node name="AnimatedArmour" type="CharacterBody2D" unique_id=1455663875]
 collision_layer = 8
 collision_mask = 2
 script = ExtResource("1_3s0t7")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=497496835]
-visible = false
-offset_left = -41.0
-offset_top = -66.0
-offset_right = 41.0
-offset_bottom = 65.0
-color = Color(0.5132329, 0.5132329, 0.5132329, 1)
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=26852740]
+visible = false
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_3s0t7")
 
@@ -133,36 +246,8 @@ z_index = -1
 position = Vector2(0, 65)
 texture = SubResource("GradientTexture2D_oqrh0")
 
-[node name="Melee" type="Node2D" parent="." unique_id=722320973]
-
-[node name="AttackWindup" type="Timer" parent="Melee" unique_id=546799112]
-wait_time = 0.4
-one_shot = true
-
-[node name="AttackCooldown" type="Timer" parent="Melee" unique_id=1019359801]
-one_shot = true
-
-[node name="AttackAnimationTimer" type="Timer" parent="Melee" unique_id=1435252660]
-wait_time = 1.2999999999999998
-one_shot = true
-
-[node name="MeleeRange" type="Area2D" parent="Melee" unique_id=1569847496]
-visible = false
-collision_layer = 0
-collision_mask = 5
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Melee/MeleeRange" unique_id=1843309801]
-shape = SubResource("CircleShape2D_ly1v5")
-
-[node name="DamageRange" type="Area2D" parent="Melee" unique_id=2138581338]
-visible = false
-collision_layer = 0
-collision_mask = 5
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Melee/DamageRange" unique_id=798045625]
-shape = SubResource("CircleShape2D_oqrh0")
-
 [node name="WakeUpRange" type="Area2D" parent="." unique_id=1051178219]
+visible = false
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WakeUpRange" unique_id=954812559]
@@ -180,9 +265,28 @@ hframes = 13
 frame = 1
 
 [node name="HintSprite" type="Sprite2D" parent="Sprites" unique_id=1479333273]
+visible = false
 texture_filter = 1
 scale = Vector2(8, 8)
 texture = ExtResource("5_oqrh0")
+hframes = 4
+
+[node name="SideSprites" type="Node2D" parent="Sprites" unique_id=1382062551]
+
+[node name="SideAttackSprite" type="Sprite2D" parent="Sprites/SideSprites" unique_id=44063609]
+texture_filter = 1
+position = Vector2(208, 0)
+scale = Vector2(8, 8)
+texture = ExtResource("6_1bo45")
+hframes = 13
+region_rect = Rect2(0, 16.002007, 832, 32.02105)
+
+[node name="SideHintSprite" type="Sprite2D" parent="Sprites/SideSprites" unique_id=569448778]
+visible = false
+texture_filter = 1
+position = Vector2(80, -64)
+scale = Vector2(8, 8)
+texture = ExtResource("7_5qbvs")
 hframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1329978972]
@@ -212,11 +316,36 @@ offset_right = 15.0
 offset_bottom = -48.0
 color = Color(0.7789535, 0, 0.085031204, 1)
 
+[node name="Melee" type="Node2D" parent="." unique_id=722320973]
+
+[node name="AttackWindup" type="Timer" parent="Melee" unique_id=546799112]
+wait_time = 0.15
+one_shot = true
+
+[node name="AttackCooldown" type="Timer" parent="Melee" unique_id=1019359801]
+one_shot = true
+
+[node name="AttackAnimationTimer" type="Timer" parent="Melee" unique_id=1435252660]
+wait_time = 0.5
+one_shot = true
+
+[node name="MeleeRange" type="Area2D" parent="Melee" unique_id=1569847496]
+visible = false
+collision_layer = 0
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Melee/MeleeRange" unique_id=1843309801]
+shape = SubResource("CircleShape2D_ly1v5")
+
+[node name="ThrustAttackComponent" parent="Melee" unique_id=691938223 instance=ExtResource("6_qktlv")]
+visible = false
+scale = Vector2(9, 9)
+
 [connection signal="body_entered" from="VisionBoxComponent" to="." method="_on_vision_box_component_body_entered"]
 [connection signal="body_exited" from="VisionBoxComponent" to="." method="_on_vision_box_component_body_exited"]
+[connection signal="body_entered" from="WakeUpRange" to="." method="_on_wake_up_range_body_entered"]
 [connection signal="timeout" from="Melee/AttackWindup" to="." method="_on_attack_windup_timeout"]
 [connection signal="timeout" from="Melee/AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
 [connection signal="timeout" from="Melee/AttackAnimationTimer" to="." method="_on_attack_animation_timer_timeout"]
 [connection signal="body_entered" from="Melee/MeleeRange" to="." method="_on_melee_range_body_entered"]
 [connection signal="body_exited" from="Melee/MeleeRange" to="." method="_on_melee_range_body_exited"]
-[connection signal="body_entered" from="WakeUpRange" to="." method="_on_wake_up_range_body_entered"]

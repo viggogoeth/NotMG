@@ -2,6 +2,9 @@ extends BaseEnemy
 
 var can_attack: bool = true
 var player_in_attack_range: bool = false
+var attacking: bool = false
+
+var sideways: bool = false
 
 @export var sleeping: bool = true
 
@@ -9,6 +12,7 @@ var targets: Array[CharacterBody2D]
 
 @onready var glowing_eyes = $Eyes
 @onready var animation_player = $AnimationPlayer
+@onready var attack_component = $Melee/ThrustAttackComponent
 
 func _ready() -> void:
 	super._ready()
@@ -18,6 +22,7 @@ func _ready() -> void:
 	glowing_eyes.hide()
 	resistance = 0.99
 	animation_player.play("idle")
+	attack_component.damage = contact_damage
 
 func _physics_process(delta: float) -> void:
 	if sleeping:
@@ -30,15 +35,25 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity = Vector2(0,0)
 	
-	if not player_in_attack_range:
+	if abs(velocity.x) > abs(velocity).y:
+		sideways = true
+		if velocity.x < 0:
+			$Sprites/SideSprites.scale.x = -1
+		else:
+			$Sprites/SideSprites.scale.x = 1
+	else:
+		sideways = false
+	
+	if not player_in_attack_range and not attacking:
 		move_and_slide()
 		
 	if player_in_attack_range and can_attack:
-		print("Should attack")
 		glowing_eyes.show()
 		$Melee/AttackWindup.start()
 		animation_player.play("hint")
 		can_attack = false
+		attacking = true
+		set_attack_direction(closest_target())
 	
 func closest_target() -> CharacterBody2D:
 	if targets.is_empty():
@@ -77,15 +92,34 @@ func _on_attack_windup_timeout() -> void:
 	attack()
 	
 func attack() -> void:
-	var bodies = $Melee/DamageRange.get_overlapping_bodies()
-	for body in bodies:
-		body.take_damage(contact_damage)
-	animation_player.play("attack")
-	$Sprites/AttackSprite.show()
-	$Sprites/HintSprite.hide()
+	if sideways:
+		animation_player.play("side_attack")
+		$Sprites/AttackSprite.hide()
+		$Sprites/HintSprite.hide()
+		$Sprites/SideSprites/SideHintSprite.hide()
+		$Sprites/SideSprites/SideAttackSprite.show()
+	else:
+		animation_player.play("attack")
+		$Sprites/AttackSprite.show()
+		$Sprites/HintSprite.hide()
+		$Sprites/SideSprites/SideHintSprite.hide()
+		$Sprites/SideSprites/SideAttackSprite.hide()
 	$Melee/AttackCooldown.start()
 	$Melee/AttackAnimationTimer.start()
+	attack_component.attack(0.14)
 
+func set_attack_direction(target: CharacterBody2D) -> void:
+	var direction = global_position.direction_to(target.global_position)
+	attack_component.rotation = direction.angle()
+	if abs(direction.x) > abs(direction.y):
+		sideways = true
+		if direction.x < 0:
+			$Sprites/SideSprites.scale.x = -1
+		else:
+			$Sprites/SideSprites.scale.x = 1
+	else:
+		sideways = false
+	print(direction)
 
 func _on_wake_up_range_body_entered(body: Node2D) -> void:
 	if not sleeping:
@@ -99,7 +133,6 @@ func _on_wake_up_range_body_entered(body: Node2D) -> void:
 
 
 func _on_vision_box_component_body_entered(body: Node2D) -> void:
-	print("Body entered: ", body)
 	targets.append(body)
 	
 func _on_vision_box_component_body_exited(body: Node2D) -> void:
@@ -108,5 +141,13 @@ func _on_vision_box_component_body_exited(body: Node2D) -> void:
 
 func _on_attack_animation_timer_timeout() -> void:
 	animation_player.play("idle")
-	$Sprites/HintSprite.show()
+	if sideways:
+		$Sprites/SideSprites/SideHintSprite.show()
+		$Sprites/HintSprite.hide()
+	else:
+		$Sprites/HintSprite.show()
+		$Sprites/SideSprites/SideHintSprite.hide()
 	$Sprites/AttackSprite.hide()
+	$Sprites/SideSprites/SideAttackSprite.hide()
+	attack_component.hide()
+	attacking = false

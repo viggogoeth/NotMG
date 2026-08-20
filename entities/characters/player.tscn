@@ -645,6 +645,9 @@ texture = SubResource("GradientTexture2D_jq748")
 shape = SubResource("CapsuleShape2D_o21vo")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=484666724]
+process_callback = 0
+position_smoothing_enabled = true
+position_smoothing_speed = 20.0
 script = ExtResource("47_fwlip")
 
 [node name="ProjectileSpawn" type="Marker2D" parent="." unique_id=933644270]
@@ -682,7 +685,6 @@ shape = SubResource("CapsuleShape2D_48k2y")
 visible = false
 texture_filter = 1
 position = Vector2(127, -11)
-rotation = 1.5707964
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_y5erd")
 animation = &"attack_up"
