@@ -293,29 +293,6 @@ hframes = 4
 root_node = NodePath("../Sprites/AttackSprite")
 libraries/ = SubResource("AnimationLibrary_l7ama")
 
-[node name="Eyes" type="Control" parent="." unique_id=455371317]
-layout_mode = 3
-anchors_preset = 0
-offset_top = -49.0
-offset_right = 40.0
-offset_bottom = -9.0
-
-[node name="ColorRect" type="ColorRect" parent="Eyes" unique_id=183743244]
-layout_mode = 0
-offset_left = -15.0
-offset_top = -54.0
-offset_right = -4.0
-offset_bottom = -48.0
-color = Color(0.7789535, 0, 0.085031204, 1)
-
-[node name="ColorRect2" type="ColorRect" parent="Eyes" unique_id=136061264]
-layout_mode = 0
-offset_left = 4.0
-offset_top = -54.0
-offset_right = 15.0
-offset_bottom = -48.0
-color = Color(0.7789535, 0, 0.085031204, 1)
-
 [node name="Melee" type="Node2D" parent="." unique_id=722320973]
 
 [node name="AttackWindup" type="Timer" parent="Melee" unique_id=546799112]

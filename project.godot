@@ -122,6 +122,9 @@ rotate_reset={
 2d_physics/layer_2="world"
 2d_physics/layer_3="enemies"
 2d_physics/layer_4="super_enemies"
+2d_physics/layer_17="fish"
+2d_physics/layer_18="water_boundary"
+2d_physics/layer_19="bobber"
 
 [physics]
 

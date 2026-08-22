@@ -53,7 +53,7 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		return
 	
-	var direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = direction * (movement_speed + (stats.agility * 5))
 
 	_handle_animation_direction(velocity)

@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://osyvef0mrxq4"]
+
+[ext_resource type="Script" uid="uid://b0fymfr17535n" path="res://fishing/fish.gd" id="1_c2u82"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_txu1t"]
+radius = 11.0
+height = 56.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c2u82"]
+radius = 7.0
+
+[node name="FishingMinigame" type="Node2D" unique_id=833025813]
+
+[node name="Background" type="ColorRect" parent="." unique_id=327774568]
+offset_right = 1919.0
+offset_bottom = 1080.0
+color = Color(0.7921569, 0.49019608, 0.11372549, 1)
+
+[node name="Pond" type="Polygon2D" parent="." unique_id=2146411370]
+position = Vector2(919, 420)
+color = Color(0.20392157, 1, 1, 1)
+polygon = PackedVector2Array(-489, -218, -431, -317, -361, -404, -279, -459, -144, -511, 6, -537, 140, -516, 205, -483, 297, -433, 402, -338, 473, -239, 510, -133, 530, 18, 506, 158, 472, 271, 394, 358, 310, 436, 188, 494, 56, 532, -62, 527, -186, 508, -308, 445, -401, 366, -463, 270, -511, 162, -520, 49, -530, -40, -516, -138)
+
+[node name="Outside" type="StaticBody2D" parent="." unique_id=1690183660]
+collision_layer = 131072
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Outside" unique_id=503547330]
+polygon = PackedVector2Array(609, 1, 525, 93, 472, 187, 438, 287, 426, 389, 436, 557, 488, 679, 568, 783, 665, 867, 780, 908, 898, 922, 1020, 908, 1140, 870, 1244, 800, 1340, 702, 1388, 598, 1422, 463, 1405, 331, 1377, 208, 1328, 137, 1266, 72, 1195, -1, 877, -32, 1920, 0, 1921, 1081, -1, 1081, -1, 2, 942, -32)
+
+[node name="Fish" type="CharacterBody2D" parent="." unique_id=1821176963]
+position = Vector2(905, 477)
+collision_layer = 0
+collision_mask = 131072
+script = ExtResource("1_c2u82")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fish" unique_id=1535851879]
+shape = SubResource("CapsuleShape2D_txu1t")
+
+[node name="Polygon2D" type="Polygon2D" parent="Fish" unique_id=392682370]
+color = Color(4.1873755e-06, 0.4820444, 0.16204041, 1)
+polygon = PackedVector2Array(0, -28, 11, -17, 11, 10, 1, 16, 9, 23, -9, 23, -1, 16, -11, 10, -11, -17)
+
+[node name="MovementUpdateTimer" type="Timer" parent="Fish" unique_id=1779976032]
+one_shot = true
+autostart = true
+
+[node name="DetectionArea" type="Area2D" parent="Fish" unique_id=920604102]
+collision_layer = 0
+collision_mask = 262144
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Fish/DetectionArea" unique_id=1562078626]
+polygon = PackedVector2Array(0, -28, 106, -307, -106, -307)
+
+[node name="FishingRod" type="Node2D" parent="." unique_id=1795042717]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="FishingRod" unique_id=536347900]
+position = Vector2(908, 978)
+collision_layer = 262144
+collision_mask = 0
+metadata/_edit_group_ = true
+
+[node name="Bobber" type="Polygon2D" parent="FishingRod/RigidBody2D" unique_id=530551868]
+color = Color(0.20511743, 0.20511743, 0.20511743, 1)
+polygon = PackedVector2Array(0, -7, 3, -6, 5, -5, 6, -3, 7, 0, 6, 3, 5, 5, 3, 6, 0, 7, -3, 6, -5, 5, -6, 3, -7, 0, -6, -3, -5, -5, -3, -6)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FishingRod/RigidBody2D" unique_id=465500484]
+shape = SubResource("CircleShape2D_c2u82")
+
+[node name="BobberSpawn" type="Marker2D" parent="FishingRod" unique_id=109827061]
+position = Vector2(908, 978)
+
+[connection signal="timeout" from="Fish/MovementUpdateTimer" to="Fish" method="_on_movement_update_timer_timeout"]

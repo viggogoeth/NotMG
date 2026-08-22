@@ -10,7 +10,6 @@ var sideways: bool = false
 
 var targets: Array[CharacterBody2D]
 
-@onready var glowing_eyes = $Eyes
 @onready var animation_player = $AnimationPlayer
 @onready var attack_component = $Melee/ThrustAttackComponent
 
@@ -19,7 +18,6 @@ func _ready() -> void:
 	health_component = $HealthComponent
 	health_component.set_health(health, health)
 	health_component.hide()
-	glowing_eyes.hide()
 	resistance = 0.99
 	animation_player.play("idle")
 	attack_component.damage = contact_damage
@@ -48,7 +46,6 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		
 	if player_in_attack_range and can_attack:
-		glowing_eyes.show()
 		$Melee/AttackWindup.start()
 		animation_player.play("hint")
 		can_attack = false
@@ -88,7 +85,6 @@ func _on_attack_cooldown_timeout() -> void:
 
 
 func _on_attack_windup_timeout() -> void:
-	glowing_eyes.hide()
 	attack()
 	
 func attack() -> void:
@@ -124,10 +120,8 @@ func set_attack_direction(target: CharacterBody2D) -> void:
 func _on_wake_up_range_body_entered(body: Node2D) -> void:
 	if not sleeping:
 		return
-	glowing_eyes.show()
 	await get_tree().create_timer(2).timeout
 	sleeping = false
-	glowing_eyes.hide()
 	health_component.show()
 	resistance = 0
 
