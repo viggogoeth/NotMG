@@ -34,12 +34,16 @@ func update_movement() -> void:
 	var old_direction = velocity.normalized()
 	var new_x: float
 	var new_y: float
+	
+	new_x = old_direction.x + rand.randf_range(-0.2, 0.2)
+	new_y = old_direction.y + rand.randf_range(-0.2, 0.2)
+	
 	if edge_vision.is_colliding():
-		new_x = -old_direction.x
-		new_y = -old_direction.y
-	else:
-		new_x = old_direction.x + rand.randf_range(-0.2, 0.2)
-		new_y = old_direction.y + rand.randf_range(-0.2, 0.2)
+		if abs(old_direction.x) > abs(old_direction.y):
+			new_x = -old_direction.x
+		else:
+			new_y = -old_direction.y
+	
 	var new_direction = Vector2(new_x, new_y)
 	
 	print(new_direction)
@@ -50,8 +54,15 @@ func update_movement() -> void:
 	tween.tween_property(self, "velocity", new_velocity, 0.2)
 	
 	var new_rotation = new_direction.angle() + PI / 2
-	#tween.tween_property(self, "rotation", new_rotation, 0.2)
-	rotation = new_rotation
+	tween_rotation(new_rotation)
+	
+
+func tween_rotation(target_angle: float) -> void:
+	var tween = create_tween()
+	var current_angle = rotation
+	var diff = wrapf(target_angle - current_angle, -PI, PI)
+	var final_target = current_angle + diff
+	tween.tween_property(self, "rotation", final_target, 0.2)
 
 func charge_rod(delta: float) -> void:
 	if rod_charge < 100:
