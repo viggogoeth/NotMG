@@ -29,11 +29,15 @@ collision_mask = 0
 polygon = PackedVector2Array(609, 1, 525, 93, 472, 187, 438, 287, 426, 389, 436, 557, 488, 679, 568, 783, 665, 867, 780, 908, 898, 922, 1020, 908, 1140, 870, 1244, 800, 1340, 702, 1388, 598, 1422, 463, 1405, 331, 1377, 208, 1328, 137, 1266, 72, 1195, -1, 877, -32, 1920, 0, 1921, 1081, -1, 1081, -1, 2, 942, -32)
 
 [node name="Fish" type="CharacterBody2D" parent="." unique_id=1821176963]
-position = Vector2(905, 477)
+position = Vector2(957, 370)
 collision_layer = 0
 collision_mask = 131072
 script = ExtResource("1_c2u82")
 metadata/_edit_group_ = true
+
+[node name="EdgeVision" type="RayCast2D" parent="Fish" unique_id=1797568233]
+target_position = Vector2(0, -100)
+collision_mask = 131072
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Fish" unique_id=1535851879]
 shape = SubResource("CapsuleShape2D_txu1t")
