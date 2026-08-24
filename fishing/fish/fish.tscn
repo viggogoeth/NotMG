@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://0ejfrplomoj7"]
 
 [ext_resource type="Script" uid="uid://b0fymfr17535n" path="res://fishing/fish/fish.gd" id="1_vnkdt"]
+[ext_resource type="Texture2D" uid="uid://c0raatdawd2he" path="res://sprites/fishing/exclamation_mark_no_background.png" id="2_qfgl3"]
+[ext_resource type="Texture2D" uid="uid://byw6ykcmleevp" path="res://sprites/fishing/question_mark_no_background.png" id="3_wqmun"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vnkdt"]
 radius = 11.0
@@ -30,6 +32,14 @@ autostart = true
 [node name="ScareTimer" type="Timer" parent="." unique_id=493260292]
 one_shot = true
 
+[node name="ReelInTimer" type="Timer" parent="." unique_id=1560208758]
+wait_time = 0.4
+one_shot = true
+
+[node name="InterestTimer" type="Timer" parent="." unique_id=2048206874]
+wait_time = 0.3
+one_shot = true
+
 [node name="DetectionArea" type="Area2D" parent="." unique_id=253443317]
 collision_layer = 0
 collision_mask = 262144
@@ -37,5 +47,17 @@ collision_mask = 262144
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DetectionArea" unique_id=1497156263]
 polygon = PackedVector2Array(0, -28, 106, -307, -106, -307)
 
+[node name="ReelInIndicator" type="Sprite2D" parent="." unique_id=1150704940]
+texture_filter = 1
+position = Vector2(17, -27)
+texture = ExtResource("2_qfgl3")
+
+[node name="InterestIndicator" type="Sprite2D" parent="." unique_id=1014897094]
+texture_filter = 1
+position = Vector2(17, -27)
+texture = ExtResource("3_wqmun")
+
 [connection signal="timeout" from="MovementUpdateTimer" to="." method="_on_movement_update_timer_timeout"]
 [connection signal="timeout" from="ScareTimer" to="." method="_on_scare_timer_timeout"]
+[connection signal="timeout" from="ReelInTimer" to="." method="_on_reel_in_timer_timeout"]
+[connection signal="timeout" from="InterestTimer" to="." method="_on_interest_timer_timeout"]

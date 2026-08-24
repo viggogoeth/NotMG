@@ -45,7 +45,6 @@ func charge_rod(delta: float) -> void:
 	else:
 		overcharged = true
 		rod_charge -= 60 * delta
-	
 		
 	charge_bar.value = rod_charge
 		
@@ -96,7 +95,7 @@ func return_rod() -> void:
 	
 	has_chasing_fish = false
 	if chasing_fish:
-		chasing_fish.reel_in()
+		chasing_fish.reel_in(bobber.global_position)
 	chasing_fish = null
 	
 	on_throw_cooldown = true

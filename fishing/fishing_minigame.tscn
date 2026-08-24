@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bohdcp6c11q8l" path="res://sprites/fishing/fishing_rod_base.png" id="3_qhcwk"]
 [ext_resource type="Texture2D" uid="uid://bmq08e2v8t6ea" path="res://sprites/fishing/fishing_rod_bobber.png" id="4_ghwdw"]
 [ext_resource type="Texture2D" uid="uid://b2myedftx48u0" path="res://sprites/fishing/fishing_rod_charge.png" id="4_yikrq"]
+[ext_resource type="PackedScene" uid="uid://bflxqmlqo6irq" path="res://fishing/fish_spawner.tscn" id="6_fursg"]
 [ext_resource type="PackedScene" uid="uid://0ejfrplomoj7" path="res://fishing/fish/fish.tscn" id="7_fursg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c2u82"]
@@ -93,40 +94,22 @@ position = Vector2(1638, 740)
 scale = Vector2(8, 8)
 texture = ExtResource("4_ghwdw")
 
-[node name="Fish2" parent="." unique_id=979366948 node_paths=PackedStringArray("pond_center") instance=ExtResource("7_fursg")]
-position = Vector2(904, 383)
+[node name="FishSpawner" parent="." unique_id=432832155 node_paths=PackedStringArray("fishing_minigame", "pond_center") instance=ExtResource("6_fursg")]
+position = Vector2(611, 245)
+fish_scene = ExtResource("7_fursg")
+fishing_minigame = NodePath("..")
 pond_center = NodePath("../Pond/PondCenter")
 
-[node name="Fish3" parent="." unique_id=1585805900 node_paths=PackedStringArray("pond_center") instance=ExtResource("7_fursg")]
-position = Vector2(671, 395)
+[node name="FishSpawner2" parent="." unique_id=1653146065 node_paths=PackedStringArray("fishing_minigame", "pond_center") instance=ExtResource("6_fursg")]
+position = Vector2(1138, 262)
+fish_scene = ExtResource("7_fursg")
+fishing_minigame = NodePath("..")
 pond_center = NodePath("../Pond/PondCenter")
 
-[node name="Fish4" parent="." unique_id=2037904622 node_paths=PackedStringArray("pond_center") instance=ExtResource("7_fursg")]
-position = Vector2(757, 612)
-pond_center = NodePath("../Pond/PondCenter")
-
-[node name="Fish5" parent="." unique_id=849848676 node_paths=PackedStringArray("pond_center") instance=ExtResource("7_fursg")]
-position = Vector2(971, 628)
-pond_center = NodePath("../Pond/PondCenter")
-
-[node name="Fish6" parent="." unique_id=301579138 node_paths=PackedStringArray("pond_center") instance=ExtResource("7_fursg")]
-position = Vector2(1141, 444)
-pond_center = NodePath("../Pond/PondCenter")
-
-[node name="Fish7" parent="." unique_id=1869897068 node_paths=PackedStringArray("pond_center") instance=ExtResource("7_fursg")]
-position = Vector2(1122, 653)
-pond_center = NodePath("../Pond/PondCenter")
-
-[node name="Fish8" parent="." unique_id=1263219142 node_paths=PackedStringArray("pond_center") instance=ExtResource("7_fursg")]
-position = Vector2(859, 714)
-pond_center = NodePath("../Pond/PondCenter")
-
-[node name="Fish9" parent="." unique_id=1184109648 node_paths=PackedStringArray("pond_center") instance=ExtResource("7_fursg")]
-position = Vector2(618, 624)
-pond_center = NodePath("../Pond/PondCenter")
-
-[node name="Fish10" parent="." unique_id=1097209967 node_paths=PackedStringArray("pond_center") instance=ExtResource("7_fursg")]
-position = Vector2(1046, 736)
+[node name="FishSpawner3" parent="." unique_id=2030583811 node_paths=PackedStringArray("fishing_minigame", "pond_center") instance=ExtResource("6_fursg")]
+position = Vector2(920, 134)
+fish_scene = ExtResource("7_fursg")
+fishing_minigame = NodePath("..")
 pond_center = NodePath("../Pond/PondCenter")
 
 [connection signal="timeout" from="FishingRod/ThrowCooldownTimer" to="." method="_on_throw_cooldown_timer_timeout"]

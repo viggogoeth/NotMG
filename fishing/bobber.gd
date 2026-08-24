@@ -12,3 +12,6 @@ func _process(delta: float) -> void:
 
 func set_chasing_fish(fish: CharacterBody2D) -> bool:
 	return fishing_minigame.set_chasing_fish(fish)
+
+func return_bobber() -> void:
+	fishing_minigame.return_rod()
