@@ -40,6 +40,8 @@ enemy=""
 menu=""
 loot_bag_menu=""
 exit_portal=""
+outside_water=""
+bobber=""
 
 [input]
 
