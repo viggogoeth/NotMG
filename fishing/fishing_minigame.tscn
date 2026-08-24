@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://osyvef0mrxq4"]
 
-[ext_resource type="Script" uid="uid://b0fymfr17535n" path="res://fishing/fish.gd" id="1_c2u82"]
+[ext_resource type="Script" uid="uid://b0fymfr17535n" path="res://fishing/fish/fish.gd" id="1_c2u82"]
+[ext_resource type="Script" uid="uid://bqy8nna1u5ve6" path="res://fishing/fishing_minigame.gd" id="1_neky2"]
+[ext_resource type="Texture2D" uid="uid://bohdcp6c11q8l" path="res://sprites/fishing/fishing_rod_base.png" id="3_qhcwk"]
+[ext_resource type="Texture2D" uid="uid://bmq08e2v8t6ea" path="res://sprites/fishing/fishing_rod_bobber.png" id="4_ghwdw"]
+[ext_resource type="Texture2D" uid="uid://b2myedftx48u0" path="res://sprites/fishing/fishing_rod_charge.png" id="4_yikrq"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_txu1t"]
 radius = 11.0
@@ -10,6 +14,7 @@ height = 56.0
 radius = 7.0
 
 [node name="FishingMinigame" type="Node2D" unique_id=833025813]
+script = ExtResource("1_neky2")
 
 [node name="Background" type="ColorRect" parent="." unique_id=327774568]
 offset_right = 1919.0
@@ -21,18 +26,23 @@ position = Vector2(919, 420)
 color = Color(0.20392157, 1, 1, 1)
 polygon = PackedVector2Array(-489, -218, -431, -317, -361, -404, -279, -459, -144, -511, 6, -537, 140, -516, 205, -483, 297, -433, 402, -338, 473, -239, 510, -133, 530, 18, 506, 158, 472, 271, 394, 358, 310, 436, 188, 494, 56, 532, -62, 527, -186, 508, -308, 445, -401, 366, -463, 270, -511, 162, -520, 49, -530, -40, -516, -138)
 
+[node name="PondCenter" type="Marker2D" parent="Pond" unique_id=456699438]
+position = Vector2(-9, 48)
+
 [node name="Outside" type="StaticBody2D" parent="." unique_id=1690183660]
 collision_layer = 131072
 collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Outside" unique_id=503547330]
-polygon = PackedVector2Array(609, 1, 525, 93, 472, 187, 438, 287, 426, 389, 436, 557, 488, 679, 568, 783, 665, 867, 780, 908, 898, 922, 1020, 908, 1140, 870, 1244, 800, 1340, 702, 1388, 598, 1422, 463, 1405, 331, 1377, 208, 1328, 137, 1266, 72, 1195, -1, 877, -32, 1920, 0, 1921, 1081, -1, 1081, -1, 2, 942, -32)
+polygon = PackedVector2Array(609, 1, 525, 93, 472, 187, 438, 287, 426, 389, 436, 557, 488, 679, 568, 783, 665, 867, 780, 908, 898, 922, 1020, 908, 1140, 870, 1244, 800, 1340, 702, 1388, 598, 1422, 463, 1405, 331, 1377, 208, 1328, 137, 1266, 72, 1195, -1, 841, -46, 1920, 0, 1921, 1081, -1, 1081, -1, 2, 1045, -40)
 
-[node name="Fish" type="CharacterBody2D" parent="." unique_id=1821176963]
+[node name="Fish" type="CharacterBody2D" parent="." unique_id=1821176963 node_paths=PackedStringArray("pond_center")]
 position = Vector2(957, 370)
 collision_layer = 0
 collision_mask = 131072
+slide_on_ceiling = false
 script = ExtResource("1_c2u82")
+pond_center = NodePath("../Pond/PondCenter")
 metadata/_edit_group_ = true
 
 [node name="EdgeVision" type="RayCast2D" parent="Fish" unique_id=1797568233]
@@ -60,20 +70,53 @@ polygon = PackedVector2Array(0, -28, 106, -307, -106, -307)
 
 [node name="FishingRod" type="Node2D" parent="." unique_id=1795042717]
 
-[node name="RigidBody2D" type="RigidBody2D" parent="FishingRod" unique_id=536347900]
+[node name="Bobber" type="Area2D" parent="FishingRod" unique_id=529803066]
 position = Vector2(908, 978)
 collision_layer = 262144
 collision_mask = 0
 metadata/_edit_group_ = true
 
-[node name="Bobber" type="Polygon2D" parent="FishingRod/RigidBody2D" unique_id=530551868]
+[node name="BobberVisual" type="Polygon2D" parent="FishingRod/Bobber" unique_id=530551868]
 color = Color(0.20511743, 0.20511743, 0.20511743, 1)
 polygon = PackedVector2Array(0, -7, 3, -6, 5, -5, 6, -3, 7, 0, 6, 3, 5, 5, 3, 6, 0, 7, -3, 6, -5, 5, -6, 3, -7, 0, -6, -3, -5, -5, -3, -6)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="FishingRod/RigidBody2D" unique_id=465500484]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FishingRod/Bobber" unique_id=465500484]
 shape = SubResource("CircleShape2D_c2u82")
 
 [node name="BobberSpawn" type="Marker2D" parent="FishingRod" unique_id=109827061]
 position = Vector2(908, 978)
 
+[node name="ThrowCooldownTimer" type="Timer" parent="FishingRod" unique_id=934713259]
+wait_time = 0.3
+one_shot = true
+
+[node name="ReelInCooldownTimer" type="Timer" parent="FishingRod" unique_id=1083124901]
+one_shot = true
+
+[node name="ChargeBarVisuals" type="Control" parent="FishingRod" unique_id=1141407531]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ChargeBar" type="TextureProgressBar" parent="FishingRod/ChargeBarVisuals" unique_id=2109243515]
+texture_filter = 1
+layout_mode = 0
+offset_left = 1374.0
+offset_top = 484.0
+offset_right = 1438.0
+offset_bottom = 555.0
+scale = Vector2(8, 8)
+texture_under = ExtResource("3_qhcwk")
+texture_progress = ExtResource("4_yikrq")
+
+[node name="RodBobber" type="Sprite2D" parent="FishingRod/ChargeBarVisuals" unique_id=1226054823]
+texture_filter = 1
+position = Vector2(1638, 740)
+scale = Vector2(8, 8)
+texture = ExtResource("4_ghwdw")
+
 [connection signal="timeout" from="Fish/MovementUpdateTimer" to="Fish" method="_on_movement_update_timer_timeout"]
+[connection signal="timeout" from="FishingRod/ThrowCooldownTimer" to="." method="_on_throw_cooldown_timer_timeout"]
+[connection signal="timeout" from="FishingRod/ReelInCooldownTimer" to="." method="_on_reel_in_cooldown_timer_timeout"]
+[connection signal="timeout" from="FishingRod/ReelInCooldownTimer" to="." method="_on_throw_cooldown_timer_timeout"]

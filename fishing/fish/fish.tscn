@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://0ejfrplomoj7"]
+
+[ext_resource type="Script" uid="uid://b0fymfr17535n" path="res://fishing/fish/fish.gd" id="1_vnkdt"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tw68r"]
+radius = 11.0
+height = 56.0
+
+[node name="Fish" type="CharacterBody2D" unique_id=979366948]
+script = ExtResource("1_vnkdt")
+
+[node name="EdgeVision" type="RayCast2D" parent="." unique_id=1531923653]
+target_position = Vector2(0, -100)
+collision_mask = 131072
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1062084569]
+shape = SubResource("CapsuleShape2D_tw68r")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=282116976]
+color = Color(4.1873755e-06, 0.4820444, 0.16204041, 1)
+polygon = PackedVector2Array(0, -28, 11, -17, 11, 10, 1, 16, 9, 23, -9, 23, -1, 16, -11, 10, -11, -17)
+
+[node name="MovementUpdateTimer" type="Timer" parent="." unique_id=960607909]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[node name="DetectionArea" type="Area2D" parent="." unique_id=1824567715]
+collision_layer = 0
+collision_mask = 262144
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DetectionArea" unique_id=1622337836]
+polygon = PackedVector2Array(0, -28, 106, -307, -106, -307)
