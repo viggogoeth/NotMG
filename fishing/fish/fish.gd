@@ -71,6 +71,7 @@ func tween_rotation(target_angle: float) -> void:
 	tween.tween_property(self, "rotation", final_target, 0.2)
 
 func get_scared(scare_position: Vector2) -> void:
+	print("scared")
 	if scared:
 		return
 		
@@ -82,7 +83,6 @@ func get_scared(scare_position: Vector2) -> void:
 
 func _on_movement_update_timer_timeout() -> void:
 	should_update_movement = true
-
 
 func _on_scare_timer_timeout() -> void:
 	speed /= 2

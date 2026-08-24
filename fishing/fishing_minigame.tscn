@@ -1,15 +1,11 @@
 [gd_scene format=3 uid="uid://osyvef0mrxq4"]
 
-[ext_resource type="Script" uid="uid://b0fymfr17535n" path="res://fishing/fish/fish.gd" id="1_c2u82"]
 [ext_resource type="Script" uid="uid://bqy8nna1u5ve6" path="res://fishing/fishing_minigame.gd" id="1_neky2"]
 [ext_resource type="Script" uid="uid://cuaybmn0lprjn" path="res://fishing/bobber.gd" id="3_ghwdw"]
 [ext_resource type="Texture2D" uid="uid://bohdcp6c11q8l" path="res://sprites/fishing/fishing_rod_base.png" id="3_qhcwk"]
 [ext_resource type="Texture2D" uid="uid://bmq08e2v8t6ea" path="res://sprites/fishing/fishing_rod_bobber.png" id="4_ghwdw"]
 [ext_resource type="Texture2D" uid="uid://b2myedftx48u0" path="res://sprites/fishing/fishing_rod_charge.png" id="4_yikrq"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_txu1t"]
-radius = 11.0
-height = 56.0
+[ext_resource type="PackedScene" uid="uid://0ejfrplomoj7" path="res://fishing/fish/fish.tscn" id="7_fursg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c2u82"]
 radius = 11.045361
@@ -39,41 +35,6 @@ collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Outside" unique_id=503547330]
 polygon = PackedVector2Array(609, 1, 525, 93, 472, 187, 438, 287, 426, 389, 436, 557, 488, 679, 568, 783, 665, 867, 780, 908, 898, 922, 1020, 908, 1140, 870, 1244, 800, 1340, 702, 1388, 598, 1422, 463, 1405, 331, 1377, 208, 1328, 137, 1266, 72, 1195, -1, 841, -46, 1920, 0, 1921, 1081, -1, 1081, -1, 2, 1045, -40)
-
-[node name="Fish" type="CharacterBody2D" parent="." unique_id=1821176963 node_paths=PackedStringArray("pond_center")]
-position = Vector2(957, 370)
-collision_layer = 65536
-collision_mask = 131072
-slide_on_ceiling = false
-script = ExtResource("1_c2u82")
-pond_center = NodePath("../Pond/PondCenter")
-metadata/_edit_group_ = true
-
-[node name="EdgeVision" type="RayCast2D" parent="Fish" unique_id=1797568233]
-target_position = Vector2(0, -100)
-collision_mask = 131072
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Fish" unique_id=1535851879]
-shape = SubResource("CapsuleShape2D_txu1t")
-
-[node name="Polygon2D" type="Polygon2D" parent="Fish" unique_id=392682370]
-color = Color(4.1873755e-06, 0.4820444, 0.16204041, 1)
-polygon = PackedVector2Array(0, -28, 11, -17, 11, 10, 1, 16, 9, 23, -9, 23, -1, 16, -11, 10, -11, -17)
-
-[node name="MovementUpdateTimer" type="Timer" parent="Fish" unique_id=1779976032]
-wait_time = 0.5
-one_shot = true
-autostart = true
-
-[node name="ScareTimer" type="Timer" parent="Fish" unique_id=1411737898]
-one_shot = true
-
-[node name="DetectionArea" type="Area2D" parent="Fish" unique_id=920604102]
-collision_layer = 0
-collision_mask = 262144
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Fish/DetectionArea" unique_id=1562078626]
-polygon = PackedVector2Array(0, -28, 106, -307, -106, -307)
 
 [node name="FishingRod" type="Node2D" parent="." unique_id=1795042717]
 
@@ -132,8 +93,41 @@ position = Vector2(1638, 740)
 scale = Vector2(8, 8)
 texture = ExtResource("4_ghwdw")
 
-[connection signal="timeout" from="Fish/MovementUpdateTimer" to="Fish" method="_on_movement_update_timer_timeout"]
-[connection signal="timeout" from="Fish/ScareTimer" to="Fish" method="_on_scare_timer_timeout"]
-[connection signal="body_entered" from="Fish/DetectionArea" to="Fish" method="_on_detection_area_body_entered"]
+[node name="Fish2" parent="." unique_id=979366948 node_paths=PackedStringArray("pond_center") instance=ExtResource("7_fursg")]
+position = Vector2(904, 383)
+pond_center = NodePath("../Pond/PondCenter")
+
+[node name="Fish3" parent="." unique_id=1585805900 node_paths=PackedStringArray("pond_center") instance=ExtResource("7_fursg")]
+position = Vector2(671, 395)
+pond_center = NodePath("../Pond/PondCenter")
+
+[node name="Fish4" parent="." unique_id=2037904622 node_paths=PackedStringArray("pond_center") instance=ExtResource("7_fursg")]
+position = Vector2(757, 612)
+pond_center = NodePath("../Pond/PondCenter")
+
+[node name="Fish5" parent="." unique_id=849848676 node_paths=PackedStringArray("pond_center") instance=ExtResource("7_fursg")]
+position = Vector2(971, 628)
+pond_center = NodePath("../Pond/PondCenter")
+
+[node name="Fish6" parent="." unique_id=301579138 node_paths=PackedStringArray("pond_center") instance=ExtResource("7_fursg")]
+position = Vector2(1141, 444)
+pond_center = NodePath("../Pond/PondCenter")
+
+[node name="Fish7" parent="." unique_id=1869897068 node_paths=PackedStringArray("pond_center") instance=ExtResource("7_fursg")]
+position = Vector2(1122, 653)
+pond_center = NodePath("../Pond/PondCenter")
+
+[node name="Fish8" parent="." unique_id=1263219142 node_paths=PackedStringArray("pond_center") instance=ExtResource("7_fursg")]
+position = Vector2(859, 714)
+pond_center = NodePath("../Pond/PondCenter")
+
+[node name="Fish9" parent="." unique_id=1184109648 node_paths=PackedStringArray("pond_center") instance=ExtResource("7_fursg")]
+position = Vector2(618, 624)
+pond_center = NodePath("../Pond/PondCenter")
+
+[node name="Fish10" parent="." unique_id=1097209967 node_paths=PackedStringArray("pond_center") instance=ExtResource("7_fursg")]
+position = Vector2(1046, 736)
+pond_center = NodePath("../Pond/PondCenter")
+
 [connection signal="timeout" from="FishingRod/ThrowCooldownTimer" to="." method="_on_throw_cooldown_timer_timeout"]
 [connection signal="timeout" from="FishingRod/ReelInCooldownTimer" to="." method="_on_reel_in_cooldown_timer_timeout"]
