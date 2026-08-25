@@ -24,6 +24,9 @@ var speedy_chasing: bool = false
 var bobber: Bobber
 var can_be_reeled_in: bool = false
 
+@onready var animation = $AnimationPlayer
+@onready var sprite_side = $Sprite2D
+
 var rand = RandomNumberGenerator.new()
 
 var fish_spawner: FishSpawner = null
@@ -31,6 +34,7 @@ var fish_spawner: FishSpawner = null
 func _ready() -> void:
 	reel_in_indicator.hide()
 	interest_indicator.hide()
+	animation.play("move_side")
 
 func _physics_process(delta: float) -> void:
 	if not scared and not can_be_reeled_in:
@@ -57,6 +61,18 @@ func _physics_process(delta: float) -> void:
 		velocity = Vector2(0,0)
 	
 	move_and_slide()
+	update_animation()
+
+func update_animation() -> void:
+	var speed_ratio = speed / base_speed
+	animation.speed_scale = speed_ratio
+	
+	var direction = velocity.normalized()
+	if direction.x < 0:
+		sprite_side.flip_v = true
+	else:
+		sprite_side.flip_v = false
+	
 	
 func update_movement() -> void:
 	var new_direction: Vector2

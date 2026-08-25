@@ -3,10 +3,49 @@
 [ext_resource type="Script" uid="uid://b0fymfr17535n" path="res://fishing/fish/fish.gd" id="1_vnkdt"]
 [ext_resource type="Texture2D" uid="uid://c0raatdawd2he" path="res://sprites/fishing/exclamation_mark_no_background.png" id="2_qfgl3"]
 [ext_resource type="Texture2D" uid="uid://byw6ykcmleevp" path="res://sprites/fishing/question_mark_no_background.png" id="3_wqmun"]
+[ext_resource type="Texture2D" uid="uid://coysknm5mlpr2" path="res://sprites/fishing/red_koi.png" id="4_ttli7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vnkdt"]
 radius = 11.0
 height = 56.0
+
+[sub_resource type="Animation" id="Animation_ttli7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_wkxlq"]
+resource_name = "move_side"
+loop_mode = 1
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0sxke"]
+_data = {
+&"RESET": SubResource("Animation_ttli7"),
+&"move_side": SubResource("Animation_wkxlq")
+}
 
 [node name="Fish" type="CharacterBody2D" unique_id=979366948]
 collision_layer = 65536
@@ -21,6 +60,7 @@ collision_mask = 131072
 shape = SubResource("CapsuleShape2D_vnkdt")
 
 [node name="Polygon2D" type="Polygon2D" parent="." unique_id=851083049]
+visible = false
 color = Color(4.1873755e-06, 0.4820444, 0.16204041, 1)
 polygon = PackedVector2Array(0, -28, 11, -17, 11, 10, 1, 16, 9, 23, -9, 23, -1, 16, -11, 10, -11, -17)
 
@@ -56,6 +96,18 @@ texture = ExtResource("2_qfgl3")
 texture_filter = 1
 position = Vector2(17, -27)
 texture = ExtResource("3_wqmun")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1679068403]
+texture_filter = 1
+position = Vector2(0, -4.7683716e-07)
+rotation = -1.5707964
+scale = Vector2(1.9383126, 1.9383126)
+texture = ExtResource("4_ttli7")
+hframes = 3
+vframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2128051834]
+libraries/ = SubResource("AnimationLibrary_0sxke")
 
 [connection signal="timeout" from="MovementUpdateTimer" to="." method="_on_movement_update_timer_timeout"]
 [connection signal="timeout" from="ScareTimer" to="." method="_on_scare_timer_timeout"]
