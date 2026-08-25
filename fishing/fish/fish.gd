@@ -26,6 +26,7 @@ var can_be_reeled_in: bool = false
 
 @onready var animation = $AnimationPlayer
 @onready var sprite_side = $Sprite2D
+@onready var sprite_top = $Sprite2D2
 
 var rand = RandomNumberGenerator.new()
 
@@ -68,10 +69,20 @@ func update_animation() -> void:
 	animation.speed_scale = speed_ratio
 	
 	var direction = velocity.normalized()
-	if direction.x < 0:
-		sprite_side.flip_v = true
+	if abs(direction.y) > 3 * abs(direction.x):
+		animation.play("move_top")
+		sprite_side.hide()
+		sprite_top.show()
 	else:
-		sprite_side.flip_v = false
+		animation.play("move_side")
+		sprite_side.show()
+		sprite_top.hide()
+		if direction.x < 0:
+			sprite_side.flip_v = true
+		else:
+			sprite_side.flip_v = false
+		
+	
 	
 	
 func update_movement() -> void:
@@ -103,7 +114,9 @@ func get_scared(scare_position: Vector2) -> void:
 	if scared:
 		return
 	
-	modulate = Color("blue", 0.2)	
+	#modulate = Color("blue", 0.2)	
+	create_tween().tween_property(self, "modulate", Color("blue", 0.2), 0.2)
+	
 	scared = true
 	should_update_direction = true
 	speed = base_speed * 2
@@ -114,7 +127,8 @@ func _on_movement_update_timer_timeout() -> void:
 	should_update_direction = true
 
 func _on_scare_timer_timeout() -> void:
-	modulate = Color("white")
+	#modulate = Color("white")
+	create_tween().tween_property(self, "modulate", Color("white"), 0.2)
 	speed = base_speed
 	scared = false
 
