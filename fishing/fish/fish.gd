@@ -17,6 +17,8 @@ var scared_position: Vector2
 var chasing: bool = false
 var speedy_chasing: bool = false
 
+@export var reel_in_time: float = 0.2
+
 @onready var reel_in_timer = $ReelInTimer
 @onready var reel_in_indicator = $ReelInIndicator
 @onready var interest_timer = $InterestTimer
@@ -28,16 +30,25 @@ var can_be_reeled_in: bool = false
 @onready var sprite_side = $Sprite2D
 @onready var sprite_top = $Sprite2D2
 
+@export var texture: Texture2D
+
 var rand = RandomNumberGenerator.new()
 
 var fish_spawner: FishSpawner = null
 
+var paused: bool = false
+
 func _ready() -> void:
+	texture = sprite_side.texture
 	reel_in_indicator.hide()
+	reel_in_timer.wait_time = reel_in_time
 	interest_indicator.hide()
 	animation.play("move_side")
 
 func _physics_process(delta: float) -> void:
+	if paused:
+		return
+		
 	if not scared and not can_be_reeled_in:
 		check_bobber()
 		
@@ -81,9 +92,6 @@ func update_animation() -> void:
 			sprite_side.flip_v = true
 		else:
 			sprite_side.flip_v = false
-		
-	
-	
 	
 func update_movement() -> void:
 	var new_direction: Vector2
@@ -131,6 +139,15 @@ func _on_scare_timer_timeout() -> void:
 	create_tween().tween_property(self, "modulate", Color("white"), 0.2)
 	speed = base_speed
 	scared = false
+	
+	# TODO: is this cool? 
+	if rand.randf() < 0.50:
+		_remove_fish()
+
+func _remove_fish() -> void:
+	if fish_spawner:
+		fish_spawner.fish_killed()
+	queue_free()
 
 func check_bobber() -> void:
 	var potential_bobbers = detection_area.get_overlapping_areas()
@@ -149,7 +166,11 @@ func check_bobber() -> void:
 		bobber = potential_bobber
 		#should_update_direction = true # TODO: is this better or worse?
 		interest_indicator.show()
-		create_tween().tween_property(interest_indicator, "scale", Vector2(1.5,1.5), 0.1)
+		var tween = create_tween()
+		tween.set_ease(Tween.EASE_OUT)
+		tween.tween_property(interest_indicator, "scale", Vector2(2,2), 0.2)
+		#tween.set_ease(Tween.EASE_IN)
+		tween.tween_property(interest_indicator, "scale", Vector2(1,1), 0.1)
 		interest_timer.start()
 		
 
@@ -162,22 +183,23 @@ func check_reel_in_distance() -> void:
 		reel_in_timer.start()
 		reel_in_indicator.show()
 		var tween = create_tween()
-		tween.tween_property(reel_in_indicator, "scale", Vector2(2,2), 0.1)
-		tween.tween_property(reel_in_indicator, "scale", Vector2(3,3), 0.2)
+		tween.set_ease(Tween.EASE_IN_OUT)
+		tween.tween_property(reel_in_indicator, "scale", Vector2(3,3), reel_in_time)
+		tween.tween_property(reel_in_indicator, "scale", Vector2(1,1), 0.1)
 	else:
 		can_be_reeled_in = false
 
-func reel_in(bobber_position: Vector2) -> void:
+func reel_in(bobber_position: Vector2) -> bool:
 	if can_be_reeled_in:
 		print("Caught a fish!")
-		if fish_spawner:
-			fish_spawner.fish_killed()
-		queue_free()
+		_remove_fish()
+		return true
 	else:
 		chasing = false
 		speedy_chasing = false
 		get_scared(bobber_position)
 		bobber = null
+		return false
 
 func _update_velocity(new_direction: Vector2) -> void:
 	var tween = create_tween()
@@ -231,3 +253,10 @@ func set_spawner(spawner: FishSpawner) -> void:
 func _on_interest_timer_timeout() -> void:
 	interest_indicator.hide()
 	interest_indicator.scale = Vector2(1,1)
+
+func toggle_physics() -> void:
+	paused = not paused
+	if paused:
+		animation.pause()
+	else:
+		animation.play()

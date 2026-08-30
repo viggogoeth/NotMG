@@ -8,6 +8,8 @@ class_name FishSpawner extends Marker2D
 
 var can_respawn = true
 
+var paused: bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -15,6 +17,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if paused: 
+		return
+	
 	if can_respawn and RandomNumberGenerator.new().randi_range(1,20) == 20:
 		var new_fish = fish_scene.instantiate()
 		new_fish.global_position = global_position
@@ -29,3 +34,6 @@ func fish_killed() -> void:
 
 func _on_respawn_timer_timeout() -> void:
 	can_respawn = true
+
+func toggle_physics() -> void:
+	paused = not paused

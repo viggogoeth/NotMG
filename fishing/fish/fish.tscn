@@ -77,7 +77,7 @@ _data = {
 &"move_top": SubResource("Animation_0sxke")
 }
 
-[node name="Fish" type="CharacterBody2D" unique_id=979366948]
+[node name="Fish" type="CharacterBody2D" unique_id=979366948 groups=["fish"]]
 collision_layer = 65536
 collision_mask = 131072
 script = ExtResource("1_vnkdt")
@@ -103,7 +103,7 @@ autostart = true
 one_shot = true
 
 [node name="ReelInTimer" type="Timer" parent="." unique_id=1560208758]
-wait_time = 0.4
+wait_time = 0.2
 one_shot = true
 
 [node name="InterestTimer" type="Timer" parent="." unique_id=2048206874]
@@ -116,16 +116,6 @@ collision_mask = 262144
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DetectionArea" unique_id=1497156263]
 polygon = PackedVector2Array(0, -28, 106, -307, -106, -307)
-
-[node name="ReelInIndicator" type="Sprite2D" parent="." unique_id=1150704940]
-texture_filter = 1
-position = Vector2(17, -27)
-texture = ExtResource("2_qfgl3")
-
-[node name="InterestIndicator" type="Sprite2D" parent="." unique_id=1014897094]
-texture_filter = 1
-position = Vector2(17, -27)
-texture = ExtResource("3_wqmun")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1679068403]
 texture_filter = 1
@@ -143,6 +133,16 @@ rotation = -1.5707964
 scale = Vector2(1.9383126, 1.9383126)
 texture = ExtResource("5_wkxlq")
 hframes = 8
+
+[node name="ReelInIndicator" type="Sprite2D" parent="." unique_id=1150704940]
+texture_filter = 1
+position = Vector2(17, -27)
+texture = ExtResource("2_qfgl3")
+
+[node name="InterestIndicator" type="Sprite2D" parent="." unique_id=1014897094]
+texture_filter = 1
+position = Vector2(17, -27)
+texture = ExtResource("3_wqmun")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2128051834]
 libraries/ = SubResource("AnimationLibrary_0sxke")

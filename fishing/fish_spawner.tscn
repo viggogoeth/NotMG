@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://15xlc7s13hk2" path="res://fishing/fish_spawner.gd" id="1_c5h4h"]
 
-[node name="FishSpawner" type="Marker2D" unique_id=432832155]
+[node name="FishSpawner" type="Marker2D" unique_id=432832155 groups=["fish"]]
 script = ExtResource("1_c5h4h")
 
 [node name="RespawnTimer" type="Timer" parent="." unique_id=1773934102]

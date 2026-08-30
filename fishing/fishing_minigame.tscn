@@ -1,18 +1,175 @@
 [gd_scene format=3 uid="uid://osyvef0mrxq4"]
 
 [ext_resource type="Script" uid="uid://bqy8nna1u5ve6" path="res://fishing/fishing_minigame.gd" id="1_neky2"]
+[ext_resource type="Texture2D" uid="uid://cnchn2yl2jtcm" path="res://sprites/fishing/thrown_bobber.png" id="3_f83rb"]
 [ext_resource type="Script" uid="uid://cuaybmn0lprjn" path="res://fishing/bobber.gd" id="3_ghwdw"]
 [ext_resource type="Texture2D" uid="uid://bohdcp6c11q8l" path="res://sprites/fishing/fishing_rod_base.png" id="3_qhcwk"]
 [ext_resource type="Texture2D" uid="uid://bmq08e2v8t6ea" path="res://sprites/fishing/fishing_rod_bobber.png" id="4_ghwdw"]
+[ext_resource type="Texture2D" uid="uid://cm33nly8md1n6" path="res://sprites/fishing/thrown_bobber_shadow.png" id="4_phgm4"]
 [ext_resource type="Texture2D" uid="uid://b2myedftx48u0" path="res://sprites/fishing/fishing_rod_charge.png" id="4_yikrq"]
+[ext_resource type="Texture2D" uid="uid://h8wa8f8m7mx3" path="res://sprites/fishing/thrown_bobber_water_overlay.png" id="5_j5x3p"]
+[ext_resource type="Texture2D" uid="uid://4h0i7ehyg2fd" path="res://sprites/fishing/bobber_water_rings_sheet.png" id="6_c10re"]
 [ext_resource type="PackedScene" uid="uid://bflxqmlqo6irq" path="res://fishing/fish_spawner.tscn" id="6_fursg"]
 [ext_resource type="PackedScene" uid="uid://0ejfrplomoj7" path="res://fishing/fish/fish.tscn" id="7_fursg"]
+[ext_resource type="Script" uid="uid://vaqeapxaedjh" path="res://fishing/catch_game.gd" id="12_2jkj7"]
+[ext_resource type="Texture2D" uid="uid://d3wkpvlgibmss" path="res://sprites/fishing/get_ready_sign.png" id="13_yn43t"]
+[ext_resource type="Texture2D" uid="uid://w58jcsqcp4kf" path="res://sprites/fishing/reel_sign.png" id="14_rwf1c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2jkj7"]
+atlas = ExtResource("6_c10re")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ftvg"]
+atlas = ExtResource("6_c10re")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yn43t"]
+atlas = ExtResource("6_c10re")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rwf1c"]
+atlas = ExtResource("6_c10re")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mlpwu"]
+atlas = ExtResource("6_c10re")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kkd48"]
+atlas = ExtResource("6_c10re")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uyt5e"]
+atlas = ExtResource("6_c10re")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8lc38"]
+atlas = ExtResource("6_c10re")
+region = Rect2(192, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1m25s"]
+atlas = ExtResource("6_c10re")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g5y4w"]
+atlas = ExtResource("6_c10re")
+region = Rect2(64, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sayyq"]
+atlas = ExtResource("6_c10re")
+region = Rect2(128, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uycuy"]
+atlas = ExtResource("6_c10re")
+region = Rect2(192, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1125"]
+atlas = ExtResource("6_c10re")
+region = Rect2(0, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r6gj7"]
+atlas = ExtResource("6_c10re")
+region = Rect2(64, 192, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_idr4n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2jkj7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ftvg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yn43t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rwf1c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mlpwu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kkd48")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uyt5e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8lc38")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1m25s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g5y4w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sayyq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uycuy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b1125")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r6gj7")
+}],
+"loop": false,
+"name": &"rings",
+"speed": 20.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c2u82"]
 radius = 11.045361
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yikrq"]
 radius = 88.005684
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2jkj7"]
+
+[sub_resource type="Animation" id="Animation_yn43t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FishSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_rwf1c"]
+resource_name = "flopping"
+length = 0.50000626
+loop_mode = 1
+step = 0.0625
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FishSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0625, 0.125, 0.1875, 0.25, 0.3125, 0.375, 0.4375),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mlpwu"]
+_data = {
+&"RESET": SubResource("Animation_yn43t"),
+&"flopping": SubResource("Animation_rwf1c")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ftvg"]
+size = Vector2(78, 92)
 
 [node name="FishingMinigame" type="Node2D" unique_id=833025813]
 script = ExtResource("1_neky2")
@@ -47,9 +204,28 @@ script = ExtResource("3_ghwdw")
 fishing_minigame = NodePath("../..")
 metadata/_edit_group_ = true
 
-[node name="BobberVisual" type="Polygon2D" parent="FishingRod/Bobber" unique_id=530551868]
-color = Color(0.20511743, 0.20511743, 0.20511743, 1)
-polygon = PackedVector2Array(0, -7, 3, -6, 5, -5, 6, -3, 7, 0, 6, 3, 5, 5, 3, 6, 0, 7, -3, 6, -5, 5, -6, 3, -7, 0, -6, -3, -5, -5, -3, -6)
+[node name="WaterRings" type="AnimatedSprite2D" parent="FishingRod/Bobber" unique_id=425344430]
+visible = false
+texture_filter = 1
+scale = Vector2(2.4687505, 2.4687505)
+sprite_frames = SubResource("SpriteFrames_idr4n")
+animation = &"rings"
+
+[node name="BobberVisual" type="Sprite2D" parent="FishingRod/Bobber" unique_id=955418369]
+texture_filter = 1
+texture = ExtResource("3_f83rb")
+
+[node name="Shadow" type="Sprite2D" parent="FishingRod/Bobber/BobberVisual" unique_id=2093789327]
+visible = false
+modulate = Color(0.3372549, 0.54509807, 1, 0.80784315)
+z_as_relative = false
+texture_filter = 1
+position = Vector2(0, 5)
+texture = ExtResource("4_phgm4")
+
+[node name="WaterOverlay" type="Sprite2D" parent="FishingRod/Bobber/BobberVisual" unique_id=731852338]
+texture_filter = 1
+texture = ExtResource("5_j5x3p")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FishingRod/Bobber" unique_id=465500484]
 shape = SubResource("CircleShape2D_c2u82")
@@ -112,5 +288,106 @@ fish_scene = ExtResource("7_fursg")
 fishing_minigame = NodePath("..")
 pond_center = NodePath("../Pond/PondCenter")
 
+[node name="CatchGame" type="CanvasLayer" parent="." unique_id=2015280259 node_paths=PackedStringArray("fishing_minigame")]
+script = ExtResource("12_2jkj7")
+fishing_minigame = NodePath("..")
+
+[node name="ColorOverlay" type="ColorRect" parent="CatchGame" unique_id=980681010]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.15294118, 0.3254902, 0.5803922, 0.78431374)
+
+[node name="CatchBar" type="ProgressBar" parent="CatchGame" unique_id=1301789610]
+offset_left = 1057.0
+offset_top = 107.0
+offset_right = 1135.0
+offset_bottom = 799.0
+value = 15.0
+fill_mode = 3
+show_percentage = false
+
+[node name="BarBottom" type="Marker2D" parent="CatchGame" unique_id=1974507101]
+position = Vector2(1097, 799)
+
+[node name="Fish" type="Area2D" parent="CatchGame" unique_id=896304310]
+position = Vector2(1097, 799)
+collision_layer = 1048576
+collision_mask = 0
+
+[node name="FishSprite" type="Sprite2D" parent="CatchGame/Fish" unique_id=340622225]
+texture_filter = 1
+position = Vector2(0, -10)
+scale = Vector2(2, 2)
+hframes = 3
+vframes = 3
+
+[node name="ColorRect" type="ColorRect" parent="CatchGame/Fish" unique_id=1722941962]
+visible = false
+offset_left = -10.0
+offset_top = -20.0
+offset_right = 10.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CatchGame/Fish" unique_id=786947075]
+position = Vector2(0, -10)
+shape = SubResource("CircleShape2D_2jkj7")
+
+[node name="MoveTimer" type="Timer" parent="CatchGame/Fish" unique_id=638401865]
+autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CatchGame/Fish" unique_id=2060314703]
+libraries/ = SubResource("AnimationLibrary_mlpwu")
+
+[node name="CatchBox" type="Area2D" parent="CatchGame" unique_id=1372775854]
+position = Vector2(1097, 799)
+collision_layer = 0
+collision_mask = 1048576
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CatchGame/CatchBox" unique_id=68488972]
+position = Vector2(-1, -46)
+shape = SubResource("RectangleShape2D_6ftvg")
+
+[node name="ColorRect" type="ColorRect" parent="CatchGame/CatchBox" unique_id=861657658]
+offset_left = -40.0
+offset_top = -92.0
+offset_right = 38.0
+color = Color(1, 0.7529412, 0.38039216, 0.38431373)
+
+[node name="GetReadyTimer" type="Timer" parent="CatchGame" unique_id=747724228]
+wait_time = 1.5
+one_shot = true
+
+[node name="GetReadySign" type="TextureRect" parent="CatchGame" unique_id=1780970864]
+visible = false
+texture_filter = 1
+offset_left = 101.0
+offset_top = 129.0
+offset_right = 888.0
+offset_bottom = 362.0
+texture = ExtResource("13_yn43t")
+
+[node name="ReelSign" type="TextureRect" parent="CatchGame" unique_id=532659585]
+visible = false
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -719.0
+offset_top = -264.0
+offset_right = 1.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("14_rwf1c")
+
+[connection signal="animation_finished" from="FishingRod/Bobber/WaterRings" to="FishingRod/Bobber" method="_on_water_rings_animation_finished"]
 [connection signal="timeout" from="FishingRod/ThrowCooldownTimer" to="." method="_on_throw_cooldown_timer_timeout"]
 [connection signal="timeout" from="FishingRod/ReelInCooldownTimer" to="." method="_on_reel_in_cooldown_timer_timeout"]
+[connection signal="timeout" from="CatchGame/Fish/MoveTimer" to="CatchGame" method="_on_move_timer_timeout"]
+[connection signal="area_entered" from="CatchGame/CatchBox" to="CatchGame" method="_on_catch_box_area_entered"]
+[connection signal="area_exited" from="CatchGame/CatchBox" to="CatchGame" method="_on_catch_box_area_exited"]
+[connection signal="timeout" from="CatchGame/GetReadyTimer" to="CatchGame" method="_on_get_ready_timer_timeout"]

@@ -19,12 +19,22 @@ const CAST_SPEED: float = 0.75
 @onready var rod_bobber = $FishingRod/ChargeBarVisuals/RodBobber
 @onready var bobber_scare_radius = $FishingRod/Bobber/ScareRadius
 
+@onready var catch_game = $CatchGame
+var paused = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("dev_key"):
+		catch_game.start_catch_game(null)
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if paused:
+		return
+	
 	if Input.is_action_just_released("main_attack"):
 		if not rod_released and not on_throw_cooldown:
 			release_rod()
@@ -62,13 +72,13 @@ func release_rod() -> void:
 	var cast_direction = (get_global_mouse_position() - bobber_spawn).normalized()
 	var bobber_target_position = bobber_spawn + cast_direction * 9 * rod_charge
 	
-	var tween = create_tween()
-	tween.tween_property(bobber, "global_position", bobber_target_position, CAST_SPEED)
+	create_tween().tween_property(bobber, "global_position", bobber_target_position, CAST_SPEED)
 	
 	await get_tree().create_timer(CAST_SPEED + 0.1).timeout
 	var out_of_bounds = is_out_of_bounds()
 	
 	if not out_of_bounds:
+		bobber.hit_water()
 		scare_fish()
 	else:
 		print("out of bounds")
@@ -93,9 +103,15 @@ func return_rod() -> void:
 	rod_charge = 0
 	charge_bar.value = 0
 	
+	var caught: bool = false
+	
 	has_chasing_fish = false
 	if chasing_fish:
-		chasing_fish.reel_in(bobber.global_position)
+		caught = chasing_fish.reel_in(bobber.global_position)
+	
+	if caught:
+		catch_game.start_catch_game(chasing_fish)
+	
 	chasing_fish = null
 	
 	on_throw_cooldown = true
@@ -105,6 +121,8 @@ func return_rod() -> void:
 
 	var tween = create_tween()
 	tween.tween_property(bobber, "global_position", bobber_spawn, 0.2)
+	bobber.thrown = false
+	#tween.tween_property(bobber, "thrown", false, 0.2)
 
 func set_chasing_fish(fish: CharacterBody2D) -> bool:
 	if has_chasing_fish or not rod_released or on_reelin_cooldown:
@@ -122,3 +140,9 @@ func _on_throw_cooldown_timer_timeout() -> void:
 
 func _on_reel_in_cooldown_timer_timeout() -> void:
 	on_reelin_cooldown = false
+
+func toggle_physics() -> void:
+	paused = not paused
+	
+	for fish in get_tree().get_nodes_in_group("fish"):
+		fish.toggle_physics()
