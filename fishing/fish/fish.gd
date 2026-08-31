@@ -1,12 +1,12 @@
 class_name Fish extends CharacterBody2D
 
-@export var base_speed: float = 150.0
-var speed: float = 150.0
+@export var base_speed: float = 100.0
+var speed: float = base_speed
 
 @onready var movement_update_timer: Timer = $MovementUpdateTimer
 var should_update_direction: bool = true
 
-@onready var edge_vision: RayCast2D = $EdgeVision
+@onready var edge_vision = $EdgeVision
 @export var pond_center: Marker2D
 
 @onready var scare_timer = $ScareTimer
@@ -230,30 +230,27 @@ func _move_random(old_direction: Vector2) -> Vector2:
 	return new_direction
 	
 func _move_from_edge() -> Vector2:
-	#var direction_to_center = global_position.direction_to(pond_center.global_position)
-	#var new_x = direction_to_center.x
-	#var new_y = direction_to_center.y
-	#var new_direction = Vector2(new_x, new_y)
 	var old_direction = velocity.normalized()
 	var total_rotation = 0.0
-	var old_rotation = edge_vision.rotation
+	var old_rotation = rotation
 	var facing_wall = true
 	
 	var rotate_right = rand.randf() < 0.15
 	
 	while facing_wall:
 		if rotate_right:
-			total_rotation += 0.1
-			edge_vision.rotate(0.1)
+			total_rotation += 0.05
+			rotate(0.05)
 		else:
-			total_rotation -= 0.1
-			edge_vision.rotate(-0.1)
+			total_rotation -= 0.05
+			rotate(-0.05)
 		# check if still facing wall	
 		edge_vision.force_raycast_update()
+		print(total_rotation)
 		if not edge_vision.is_colliding():
 			facing_wall = false
 	
-	edge_vision.rotation = old_rotation		
+	rotation = old_rotation		
 	
 	var new_direction = old_direction.rotated(total_rotation)
 	_update_velocity(new_direction)
