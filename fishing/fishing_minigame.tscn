@@ -12,7 +12,9 @@
 [ext_resource type="PackedScene" uid="uid://bflxqmlqo6irq" path="res://fishing/fish_spawner.tscn" id="6_fursg"]
 [ext_resource type="PackedScene" uid="uid://0ejfrplomoj7" path="res://fishing/fish/fish.tscn" id="7_fursg"]
 [ext_resource type="Script" uid="uid://vaqeapxaedjh" path="res://fishing/catch_game.gd" id="12_2jkj7"]
+[ext_resource type="Texture2D" uid="uid://cqjxuk3jq5jim" path="res://sprites/fishing/catch_charge_bar.png" id="13_mlpwu"]
 [ext_resource type="Texture2D" uid="uid://d3wkpvlgibmss" path="res://sprites/fishing/get_ready_sign.png" id="13_yn43t"]
+[ext_resource type="Texture2D" uid="uid://d3hs1wxk76llu" path="res://sprites/fishing/catch_charge_bar_fill.png" id="14_kkd48"]
 [ext_resource type="Texture2D" uid="uid://w58jcsqcp4kf" path="res://sprites/fishing/reel_sign.png" id="14_rwf1c"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2jkj7"]
@@ -297,14 +299,21 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 color = Color(0.15294118, 0.3254902, 0.5803922, 0.78431374)
 
-[node name="CatchBar" type="ProgressBar" parent="CatchGame" unique_id=1301789610]
+[node name="CatchBar" type="TextureProgressBar" parent="CatchGame" unique_id=381769815]
+texture_filter = 1
 offset_left = 1057.0
 offset_top = 107.0
 offset_right = 1135.0
 offset_bottom = 799.0
 value = 15.0
 fill_mode = 3
-show_percentage = false
+nine_patch_stretch = true
+stretch_margin_left = 8
+stretch_margin_top = 8
+stretch_margin_right = 8
+stretch_margin_bottom = 8
+texture_over = ExtResource("13_mlpwu")
+texture_progress = ExtResource("14_kkd48")
 
 [node name="BarBottom" type="Marker2D" parent="CatchGame" unique_id=1974507101]
 position = Vector2(1097, 799)
@@ -318,6 +327,7 @@ collision_mask = 0
 texture_filter = 1
 position = Vector2(0, -10)
 scale = Vector2(2, 2)
+offset = Vector2(0, -10)
 hframes = 3
 vframes = 3
 
@@ -384,6 +394,16 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("14_rwf1c")
 
+[node name="ContinueButton" type="Button" parent="CatchGame" unique_id=479795189]
+offset_left = 450.0
+offset_top = 739.0
+offset_right = 663.0
+offset_bottom = 806.0
+text = "Keep & Continue"
+
+[node name="CatchDisplayPosition" type="Marker2D" parent="CatchGame" unique_id=538415647]
+position = Vector2(557, 421)
+
 [connection signal="animation_finished" from="FishingRod/Bobber/WaterRings" to="FishingRod/Bobber" method="_on_water_rings_animation_finished"]
 [connection signal="timeout" from="FishingRod/ThrowCooldownTimer" to="." method="_on_throw_cooldown_timer_timeout"]
 [connection signal="timeout" from="FishingRod/ReelInCooldownTimer" to="." method="_on_reel_in_cooldown_timer_timeout"]
@@ -391,3 +411,4 @@ texture = ExtResource("14_rwf1c")
 [connection signal="area_entered" from="CatchGame/CatchBox" to="CatchGame" method="_on_catch_box_area_entered"]
 [connection signal="area_exited" from="CatchGame/CatchBox" to="CatchGame" method="_on_catch_box_area_exited"]
 [connection signal="timeout" from="CatchGame/GetReadyTimer" to="CatchGame" method="_on_get_ready_timer_timeout"]
+[connection signal="pressed" from="CatchGame/ContinueButton" to="CatchGame" method="_on_button_pressed"]

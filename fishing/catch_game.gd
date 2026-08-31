@@ -18,6 +18,8 @@ var playing: bool = false
 @onready var reel_sign = $ReelSign
 @onready var get_ready_sign = $GetReadySign
 
+@onready var continue_button = $ContinueButton
+
 const CHARGE_RATE: float = 17.0
 const CHARGE_DECAY_RATE: float = 13.0
 const BASE_CHARGE: float = 15.0
@@ -37,6 +39,7 @@ func _ready() -> void:
 	hide()
 	get_ready_sign.hide()
 	reel_sign.hide()
+	continue_button.hide()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -87,6 +90,9 @@ func start_catch_game(fish: Fish) -> void:
 		fish_sprite.texture = fish.texture
 		fish_animation.play("flopping")
 		$Fish/ColorRect.hide()
+		
+		fish_sprite.scale = Vector2(2, 2)
+		fish_sprite.global_position = bar_bottom
 	else:
 		$Fish/ColorRect.show()
 	start_timer.start()
@@ -101,6 +107,16 @@ func start_catch_game(fish: Fish) -> void:
 func toggle_catch_game() -> void:
 	fishing_minigame.toggle_physics()
 	
+	current_charge = BASE_CHARGE
+	fish_offset_ratio = 0.0
+	catch_bar_offset_ratio = 0.0
+	
+	continue_button.hide()
+	
+	_update_catch_box_position()
+	_update_fish_offset(0)
+	charge_bar.value = BASE_CHARGE
+	
 	visible = not visible
 
 func _abandon_catch() -> void:
@@ -108,16 +124,12 @@ func _abandon_catch() -> void:
 	_finish_catch()
 
 func _finish_catch() -> void:
-	current_charge = BASE_CHARGE
-	fish_offset_ratio = 0.0
-	catch_bar_offset_ratio = 0.0
 	playing = false
 	
-	_update_catch_box_position()
-	_update_fish_offset(0)
-	charge_bar.value = BASE_CHARGE
+	create_tween().tween_property(fish_sprite, "global_position", $CatchDisplayPosition.global_position, 0.5)
+	create_tween().tween_property(fish_sprite, "scale", Vector2(7,7), 0.5)
 	
-	toggle_catch_game()
+	continue_button.show()
 
 func _on_move_timer_timeout() -> void:
 	if not playing:
@@ -157,4 +169,9 @@ func _on_get_ready_timer_timeout() -> void:
 	var tween = create_tween().set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(reel_sign, "scale", Vector2(1.3, 1.3), 0.5)
 	tween.tween_property(reel_sign, "visible", false, 0.1)
+	tween.tween_property(reel_sign, "scale", Vector2(1.0, 1.0), 0.1)
 	#reel_sign.hide()
+
+
+func _on_button_pressed() -> void:
+	toggle_catch_game()
