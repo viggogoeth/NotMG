@@ -133,6 +133,7 @@ dev_key={
 2d_physics/layer_17="fish"
 2d_physics/layer_18="water_boundary"
 2d_physics/layer_19="bobber"
+2d_physics/layer_20="foliage"
 2d_physics/layer_21="catch_game_fish"
 
 [physics]

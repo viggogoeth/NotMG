@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://osyvef0mrxq4"]
+[gd_scene format=4 uid="uid://osyvef0mrxq4"]
 
 [ext_resource type="Script" uid="uid://bqy8nna1u5ve6" path="res://fishing/fishing_minigame.gd" id="1_neky2"]
 [ext_resource type="Texture2D" uid="uid://cnchn2yl2jtcm" path="res://sprites/fishing/thrown_bobber.png" id="3_f83rb"]
@@ -11,11 +11,167 @@
 [ext_resource type="Texture2D" uid="uid://4h0i7ehyg2fd" path="res://sprites/fishing/bobber_water_rings_sheet.png" id="6_c10re"]
 [ext_resource type="PackedScene" uid="uid://bflxqmlqo6irq" path="res://fishing/fish_spawner.tscn" id="6_fursg"]
 [ext_resource type="PackedScene" uid="uid://0ejfrplomoj7" path="res://fishing/fish/fish.tscn" id="7_fursg"]
+[ext_resource type="Texture2D" uid="uid://cbphhhq58uxqk" path="res://tilesets/water.png" id="10_1m25s"]
+[ext_resource type="Texture2D" uid="uid://bxtq6ld2gi1dj" path="res://tilesets/grass.png" id="11_1m25s"]
+[ext_resource type="Texture2D" uid="uid://bdy0hv2vee01x" path="res://tilesets/water_foliage.png" id="11_8lc38"]
 [ext_resource type="Script" uid="uid://vaqeapxaedjh" path="res://fishing/catch_game.gd" id="12_2jkj7"]
 [ext_resource type="Texture2D" uid="uid://cqjxuk3jq5jim" path="res://sprites/fishing/catch_charge_bar.png" id="13_mlpwu"]
 [ext_resource type="Texture2D" uid="uid://d3wkpvlgibmss" path="res://sprites/fishing/get_ready_sign.png" id="13_yn43t"]
 [ext_resource type="Texture2D" uid="uid://d3hs1wxk76llu" path="res://sprites/fishing/catch_charge_bar_fill.png" id="14_kkd48"]
 [ext_resource type="Texture2D" uid="uid://w58jcsqcp4kf" path="res://sprites/fishing/reel_sign.png" id="14_rwf1c"]
+[ext_resource type="Texture2D" uid="uid://dcvuj0pw4sssf" path="res://sprites/fishing/catch_box.png" id="15_kkd48"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2jkj7"]
+
+[sub_resource type="Animation" id="Animation_yn43t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FishSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_rwf1c"]
+resource_name = "flopping"
+length = 0.50000626
+loop_mode = 1
+step = 0.0625
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FishSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0625, 0.125, 0.1875, 0.25, 0.3125, 0.375, 0.4375),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mlpwu"]
+_data = {
+&"RESET": SubResource("Animation_yn43t"),
+&"flopping": SubResource("Animation_rwf1c")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ftvg"]
+size = Vector2(78, 137)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sayyq"]
+texture = ExtResource("10_1m25s")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_uycuy"]
+sources/0 = SubResource("TileSetAtlasSource_sayyq")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g5y4w"]
+texture = ExtResource("11_1m25s")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, 0, 8, 0, 0, -8, 0)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 0, -8, 0, 8, -8, 8)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -8, 8, -8, 8, 0, 0, 0)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 0, -8, 0)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 0, 0, 0, 0, 8, -8, 8)
+0:1/0/physics_layer_0/polygon_1/points = PackedVector2Array(0, -8, 8, -8, 8, 0, 0, 0)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 0, -8, 0, 0, -8, 0)
+3:1/0 = 0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, 0, 8, 0, 8, 8, 0, 8)
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 0, -8, 0, 0, 8, 0, 8, 8, -8, 8)
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 0, 8, 0, 8, 8, -8, 8)
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 0, 0, 0, 0, 8, -8, 8)
+3:2/0 = 0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -8, 8, -8, 8, 8, 0, 8)
+0:3/0 = 0
+0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:3/0 = 0
+1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 0, 0, 0, 0, 8, -8, 8)
+2:3/0 = 0
+2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 0, -8, 0, 0, -8, 0)
+2:3/0/physics_layer_0/polygon_1/points = PackedVector2Array(0, 8, 8, 8, 8, 0, 0, 0)
+3:3/0 = 0
+3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -8, 8, -8, 8, 8, -8, 8, -8, 0, 0, 0)
+
+[sub_resource type="TileSet" id="TileSet_1m25s"]
+physics_layer_0/collision_layer = 131072
+physics_layer_0/collision_mask = 0
+sources/1 = SubResource("TileSetAtlasSource_g5y4w")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1m25s"]
+texture = ExtResource("11_8lc38")
+0:0/size_in_atlas = Vector2i(2, 2)
+0:0/0 = 0
+0:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-16, -4, -15, -6, -10, -11, -8, -12, -6, -13, -2, -14, 2, -14, 6, -13, 9, -12, 10, -11, 12, -10, 15, -7, 15, 9, 10, 14, 8, 15, 5, 16, -8, 16, -11, 15, -13, 14, -15, 12, -16, 10)
+2:0/size_in_atlas = Vector2i(2, 2)
+2:0/0 = 0
+2:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-10, -7, -8, -9, -6, -10, -4, -11, 8, -11, 10, -10, 13, -7, 14, -5, 14, 3, 13, 4, 12, 6, 11, 7, 9, 8, 5, 10, 0, 11, -5, 11, -7, 9, -9, 2, -11, 0, -11, -5)
+4:0/size_in_atlas = Vector2i(2, 2)
+4:0/0 = 0
+4:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-7, -4, -3, -8, 3, -8, 6, -5, 7, -3, 7, 4, 6, 5, 2, 6, 0, 7, -3, 7, -5, 6, -7, 4)
+0:2/size_in_atlas = Vector2i(2, 2)
+0:2/0 = 0
+0:2/0/physics_layer_1/polygon_0/points = PackedVector2Array(-16, -4, -15, -6, -10, -11, -6, -13, -2, -14, 2, -14, 6, -13, 9, -12, 12, -10, 13, -9, 15, -7, 15, -2, 15, 9.5, 10, 14, 8, 15, 5, 16, -8, 16, -11, 15, -13, 14, -15, 12, -16, 10)
+2:2/size_in_atlas = Vector2i(2, 2)
+2:2/0 = 0
+2:2/0/physics_layer_1/polygon_0/points = PackedVector2Array(-11, -5, -10, -7, -8, -9, -4, -11, 3, -12, 7, -13, 8, -13, 12, -12, 13, -9, 14, -7, 14, 3, 13, 4, 12, 6, 11, 7, 9, 8, 7, 9, 5, 10, 0, 11, -5, 11, -7, 9, -9, 2, -11, 0)
+4:2/size_in_atlas = Vector2i(2, 2)
+4:2/0 = 0
+4:2/0/physics_layer_1/polygon_0/points = PackedVector2Array(-5, -6, -4, -8, -2, -9, -1, -10, 0, -10, 1, -9, 3, -8, 6, -5, 7, -3, 7, 4, 6, 5, 4, 5, 2, 6, 0, 7, -3, 7, -5, 6, -7, 4, -7, -4)
+6:2/size_in_atlas = Vector2i(2, 2)
+6:2/0 = 0
+6:4/size_in_atlas = Vector2i(2, 2)
+6:4/0 = 0
+4:4/size_in_atlas = Vector2i(2, 2)
+4:4/0 = 0
+2:4/size_in_atlas = Vector2i(2, 2)
+2:4/0 = 0
+0:4/size_in_atlas = Vector2i(2, 2)
+0:4/0 = 0
+0:6/size_in_atlas = Vector2i(2, 2)
+0:6/0 = 0
+0:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4.5, -8, 4, -8, 8, -5, 9, -2.5, 9, 1.5, 7, 4, 3, 7, -5, 7, -10, 2, -10, -3.5)
+2:6/size_in_atlas = Vector2i(2, 2)
+2:6/0 = 0
+2:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-2, -4, 3, -4, 6, -1, 6, 2, 3, 5, -2, 5, -5, 2, -5, -1)
+4:6/size_in_atlas = Vector2i(2, 2)
+4:6/0 = 0
+4:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -1, -2, -3, 2, -3, 4, -1, 4, 2, 2, 4, -2, 4, -4, 2)
+
+[sub_resource type="TileSet" id="TileSet_g5y4w"]
+physics_layer_0/collision_layer = 131072
+physics_layer_0/collision_mask = 0
+physics_layer_1/collision_layer = 524288
+physics_layer_1/collision_mask = 0
+sources/1 = SubResource("TileSetAtlasSource_1m25s")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2jkj7"]
 atlas = ExtResource("6_c10re")
@@ -129,91 +285,214 @@ radius = 11.045361
 [sub_resource type="CircleShape2D" id="CircleShape2D_yikrq"]
 radius = 88.005684
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_2jkj7"]
-
-[sub_resource type="Animation" id="Animation_yn43t"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("FishSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
-[sub_resource type="Animation" id="Animation_rwf1c"]
-resource_name = "flopping"
-length = 0.50000626
-loop_mode = 1
-step = 0.0625
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("FishSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0625, 0.125, 0.1875, 0.25, 0.3125, 0.375, 0.4375),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_mlpwu"]
-_data = {
-&"RESET": SubResource("Animation_yn43t"),
-&"flopping": SubResource("Animation_rwf1c")
-}
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ftvg"]
-size = Vector2(78, 92)
-
 [node name="FishingMinigame" type="Node2D" unique_id=833025813]
 script = ExtResource("1_neky2")
 
 [node name="Background" type="ColorRect" parent="." unique_id=327774568]
+visible = false
 offset_right = 1919.0
 offset_bottom = 1080.0
 color = Color(0.7921569, 0.49019608, 0.11372549, 1)
 
 [node name="Pond" type="Polygon2D" parent="." unique_id=2146411370]
+visible = false
 position = Vector2(919, 420)
 color = Color(0.20392157, 1, 1, 1)
 polygon = PackedVector2Array(-489, -218, -431, -317, -361, -404, -279, -459, -144, -511, 6, -537, 140, -516, 205, -483, 297, -433, 402, -338, 473, -239, 510, -133, 530, 18, 506, 158, 472, 271, 394, 358, 310, 436, 188, 494, 56, 532, -62, 527, -186, 508, -308, 445, -401, 366, -463, 270, -511, 162, -520, 49, -530, -40, -516, -138)
 
 [node name="PondCenter" type="Marker2D" parent="Pond" unique_id=456699438]
-position = Vector2(-9, 48)
+position = Vector2(-28, 126)
 
-[node name="Outside" type="StaticBody2D" parent="." unique_id=475197388 groups=["outside_water"]]
-collision_layer = 131072
+[node name="FishSpawner" parent="." unique_id=432832155 node_paths=PackedStringArray("fishing_minigame", "pond_center") instance=ExtResource("6_fursg")]
+position = Vector2(494, 474)
+fish_scene = ExtResource("7_fursg")
+fishing_minigame = NodePath("..")
+pond_center = NodePath("../Pond/PondCenter")
+
+[node name="FishSpawner2" parent="." unique_id=1653146065 node_paths=PackedStringArray("fishing_minigame", "pond_center") instance=ExtResource("6_fursg")]
+position = Vector2(1224, 810)
+fish_scene = ExtResource("7_fursg")
+fishing_minigame = NodePath("..")
+pond_center = NodePath("../Pond/PondCenter")
+
+[node name="FishSpawner3" parent="." unique_id=2030583811 node_paths=PackedStringArray("fishing_minigame", "pond_center") instance=ExtResource("6_fursg")]
+position = Vector2(1248, 360)
+fish_scene = ExtResource("7_fursg")
+fishing_minigame = NodePath("..")
+pond_center = NodePath("../Pond/PondCenter")
+
+[node name="CatchGame" type="CanvasLayer" parent="." unique_id=2015280259 node_paths=PackedStringArray("fishing_minigame")]
+visible = false
+script = ExtResource("12_2jkj7")
+fishing_minigame = NodePath("..")
+
+[node name="ColorOverlay" type="ColorRect" parent="CatchGame" unique_id=980681010]
+offset_left = 16.0
+offset_top = -23.0
+offset_right = 1936.0
+offset_bottom = 1057.0
+color = Color(0.15294118, 0.3254902, 0.5803922, 0.78431374)
+
+[node name="CatchBar" type="TextureProgressBar" parent="CatchGame" unique_id=381769815]
+texture_filter = 1
+offset_left = 1057.0
+offset_top = 107.0
+offset_right = 1135.0
+offset_bottom = 799.0
+value = 15.0
+fill_mode = 3
+nine_patch_stretch = true
+stretch_margin_left = 8
+stretch_margin_top = 8
+stretch_margin_right = 8
+stretch_margin_bottom = 8
+texture_over = ExtResource("13_mlpwu")
+texture_progress = ExtResource("14_kkd48")
+
+[node name="BarBottom" type="Marker2D" parent="CatchGame" unique_id=1974507101]
+position = Vector2(1097, 799)
+
+[node name="Fish" type="Area2D" parent="CatchGame" unique_id=896304310]
+position = Vector2(1097, 799)
+collision_layer = 1048576
 collision_mask = 0
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Outside" unique_id=503547330]
-polygon = PackedVector2Array(609, 1, 525, 93, 472, 187, 438, 287, 426, 389, 436, 557, 488, 679, 568, 783, 665, 867, 780, 908, 898, 922, 1020, 908, 1140, 870, 1244, 800, 1340, 702, 1388, 598, 1422, 463, 1405, 331, 1377, 208, 1328, 137, 1266, 72, 1195, -1, 841, -46, 1920, 0, 1921, 1081, -1, 1081, -1, 2, 1045, -40)
+[node name="FishSprite" type="Sprite2D" parent="CatchGame/Fish" unique_id=340622225]
+texture_filter = 1
+position = Vector2(0, -10)
+scale = Vector2(2, 2)
+offset = Vector2(0, -10)
+hframes = 3
+vframes = 3
+
+[node name="ColorRect" type="ColorRect" parent="CatchGame/Fish" unique_id=1722941962]
+visible = false
+offset_left = -10.0
+offset_top = -20.0
+offset_right = 10.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CatchGame/Fish" unique_id=786947075]
+position = Vector2(0, -10)
+shape = SubResource("CircleShape2D_2jkj7")
+
+[node name="MoveTimer" type="Timer" parent="CatchGame/Fish" unique_id=638401865]
+autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CatchGame/Fish" unique_id=2060314703]
+libraries/ = SubResource("AnimationLibrary_mlpwu")
+
+[node name="CatchBox" type="Area2D" parent="CatchGame" unique_id=1372775854]
+position = Vector2(1097, 799)
+collision_layer = 0
+collision_mask = 1048576
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CatchGame/CatchBox" unique_id=68488972]
+position = Vector2(-1, -68.5)
+shape = SubResource("RectangleShape2D_6ftvg")
+
+[node name="ColorRect" type="ColorRect" parent="CatchGame/CatchBox" unique_id=861657658]
+offset_left = -40.0
+offset_top = -137.0
+offset_right = 38.0
+color = Color(1, 0.7529412, 0.38039216, 0.38431373)
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CatchGame/CatchBox" unique_id=1741003275]
+texture_filter = 1
+offset_left = -44.0
+offset_top = -141.0
+offset_right = 42.0
+offset_bottom = 4.0
+texture = ExtResource("15_kkd48")
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="GetReadyTimer" type="Timer" parent="CatchGame" unique_id=747724228]
+wait_time = 1.5
+one_shot = true
+
+[node name="GetReadySign" type="TextureRect" parent="CatchGame" unique_id=1780970864]
+visible = false
+texture_filter = 1
+offset_left = 101.0
+offset_top = 129.0
+offset_right = 888.0
+offset_bottom = 362.0
+texture = ExtResource("13_yn43t")
+
+[node name="ReelSign" type="TextureRect" parent="CatchGame" unique_id=532659585]
+visible = false
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -719.0
+offset_top = -264.0
+offset_right = 1.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("14_rwf1c")
+
+[node name="ContinueButton" type="Button" parent="CatchGame" unique_id=80265710]
+offset_left = 450.0
+offset_top = 739.0
+offset_right = 663.0
+offset_bottom = 806.0
+text = "Keep & Continue"
+
+[node name="CatchDisplayPosition" type="Marker2D" parent="CatchGame" unique_id=538415647]
+position = Vector2(557, 421)
+
+[node name="Water" type="TileMapLayer" parent="." unique_id=144013606]
+self_modulate = Color(1, 1, 1, 0.50980395)
+z_index = 1
+scale = Vector2(4, 4)
+tile_map_data = PackedByteArray("AAAMAAsAAAACAAEAAAANAAsAAAACAAEAAAAOAAsAAAACAAEAAAAPAAsAAAACAAEAAAAQAAsAAAACAAEAAAARAAsAAAACAAEAAAARAAwAAAACAAEAAAAQAAwAAAACAAEAAAAPAAwAAAACAAEAAAAOAAwAAAACAAEAAAANAAwAAAACAAEAAAAMAAwAAAACAAEAAAAMAA0AAAACAAEAAAANAA0AAAACAAEAAAAOAA0AAAACAAEAAAAPAA0AAAACAAEAAAAQAA0AAAACAAEAAAARAA0AAAACAAEAAAALAA0AAAACAAEAAAAKAA0AAAACAAEAAAAJAA0AAAACAAEAAAAJAAwAAAACAAEAAAAIAAwAAAACAAEAAAAHAAwAAAACAAEAAAAHAAsAAAACAAEAAAAGAAsAAAACAAEAAAAGAAoAAAACAAEAAAAGAAkAAAACAAEAAAAGAAgAAAACAAEAAAAGAAcAAAACAAEAAAAGAAYAAAACAAEAAAAHAAYAAAACAAEAAAAHAAUAAAACAAEAAAAIAAUAAAACAAEAAAAIAAYAAAACAAEAAAAJAAUAAAACAAEAAAAKAAUAAAACAAEAAAAKAAQAAAACAAEAAAAJAAQAAAACAAEAAAALAAQAAAACAAEAAAAMAAQAAAACAAEAAAANAAQAAAACAAEAAAAOAAQAAAACAAEAAAAPAAQAAAACAAEAAAAQAAQAAAACAAEAAAARAAQAAAACAAEAAAASAAQAAAACAAEAAAATAAQAAAACAAEAAAATAAUAAAACAAEAAAAUAAUAAAACAAEAAAAUAAYAAAACAAEAAAAVAAYAAAACAAEAAAAVAAUAAAACAAEAAAAWAAYAAAACAAEAAAAWAAcAAAACAAEAAAAWAAgAAAACAAEAAAAWAAkAAAACAAEAAAAWAAoAAAACAAEAAAAWAAsAAAACAAEAAAAVAAsAAAACAAEAAAAVAAwAAAACAAEAAAAUAAwAAAACAAEAAAATAAwAAAACAAEAAAATAA0AAAACAAEAAAASAA0AAAACAAEAAAASAAwAAAACAAEAAAASAAsAAAACAAEAAAASAAoAAAACAAEAAAATAAoAAAACAAEAAAATAAsAAAACAAEAAAATAAkAAAACAAEAAAATAAgAAAACAAEAAAAUAAgAAAACAAEAAAAUAAcAAAACAAEAAAAUAAkAAAACAAEAAAAUAAoAAAACAAEAAAAVAAoAAAACAAEAAAAVAAkAAAACAAEAAAAVAAgAAAACAAEAAAAVAAcAAAACAAEAAAAUAAsAAAACAAEAAAATAAcAAAACAAEAAAATAAYAAAACAAEAAAASAAYAAAACAAEAAAASAAUAAAACAAEAAAARAAUAAAACAAEAAAAQAAUAAAACAAEAAAAPAAUAAAACAAEAAAAOAAUAAAACAAEAAAANAAUAAAACAAEAAAAMAAUAAAACAAEAAAALAAUAAAACAAEAAAAKAAYAAAACAAEAAAAJAAYAAAACAAEAAAAJAAcAAAACAAEAAAAJAAgAAAACAAEAAAAJAAkAAAACAAEAAAAJAAoAAAACAAEAAAAKAAoAAAACAAEAAAAKAAsAAAACAAEAAAAKAAwAAAACAAEAAAALAAwAAAACAAEAAAALAAsAAAACAAEAAAAJAAsAAAACAAEAAAAIAAsAAAACAAEAAAAIAAoAAAACAAEAAAAIAAkAAAACAAEAAAAIAAgAAAACAAEAAAAIAAcAAAACAAEAAAAHAAcAAAACAAEAAAAHAAgAAAACAAEAAAAHAAkAAAACAAEAAAAHAAoAAAACAAEAAAAIAAQAAAABAAEAAAAGAAUAAAABAAEAAAAFAAYAAAABAAAAAAAFAAcAAAABAAAAAAAFAAgAAAABAAAAAAAFAAkAAAABAAAAAAAFAAoAAAABAAAAAAAFAAsAAAABAAAAAAAFAAUAAAABAAMAAAAGAAQAAAABAAMAAAAIAAMAAAABAAMAAAAHAAQAAAADAAAAAAAJAAMAAAADAAAAAAAKAAMAAAADAAAAAAALAAMAAAADAAAAAAAMAAMAAAADAAAAAAANAAMAAAADAAAAAAAOAAMAAAADAAAAAAAPAAMAAAADAAAAAAAQAAMAAAADAAAAAAARAAMAAAADAAAAAAASAAMAAAADAAAAAAATAAMAAAADAAAAAAAUAAQAAAACAAAAAAAWAAUAAAACAAAAAAAVAAQAAAADAAAAAAAUAAMAAAAAAAAAAAAWAAQAAAAAAAAAAAAXAAUAAAAAAAAAAAAXAAYAAAADAAIAAAAXAAcAAAADAAIAAAAXAAgAAAADAAIAAAAXAAkAAAADAAIAAAAXAAoAAAADAAIAAAAXAAsAAAADAAIAAAAWAAwAAAADAAEAAAAUAA0AAAADAAEAAAAXAAwAAAADAAMAAAAWAA0AAAADAAMAAAAUAA4AAAADAAMAAAAVAA0AAAABAAIAAAATAA4AAAABAAIAAAASAA4AAAABAAIAAAARAA4AAAABAAIAAAAQAA4AAAABAAIAAAAPAA4AAAABAAIAAAAOAA4AAAABAAIAAAANAA4AAAABAAIAAAAMAA4AAAABAAIAAAALAA4AAAABAAIAAAAKAA4AAAABAAIAAAAJAA4AAAABAAIAAAAIAA4AAAAAAAIAAAAGAA0AAAAAAAIAAAAFAAwAAAAAAAIAAAAGAAwAAAACAAIAAAAIAA0AAAACAAIAAAAHAA0AAAABAAIAAAAMAAYAAAABAAIAAAANAAYAAAABAAIAAAAOAAYAAAABAAIAAAAPAAYAAAABAAIAAAAQAAYAAAABAAIAAAARAAYAAAACAAIAAAASAAcAAAACAAIAAAARAAcAAAAAAAIAAAALAAYAAAADAAEAAAAKAAcAAAADAAEAAAALAAcAAAADAAMAAAAKAAgAAAADAAIAAAASAAgAAAABAAAAAAASAAkAAAABAAEAAAARAAoAAAABAAEAAAARAAkAAAABAAMAAAAQAAoAAAADAAAAAAAPAAoAAAADAAAAAAAOAAoAAAADAAAAAAANAAoAAAADAAAAAAAMAAoAAAADAAAAAAALAAoAAAACAAAAAAAKAAkAAAACAAAAAAALAAkAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_uycuy")
+
+[node name="World" type="TileMapLayer" parent="." unique_id=899441764]
+z_index = 1
+texture_filter = 1
+scale = Vector2(4, 4)
+tile_map_data = PackedByteArray("AAAAAAAAAQAAAAMAAAAAAAEAAQAAAAMAAAAAAAIAAQAAAAMAAAAAAAMAAQAAAAMAAAAAAAQAAQAAAAMAAAAAAAUAAQAAAAMAAAAAAAYAAQAAAAMAAAAAAAcAAQAAAAMAAAAAAAgAAQAAAAMAAAAAAAkAAQAAAAMAAAAAAAoAAQAAAAMAAAAAAAsAAQAAAAMAAAAAAAwAAQAAAAMAAAAAAA0AAQAAAAMAAAAAAA4AAQAAAAMAAAAAAA8AAQAAAAMAAAAAABAAAQAAAAMAAAABAAAAAQAAAAMAAAABAAEAAQAAAAMAAAABAAIAAQAAAAMAAAABAAMAAQAAAAMAAAABAAQAAQAAAAMAAAABAAUAAQAAAAMAAAABAAYAAQAAAAMAAAABAAcAAQAAAAMAAAABAAgAAQAAAAMAAAABAAkAAQAAAAMAAAABAAoAAQAAAAMAAAABAAsAAQAAAAMAAAABAAwAAQAAAAMAAAABAA0AAQAAAAMAAAABAA4AAQAAAAMAAAABAA8AAQAAAAMAAAABABAAAQAAAAMAAAACAAAAAQAAAAMAAAACAAEAAQAAAAMAAAACAAIAAQAAAAMAAAACAAMAAQAAAAMAAAACAAQAAQAAAAMAAAACAAUAAQAAAAMAAAACAAYAAQAAAAMAAAACAAcAAQAAAAMAAAACAAgAAQAAAAMAAAACAAkAAQAAAAMAAAACAAoAAQAAAAMAAAACAAsAAQAAAAMAAAACAAwAAQAAAAMAAAACAA0AAQAAAAMAAAACAA4AAQAAAAMAAAACAA8AAQAAAAMAAAACABAAAQAAAAMAAAADAAAAAQAAAAMAAAADAAEAAQAAAAMAAAADAAIAAQAAAAMAAAADAAMAAQAAAAMAAAADAAQAAQAAAAMAAAADAAUAAQAAAAMAAAADAAYAAQAAAAMAAAADAAcAAQAAAAMAAAADAAgAAQAAAAMAAAADAAkAAQAAAAMAAAADAAoAAQAAAAMAAAADAAsAAQAAAAMAAAADAAwAAQAAAAMAAAADAA0AAQAAAAMAAAADAA4AAQAAAAMAAAADAA8AAQAAAAMAAAADABAAAQAAAAMAAAAEAAAAAQAAAAMAAAAEAAEAAQAAAAMAAAAEAAIAAQAAAAMAAAAEAAMAAQAAAAMAAAAEAAQAAQAAAAMAAAAEAAUAAQAAAAMAAAAEAAYAAQAAAAMAAAAEAAcAAQAAAAMAAAAEAAgAAQAAAAMAAAAEAAkAAQAAAAMAAAAEAAoAAQAAAAMAAAAEAAsAAQAAAAMAAAAEAAwAAQAAAAMAAAAEAA0AAQAAAAMAAAAEAA4AAQAAAAMAAAAEAA8AAQAAAAMAAAAEABAAAQAAAAMAAAAFAAAAAQAAAAMAAAAFAAEAAQAAAAMAAAAFAAIAAQAAAAMAAAAFAAMAAQAAAAMAAAAFAAQAAQAAAAMAAAAFAA0AAQAAAAMAAAAFAA4AAQAAAAMAAAAFAA8AAQAAAAMAAAAFABAAAQAAAAMAAAAGAAAAAQAAAAMAAAAGAAEAAQAAAAMAAAAGAAIAAQAAAAMAAAAGAAMAAQAAAAMAAAAGAA4AAQAAAAMAAAAGAA8AAQAAAAMAAAAGABAAAQAAAAMAAAAHAAAAAQAAAAMAAAAHAAEAAQAAAAMAAAAHAAIAAQAAAAMAAAAHAAMAAQAAAAMAAAAHAA4AAQAAAAMAAAAHAA8AAQAAAAMAAAAHABAAAQAAAAMAAAAIAAAAAQAAAAMAAAAIAAEAAQAAAAMAAAAIAAIAAQAAAAMAAAAIAA8AAQAAAAMAAAAIABAAAQAAAAMAAAAJAAAAAQAAAAMAAAAJAAEAAQAAAAMAAAAJAAIAAQAAAAMAAAAJAA8AAQAAAAMAAAAJABAAAQAAAAMAAAAKAAAAAQAAAAMAAAAKAAEAAQAAAAMAAAAKAAIAAQAAAAMAAAAKAA8AAQAAAAMAAAAKABAAAQAAAAMAAAALAAAAAQAAAAMAAAALAAEAAQAAAAMAAAALAAIAAQAAAAMAAAALAA8AAQAAAAMAAAALABAAAQAAAAMAAAAMAAAAAQAAAAMAAAAMAAEAAQAAAAMAAAAMAAIAAQAAAAMAAAAMAA8AAQAAAAMAAAAMABAAAQAAAAMAAAANAAAAAQAAAAMAAAANAAEAAQAAAAMAAAANAAIAAQAAAAMAAAANAA8AAQAAAAMAAAANABAAAQAAAAMAAAAOAAAAAQAAAAMAAAAOAAEAAQAAAAMAAAAOAAIAAQAAAAMAAAAOAA8AAQAAAAMAAAAOABAAAQAAAAMAAAAPAAAAAQAAAAMAAAAPAAEAAQAAAAMAAAAPAAIAAQAAAAMAAAAPAA8AAQAAAAMAAAAPABAAAQAAAAMAAAAQAAAAAQAAAAMAAAAQAAEAAQAAAAMAAAAQAAIAAQAAAAMAAAAQAA8AAQAAAAMAAAAQABAAAQAAAAMAAAARAAAAAQAAAAMAAAARAAEAAQAAAAMAAAARAAIAAQAAAAMAAAARAA8AAQAAAAMAAAARABAAAQAAAAMAAAASAAAAAQAAAAMAAAASAAEAAQAAAAMAAAASAAIAAQAAAAMAAAASAA8AAQAAAAMAAAASABAAAQAAAAMAAAATAAAAAQAAAAMAAAATAAEAAQAAAAMAAAATAAIAAQAAAAMAAAATAA8AAQAAAAMAAAATABAAAQAAAAMAAAAUAAAAAQAAAAMAAAAUAAEAAQAAAAMAAAAUAAIAAQAAAAMAAAAUAA8AAQAAAAMAAAAUABAAAQAAAAMAAAAVAAAAAQAAAAMAAAAVAAEAAQAAAAMAAAAVAAIAAQAAAAMAAAAVAAMAAQAAAAMAAAAVAA4AAQAAAAMAAAAVAA8AAQAAAAMAAAAVABAAAQAAAAMAAAAWAAAAAQAAAAMAAAAWAAEAAQAAAAMAAAAWAAIAAQAAAAMAAAAWAAMAAQAAAAMAAAAWAA4AAQAAAAMAAAAWAA8AAQAAAAMAAAAWABAAAQAAAAMAAAAXAAAAAQAAAAMAAAAXAAEAAQAAAAMAAAAXAAIAAQAAAAMAAAAXAAMAAQAAAAMAAAAXAAQAAQAAAAMAAAAXAA0AAQAAAAMAAAAXAA4AAQAAAAMAAAAXAA8AAQAAAAMAAAAXABAAAQAAAAMAAAAYAAAAAQAAAAMAAAAYAAEAAQAAAAMAAAAYAAIAAQAAAAMAAAAYAAMAAQAAAAMAAAAYAAQAAQAAAAMAAAAYAAUAAQAAAAMAAAAYAAsAAQAAAAMAAAAYAAwAAQAAAAMAAAAYAA0AAQAAAAMAAAAYAA4AAQAAAAMAAAAYAA8AAQAAAAMAAAAYABAAAQAAAAMAAAAZAAAAAQAAAAMAAAAZAAEAAQAAAAMAAAAZAAIAAQAAAAMAAAAZAAMAAQAAAAMAAAAZAAQAAQAAAAMAAAAZAAUAAQAAAAMAAAAZAAYAAQAAAAMAAAAZAAcAAQAAAAMAAAAZAAgAAQAAAAMAAAAZAAkAAQAAAAMAAAAZAAoAAQAAAAMAAAAZAAsAAQAAAAMAAAAZAAwAAQAAAAMAAAAZAA0AAQAAAAMAAAAZAA4AAQAAAAMAAAAZAA8AAQAAAAMAAAAZABAAAQAAAAMAAAAaAAAAAQAAAAMAAAAaAAEAAQAAAAMAAAAaAAIAAQAAAAMAAAAaAAMAAQAAAAMAAAAaAAQAAQAAAAMAAAAaAAUAAQAAAAMAAAAaAAYAAQAAAAMAAAAaAAcAAQAAAAMAAAAaAAgAAQAAAAMAAAAaAAkAAQAAAAMAAAAaAAoAAQAAAAMAAAAaAAsAAQAAAAMAAAAaAAwAAQAAAAMAAAAaAA0AAQAAAAMAAAAaAA4AAQAAAAMAAAAaAA8AAQAAAAMAAAAaABAAAQAAAAMAAAAbAAAAAQAAAAMAAAAbAAEAAQAAAAMAAAAbAAIAAQAAAAMAAAAbAAMAAQAAAAMAAAAbAAQAAQAAAAMAAAAbAAUAAQAAAAMAAAAbAAYAAQAAAAMAAAAbAAcAAQAAAAMAAAAbAAgAAQAAAAMAAAAbAAkAAQAAAAMAAAAbAAoAAQAAAAMAAAAbAAsAAQAAAAMAAAAbAAwAAQAAAAMAAAAbAA0AAQAAAAMAAAAbAA4AAQAAAAMAAAAbAA8AAQAAAAMAAAAbABAAAQAAAAMAAAAcAAAAAQAAAAMAAAAcAAEAAQAAAAMAAAAcAAIAAQAAAAMAAAAcAAMAAQAAAAMAAAAcAAQAAQAAAAMAAAAcAAUAAQAAAAMAAAAcAAYAAQAAAAMAAAAcAAcAAQAAAAMAAAAcAAgAAQAAAAMAAAAcAAkAAQAAAAMAAAAcAAoAAQAAAAMAAAAcAAsAAQAAAAMAAAAcAAwAAQAAAAMAAAAcAA0AAQAAAAMAAAAcAA4AAQAAAAMAAAAcAA8AAQAAAAMAAAAcABAAAQAAAAMAAAAdAAAAAQAAAAMAAAAdAAEAAQAAAAMAAAAdAAIAAQAAAAMAAAAdAAMAAQAAAAMAAAAdAAQAAQAAAAMAAAAdAAUAAQAAAAMAAAAdAAYAAQAAAAMAAAAdAAcAAQAAAAMAAAAdAAgAAQAAAAMAAAAdAAkAAQAAAAMAAAAdAAoAAQAAAAMAAAAdAAsAAQAAAAMAAAAdAAwAAQAAAAMAAAAdAA0AAQAAAAMAAAAdAA4AAQAAAAMAAAAdAA8AAQAAAAMAAAAdABAAAQAAAAMAAAAYAAYAAQAAAAMAAAAYAAcAAQAAAAMAAAAYAAgAAQAAAAMAAAAYAAkAAQAAAAMAAAAYAAoAAQAAAAMAAAAUAAMAAQAAAAAAAAAWAAQAAQAAAAAAAAAXAAUAAQAAAAAAAAAFAAUAAQABAAMAAAAGAAQAAQABAAMAAAAIAAMAAQABAAMAAAAJAAMAAQADAAAAAAAKAAMAAQADAAAAAAALAAMAAQADAAAAAAAMAAMAAQADAAAAAAANAAMAAQADAAAAAAAOAAMAAQADAAAAAAAPAAMAAQADAAAAAAAQAAMAAQADAAAAAAARAAMAAQADAAAAAAASAAMAAQADAAAAAAATAAMAAQADAAAAAAAVAAQAAQADAAAAAAAHAAQAAQADAAAAAAAIAAQAAQABAAEAAAAGAAUAAQABAAEAAAAUAAQAAQACAAAAAAAWAAUAAQACAAAAAAAXAAYAAQADAAIAAAAXAAcAAQADAAIAAAAXAAgAAQADAAIAAAAXAAkAAQADAAIAAAAXAAoAAQADAAIAAAAXAAsAAQADAAIAAAAFAAYAAQABAAAAAAAFAAcAAQABAAAAAAAFAAgAAQABAAAAAAAFAAkAAQABAAAAAAAFAAoAAQABAAAAAAAFAAsAAQABAAAAAAAFAAwAAQAAAAIAAAAGAA0AAQAAAAIAAAAIAA4AAQAAAAIAAAAXAAwAAQADAAMAAAAWAA0AAQADAAMAAAAUAA4AAQADAAMAAAAVAA0AAQABAAIAAAAHAA0AAQABAAIAAAAJAA4AAQABAAIAAAAKAA4AAQABAAIAAAALAA4AAQABAAIAAAAMAA4AAQABAAIAAAANAA4AAQABAAIAAAAOAA4AAQABAAIAAAAPAA4AAQABAAIAAAAQAA4AAQABAAIAAAARAA4AAQABAAIAAAASAA4AAQABAAIAAAATAA4AAQABAAIAAAAGAAwAAQACAAIAAAAIAA0AAQACAAIAAAAUAA0AAQADAAEAAAAWAAwAAQADAAEAAAANAAoAAQADAAAAAAAOAAoAAQADAAAAAAAPAAoAAQADAAAAAAAMAAoAAQADAAAAAAAQAAoAAQADAAAAAAALAAoAAQACAAAAAAAQAAkAAQAAAAMAAAARAAgAAQAAAAMAAAAQAAcAAQAAAAMAAAARAAkAAQABAAMAAAARAAcAAQAAAAIAAAAPAAYAAQABAAIAAAAOAAYAAQABAAIAAAANAAYAAQABAAIAAAAMAAYAAQABAAIAAAALAAkAAQAAAAAAAAAKAAkAAQACAAAAAAAKAAgAAQADAAIAAAALAAcAAQADAAMAAAALAAYAAQADAAEAAAAKAAcAAQADAAEAAAAQAAYAAQABAAIAAAALAAgAAQAAAAMAAAAMAAgAAQAAAAMAAAAMAAcAAQAAAAMAAAANAAgAAQAAAAMAAAANAAkAAQAAAAMAAAAMAAkAAQAAAAMAAAAOAAkAAQAAAAMAAAAPAAkAAQAAAAMAAAAPAAgAAQAAAAMAAAAQAAgAAQAAAAMAAAAOAAgAAQAAAAMAAAAOAAcAAQAAAAMAAAAPAAcAAQAAAAMAAAANAAcAAQAAAAMAAAARAAYAAQACAAIAAAASAAcAAQACAAIAAAARAAoAAQABAAEAAAASAAgAAQABAAAAAAASAAkAAQABAAEAAAA=")
+tile_set = SubResource("TileSet_1m25s")
+
+[node name="Foliage" type="TileMapLayer" parent="." unique_id=1139533948]
+z_index = 1
+y_sort_enabled = true
+texture_filter = 1
+scale = Vector2(2, 2)
+tile_map_data = PackedByteArray("AAAYABQAAQACAAQAAAAgABQAAQACAAQAAAAaABUAAQAAAAQAAAAcABQAAQAAAAQAAAAkABMAAQAAAAQAAAAiABUAAQAAAAQAAAAeABUAAQACAAQAAAAVABMAAQAEAAQAAAAbABUAAQAEAAQAAAAiABsAAQAAAAQAAAAbABsAAQACAAQAAAAaABsAAQAAAAQAAAAXABsAAQACAAQAAAASABoAAQAAAAQAAAAeABsAAQACAAQAAAAnABsAAQAEAAQAAAAoABoAAQAAAAQAAAApABoAAQAAAAQAAAAqABoAAQACAAQAAAAqABkAAQACAAQAAAAuABYAAQACAAQAAAANABgAAQAAAAQAAAAOABgAAQAAAAQAAAAPABkAAQAAAAQAAAANAAsAAQACAAQAAAAPAAkAAQAAAAQAAAASAAgAAQAEAAQAAAAXAAcAAQAEAAQAAAAsAAsAAQACAAQAAAAtAAsAAQAAAAQAAAAjAAcAAQAAAAQAAAAfAAcAAQAAAAQAAAAmAAkAAQAAAAQAAAAbAAcAAQAAAAQAAAAaAAcAAQACAAQAAAATAAkAAQAEAAQAAAAYAAsAAQAEAAQAAAAeAAsAAQAEAAQAAAAgAAsAAQAAAAQAAAAkAA0AAQAAAAQAAAAoAAkAAQAAAAQAAAAVAA0AAQACAAQAAAATAA4AAQAEAAQAAAAbAAsAAQAAAAQAAAAMAA8AAQAAAAQAAAANABEAAQAAAAQAAAAMABMAAQAAAAQAAAAOABUAAQAAAAQAAAAsABYAAQAAAAQAAAAsABQAAQAEAAQAAAAtABIAAQACAAQAAAArABAAAQAAAAQAAAAsAA4AAQAAAAQAAAAtAA4AAQAEAAQAAAAsABAAAQAEAAQAAAAMABQAAQACAAQAAAANABAAAQACAAQAAAANAA0AAQACAAQAAAANABIAAQAAAAYAAAAOAAwAAQACAAYAAAAOABIAAQAEAAYAAAASAAkAAQACAAYAAAAlAAgAAQACAAYAAAAfAAgAAQAEAAYAAAAoAAoAAQAEAAYAAAAsABMAAQAEAAYAAAAtAA8AAQAEAAYAAAApABkAAQAAAAYAAAAoABkAAQACAAYAAAApABgAAQAEAAYAAAAVABsAAQAEAAYAAAAdABoAAQAAAAYAAAAdABsAAQACAAYAAAAjABsAAQACAAYAAAAmAAsAAQAAAAIAAAAnAAwAAQACAAAAAAAnAAoAAQAEAAAAAAAPAA4AAQAAAAAAAAAQAA8AAQAEAAAAAAARAA0AAQACAAAAAAAmABkAAQACAAIAAAAlABgAAQAAAAAAAAAnABgAAQAEAAAAAAAYABgAAQACAAAAAAATABYAAQAEAAAAAAAVABYAAQACAAAAAAAYAAkAAQAEAAAAAAAXAAoAAQAAAAAAAAApABIAAQACAAAAAAAqABIAAQAEAAIAAAA=")
+tile_set = SubResource("TileSet_g5y4w")
 
 [node name="FishingRod" type="Node2D" parent="." unique_id=1795042717]
+z_index = 1
 
 [node name="Bobber" type="Area2D" parent="FishingRod" unique_id=1499911959 node_paths=PackedStringArray("fishing_minigame") groups=["bobber"]]
 position = Vector2(908, 978)
 collision_layer = 262144
-collision_mask = 131072
+collision_mask = 655360
 script = ExtResource("3_ghwdw")
 fishing_minigame = NodePath("../..")
 metadata/_edit_group_ = true
 
 [node name="WaterRings" type="AnimatedSprite2D" parent="FishingRod/Bobber" unique_id=425344430]
 visible = false
+z_as_relative = false
 texture_filter = 1
 scale = Vector2(2.4687505, 2.4687505)
 sprite_frames = SubResource("SpriteFrames_idr4n")
 animation = &"rings"
 
 [node name="BobberVisual" type="Sprite2D" parent="FishingRod/Bobber" unique_id=955418369]
+z_index = 1
 texture_filter = 1
 texture = ExtResource("3_f83rb")
 
@@ -272,143 +551,11 @@ position = Vector2(1638, 740)
 scale = Vector2(8, 8)
 texture = ExtResource("4_ghwdw")
 
-[node name="FishSpawner" parent="." unique_id=432832155 node_paths=PackedStringArray("fishing_minigame", "pond_center") instance=ExtResource("6_fursg")]
-position = Vector2(611, 245)
-fish_scene = ExtResource("7_fursg")
-fishing_minigame = NodePath("..")
-pond_center = NodePath("../Pond/PondCenter")
-
-[node name="FishSpawner2" parent="." unique_id=1653146065 node_paths=PackedStringArray("fishing_minigame", "pond_center") instance=ExtResource("6_fursg")]
-position = Vector2(1138, 262)
-fish_scene = ExtResource("7_fursg")
-fishing_minigame = NodePath("..")
-pond_center = NodePath("../Pond/PondCenter")
-
-[node name="FishSpawner3" parent="." unique_id=2030583811 node_paths=PackedStringArray("fishing_minigame", "pond_center") instance=ExtResource("6_fursg")]
-position = Vector2(920, 134)
-fish_scene = ExtResource("7_fursg")
-fishing_minigame = NodePath("..")
-pond_center = NodePath("../Pond/PondCenter")
-
-[node name="CatchGame" type="CanvasLayer" parent="." unique_id=2015280259 node_paths=PackedStringArray("fishing_minigame")]
-script = ExtResource("12_2jkj7")
-fishing_minigame = NodePath("..")
-
-[node name="ColorOverlay" type="ColorRect" parent="CatchGame" unique_id=980681010]
-offset_right = 1920.0
-offset_bottom = 1080.0
-color = Color(0.15294118, 0.3254902, 0.5803922, 0.78431374)
-
-[node name="CatchBar" type="TextureProgressBar" parent="CatchGame" unique_id=381769815]
-texture_filter = 1
-offset_left = 1057.0
-offset_top = 107.0
-offset_right = 1135.0
-offset_bottom = 799.0
-value = 15.0
-fill_mode = 3
-nine_patch_stretch = true
-stretch_margin_left = 8
-stretch_margin_top = 8
-stretch_margin_right = 8
-stretch_margin_bottom = 8
-texture_over = ExtResource("13_mlpwu")
-texture_progress = ExtResource("14_kkd48")
-
-[node name="BarBottom" type="Marker2D" parent="CatchGame" unique_id=1974507101]
-position = Vector2(1097, 799)
-
-[node name="Fish" type="Area2D" parent="CatchGame" unique_id=896304310]
-position = Vector2(1097, 799)
-collision_layer = 1048576
-collision_mask = 0
-
-[node name="FishSprite" type="Sprite2D" parent="CatchGame/Fish" unique_id=340622225]
-texture_filter = 1
-position = Vector2(0, -10)
-scale = Vector2(2, 2)
-offset = Vector2(0, -10)
-hframes = 3
-vframes = 3
-
-[node name="ColorRect" type="ColorRect" parent="CatchGame/Fish" unique_id=1722941962]
-visible = false
-offset_left = -10.0
-offset_top = -20.0
-offset_right = 10.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CatchGame/Fish" unique_id=786947075]
-position = Vector2(0, -10)
-shape = SubResource("CircleShape2D_2jkj7")
-
-[node name="MoveTimer" type="Timer" parent="CatchGame/Fish" unique_id=638401865]
-autostart = true
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CatchGame/Fish" unique_id=2060314703]
-libraries/ = SubResource("AnimationLibrary_mlpwu")
-
-[node name="CatchBox" type="Area2D" parent="CatchGame" unique_id=1372775854]
-position = Vector2(1097, 799)
-collision_layer = 0
-collision_mask = 1048576
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CatchGame/CatchBox" unique_id=68488972]
-position = Vector2(-1, -46)
-shape = SubResource("RectangleShape2D_6ftvg")
-
-[node name="ColorRect" type="ColorRect" parent="CatchGame/CatchBox" unique_id=861657658]
-offset_left = -40.0
-offset_top = -92.0
-offset_right = 38.0
-color = Color(1, 0.7529412, 0.38039216, 0.38431373)
-
-[node name="GetReadyTimer" type="Timer" parent="CatchGame" unique_id=747724228]
-wait_time = 1.5
-one_shot = true
-
-[node name="GetReadySign" type="TextureRect" parent="CatchGame" unique_id=1780970864]
-visible = false
-texture_filter = 1
-offset_left = 101.0
-offset_top = 129.0
-offset_right = 888.0
-offset_bottom = 362.0
-texture = ExtResource("13_yn43t")
-
-[node name="ReelSign" type="TextureRect" parent="CatchGame" unique_id=532659585]
-visible = false
-texture_filter = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -719.0
-offset_top = -264.0
-offset_right = 1.0
-offset_bottom = -8.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset_ratio = Vector2(0.5, 0.5)
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("14_rwf1c")
-
-[node name="ContinueButton" type="Button" parent="CatchGame" unique_id=479795189]
-offset_left = 450.0
-offset_top = 739.0
-offset_right = 663.0
-offset_bottom = 806.0
-text = "Keep & Continue"
-
-[node name="CatchDisplayPosition" type="Marker2D" parent="CatchGame" unique_id=538415647]
-position = Vector2(557, 421)
-
-[connection signal="animation_finished" from="FishingRod/Bobber/WaterRings" to="FishingRod/Bobber" method="_on_water_rings_animation_finished"]
-[connection signal="timeout" from="FishingRod/ThrowCooldownTimer" to="." method="_on_throw_cooldown_timer_timeout"]
-[connection signal="timeout" from="FishingRod/ReelInCooldownTimer" to="." method="_on_reel_in_cooldown_timer_timeout"]
 [connection signal="timeout" from="CatchGame/Fish/MoveTimer" to="CatchGame" method="_on_move_timer_timeout"]
 [connection signal="area_entered" from="CatchGame/CatchBox" to="CatchGame" method="_on_catch_box_area_entered"]
 [connection signal="area_exited" from="CatchGame/CatchBox" to="CatchGame" method="_on_catch_box_area_exited"]
 [connection signal="timeout" from="CatchGame/GetReadyTimer" to="CatchGame" method="_on_get_ready_timer_timeout"]
 [connection signal="pressed" from="CatchGame/ContinueButton" to="CatchGame" method="_on_button_pressed"]
+[connection signal="animation_finished" from="FishingRod/Bobber/WaterRings" to="FishingRod/Bobber" method="_on_water_rings_animation_finished"]
+[connection signal="timeout" from="FishingRod/ThrowCooldownTimer" to="." method="_on_throw_cooldown_timer_timeout"]
+[connection signal="timeout" from="FishingRod/ReelInCooldownTimer" to="." method="_on_reel_in_cooldown_timer_timeout"]

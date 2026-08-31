@@ -230,10 +230,32 @@ func _move_random(old_direction: Vector2) -> Vector2:
 	return new_direction
 	
 func _move_from_edge() -> Vector2:
-	var direction_to_center = global_position.direction_to(pond_center.global_position)
-	var new_x = direction_to_center.x
-	var new_y = direction_to_center.y
-	var new_direction = Vector2(new_x, new_y)
+	#var direction_to_center = global_position.direction_to(pond_center.global_position)
+	#var new_x = direction_to_center.x
+	#var new_y = direction_to_center.y
+	#var new_direction = Vector2(new_x, new_y)
+	var old_direction = velocity.normalized()
+	var total_rotation = 0.0
+	var old_rotation = edge_vision.rotation
+	var facing_wall = true
+	
+	var rotate_right = rand.randf() < 0.15
+	
+	while facing_wall:
+		if rotate_right:
+			total_rotation += 0.1
+			edge_vision.rotate(0.1)
+		else:
+			total_rotation -= 0.1
+			edge_vision.rotate(-0.1)
+		# check if still facing wall	
+		edge_vision.force_raycast_update()
+		if not edge_vision.is_colliding():
+			facing_wall = false
+	
+	edge_vision.rotation = old_rotation		
+	
+	var new_direction = old_direction.rotated(total_rotation)
 	_update_velocity(new_direction)
 	return new_direction
 

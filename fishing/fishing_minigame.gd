@@ -86,10 +86,9 @@ func release_rod() -> void:
 
 func is_out_of_bounds() -> bool:
 	var potential_outside = bobber.get_overlapping_bodies()
-	for body in potential_outside:
-		if body.is_in_group("outside_water"):
-			return true
-	return false
+	if potential_outside.is_empty():
+		return false
+	return true
 
 func scare_fish() -> void:
 	var fish_in_scare_radius = bobber_scare_radius.get_overlapping_bodies()
