@@ -239,13 +239,13 @@ func _move_from_edge() -> Vector2:
 	
 	while facing_wall:
 		if rotate_right:
-			total_rotation += 0.05
-			rotate(0.05)
+			total_rotation += 0.1
+			rotate(0.1)
 		else:
-			total_rotation -= 0.05
-			rotate(-0.05)
+			total_rotation -= 0.1
+			rotate(-0.1)
 		# check if still facing wall	
-		edge_vision.force_raycast_update()
+		edge_vision.force_shapecast_update()
 		print(total_rotation)
 		if not edge_vision.is_colliding():
 			facing_wall = false

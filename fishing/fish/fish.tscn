@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://coysknm5mlpr2" path="res://sprites/fishing/red_koi.png" id="4_ttli7"]
 [ext_resource type="Texture2D" uid="uid://jbnlla3fbh2v" path="res://sprites/fishing/koi_fish_top.png" id="5_wkxlq"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_khgrj"]
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vnkdt"]
 radius = 11.0
 height = 56.0
@@ -80,10 +82,15 @@ _data = {
 [node name="Fish" type="CharacterBody2D" unique_id=979366948 groups=["fish"]]
 collision_layer = 65536
 collision_mask = 131072
+motion_mode = 1
+slide_on_ceiling = false
+floor_constant_speed = true
+floor_block_on_wall = false
 script = ExtResource("1_vnkdt")
 
-[node name="EdgeVision" type="RayCast2D" parent="." unique_id=1054247465]
+[node name="EdgeVision" type="ShapeCast2D" parent="." unique_id=2141121678]
 position = Vector2(0, -28)
+shape = SubResource("CapsuleShape2D_khgrj")
 target_position = Vector2(0, -100)
 collision_mask = 131072
 

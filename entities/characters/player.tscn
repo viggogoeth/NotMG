@@ -341,7 +341,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6fcx3")
 }],
-"loop": true,
+"loop": 1,
 "name": &"idle_back",
 "speed": 8.0
 }, {
@@ -373,7 +373,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_fcgwg")
 }],
-"loop": true,
+"loop": 1,
 "name": &"idle_front",
 "speed": 8.0
 }, {
@@ -405,7 +405,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_b773m")
 }],
-"loop": true,
+"loop": 1,
 "name": &"idle_side",
 "speed": 8.0
 }, {
@@ -428,7 +428,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qmlox")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walk_back",
 "speed": 8.0
 }, {
@@ -451,7 +451,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_322db")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walk_front",
 "speed": 8.0
 }, {
@@ -474,7 +474,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_pykaa")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walk_side",
 "speed": 8.0
 }]
@@ -589,7 +589,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qwny2")
 }],
-"loop": false,
+"loop": 0,
 "name": &"attack_sword",
 "speed": 40.0
 }, {
@@ -612,7 +612,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_s521s")
 }],
-"loop": false,
+"loop": 0,
 "name": &"attack_up",
 "speed": 12.0
 }]
@@ -625,6 +625,7 @@ height = 268.0
 y_sort_enabled = true
 position = Vector2(665, 345)
 collision_mask = 2
+motion_mode = 1
 script = ExtResource("1_o21vo")
 stats = SubResource("Resource_nufr6")
 equipped_weapon = SubResource("Resource_jyl6a")

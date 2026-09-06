@@ -281,7 +281,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_r6gj7")
 }],
-"loop": false,
+"loop": 0,
 "name": &"rings",
 "speed": 20.0
 }]
@@ -316,26 +316,26 @@ fish_scene = ExtResource("7_fursg")
 fishing_minigame = NodePath("..")
 pond_center = NodePath("../Pond/PondCenter")
 
-[node name="FishSpawner2" parent="." unique_id=656762222 node_paths=PackedStringArray("fishing_minigame", "pond_center") instance=ExtResource("6_fursg")]
-position = Vector2(541, 213)
+[node name="FishSpawner2" parent="." unique_id=1067979984 node_paths=PackedStringArray("fishing_minigame", "pond_center") instance=ExtResource("6_fursg")]
+position = Vector2(543, 215)
 fish_scene = ExtResource("7_fursg")
 fishing_minigame = NodePath("..")
 pond_center = NodePath("../Pond/PondCenter")
 
-[node name="FishSpawner3" parent="." unique_id=1279324878 node_paths=PackedStringArray("fishing_minigame", "pond_center") instance=ExtResource("6_fursg")]
-position = Vector2(752, 333)
+[node name="FishSpawner3" parent="." unique_id=912068540 node_paths=PackedStringArray("fishing_minigame", "pond_center") instance=ExtResource("6_fursg")]
+position = Vector2(1231, 367)
 fish_scene = ExtResource("7_fursg")
 fishing_minigame = NodePath("..")
 pond_center = NodePath("../Pond/PondCenter")
 
-[node name="FishSpawner4" parent="." unique_id=81635311 node_paths=PackedStringArray("fishing_minigame", "pond_center") instance=ExtResource("6_fursg")]
-position = Vector2(1232, 367)
+[node name="FishSpawner4" parent="." unique_id=1836940598 node_paths=PackedStringArray("fishing_minigame", "pond_center") instance=ExtResource("6_fursg")]
+position = Vector2(1204, 790)
 fish_scene = ExtResource("7_fursg")
 fishing_minigame = NodePath("..")
 pond_center = NodePath("../Pond/PondCenter")
 
-[node name="FishSpawner5" parent="." unique_id=15468070 node_paths=PackedStringArray("fishing_minigame", "pond_center") instance=ExtResource("6_fursg")]
-position = Vector2(1206, 784)
+[node name="FishSpawner5" parent="." unique_id=785362831 node_paths=PackedStringArray("fishing_minigame", "pond_center") instance=ExtResource("6_fursg")]
+position = Vector2(748, 338)
 fish_scene = ExtResource("7_fursg")
 fishing_minigame = NodePath("..")
 pond_center = NodePath("../Pond/PondCenter")
