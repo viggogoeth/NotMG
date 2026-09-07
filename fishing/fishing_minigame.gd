@@ -1,5 +1,14 @@
 class_name FishingMinigame extends Node2D
 
+const ROD_CHARGE_RATE_START: float = 100
+const ROD_CHARGE_RATE_MID: float = 150
+const ROD_CHARGE_RATE_END: float = 220
+const ROD_CHARGE_RATE_DECHARGE: float = 60
+
+const ROD_CHARGE_BREAK_MID: float = 25
+const ROD_CHARGE_BREAK_END: float = 50
+const ROD_CHARGE_BREAK_OVERCHAGE: float = 100
+
 var rod_charge: float = 0
 var overcharged: bool = false
 var rod_released: bool = false
@@ -46,15 +55,15 @@ func _process(delta: float) -> void:
 			charge_rod(delta)
 
 func charge_rod(delta: float) -> void:
-	if not overcharged and rod_charge < 25:
-		rod_charge += 60 * delta
-	elif not overcharged and rod_charge < 50:
-		rod_charge += 80 * delta
-	elif not overcharged and rod_charge < 100:
-		rod_charge += 120 * delta
+	if not overcharged and rod_charge < ROD_CHARGE_BREAK_MID:
+		rod_charge += ROD_CHARGE_RATE_START * delta
+	elif not overcharged and rod_charge < ROD_CHARGE_BREAK_END:
+		rod_charge += ROD_CHARGE_RATE_MID * delta
+	elif not overcharged and rod_charge < ROD_CHARGE_BREAK_OVERCHAGE:
+		rod_charge += ROD_CHARGE_RATE_END * delta
 	else:
 		overcharged = true
-		rod_charge -= 60 * delta
+		rod_charge -= ROD_CHARGE_RATE_DECHARGE * delta
 		
 	charge_bar.value = rod_charge
 		

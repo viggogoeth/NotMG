@@ -131,6 +131,7 @@ sources/1 = SubResource("TileSetAtlasSource_g5y4w")
 texture = ExtResource("12_g5y4w")
 0:0/size_in_atlas = Vector2i(8, 10)
 0:0/0 = 0
+0:0/0/z_index = 1
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1m25s"]
 texture = ExtResource("11_8lc38")
@@ -154,14 +155,19 @@ texture = ExtResource("11_8lc38")
 4:2/0/physics_layer_1/polygon_0/points = PackedVector2Array(-5, -6, -4, -8, -2, -9, -1, -10, 0, -10, 1, -9, 3, -8, 6, -5, 7, -3, 7, 4, 6, 5, 4, 5, 2, 6, 0, 7, -3, 7, -5, 6, -7, 4, -7, -4)
 6:2/size_in_atlas = Vector2i(2, 2)
 6:2/0 = 0
+6:2/0/z_index = 1
 6:4/size_in_atlas = Vector2i(2, 2)
 6:4/0 = 0
+6:4/0/z_index = 1
 4:4/size_in_atlas = Vector2i(2, 2)
 4:4/0 = 0
+4:4/0/z_index = 1
 2:4/size_in_atlas = Vector2i(2, 2)
 2:4/0 = 0
+2:4/0/z_index = 1
 0:4/size_in_atlas = Vector2i(2, 2)
 0:4/0 = 0
+0:4/0/z_index = 1
 0:6/size_in_atlas = Vector2i(2, 2)
 0:6/0 = 0
 0:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -8, 9, -8, 9, 7, -10, 7)
@@ -281,7 +287,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_r6gj7")
 }],
-"loop": 0,
+"loop": false,
 "name": &"rings",
 "speed": 20.0
 }]

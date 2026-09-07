@@ -235,15 +235,22 @@ func _move_from_edge() -> Vector2:
 	var old_rotation = rotation
 	var facing_wall = true
 	
-	var rotate_right = rand.randf() < 0.15
+	var rotate_right = rand.randf() < 0.15 # prioritize rotating left because its more natural (https://pmc.ncbi.nlm.nih.gov/articles/PMC7113390/ & https://www.nature.com/articles/s41467-026-73713-w)
+	var flipped_direction = false
 	
 	while facing_wall:
 		if rotate_right:
 			total_rotation += 0.1
 			rotate(0.1)
+			if not flipped_direction and total_rotation > 2: # try to avoid unnecessary 180s
+				rotate_right = false
+				flipped_direction = true
 		else:
 			total_rotation -= 0.1
 			rotate(-0.1)
+			if not flipped_direction and total_rotation < -2: # try to avoid unnecessary 180s
+				rotate_right = true
+				flipped_direction = true
 		# check if still facing wall	
 		edge_vision.force_shapecast_update()
 		print(total_rotation)
