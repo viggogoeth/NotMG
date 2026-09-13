@@ -120,8 +120,8 @@ func toggle_catch_game() -> void:
 	visible = not visible
 
 func _abandon_catch() -> void:
-	# TODO: implement
-	_finish_catch()
+	playing = false
+	toggle_catch_game()
 
 func _finish_catch() -> void:
 	playing = false
