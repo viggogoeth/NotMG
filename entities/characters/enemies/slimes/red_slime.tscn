@@ -1,98 +1,17 @@
 [gd_scene format=3 uid="uid://cejoi53cr8sdp"]
 
 [ext_resource type="Script" uid="uid://i87umci6ewi2" path="res://entities/characters/enemies/slimes/red_slime.gd" id="1_faa26"]
-[ext_resource type="Texture2D" uid="uid://c7b0pm6p6y0v6" path="res://sprites/slime_move_texture.tres" id="1_v57vt"]
 [ext_resource type="PackedScene" uid="uid://qxwiaux0yv7h" path="res://entities/components/health_component.tscn" id="2_faa26"]
 [ext_resource type="PackedScene" uid="uid://c02efoks2xrqt" path="res://entities/components/hitbox_component.tscn" id="3_8llpb"]
+[ext_resource type="Texture2D" uid="uid://cpge4pdqo2847" path="res://sprites/slime/slime_move.png" id="4_8llpb"]
 [ext_resource type="PackedScene" uid="uid://bt860mh3ihxku" path="res://entities/characters/enemies/slimes/components/jump_movement_component.tscn" id="4_rlviq"]
+[ext_resource type="Texture2D" uid="uid://bkncx5ownpip8" path="res://sprites/slime/slime_dash_windup.png" id="5_k6lbi"]
 [ext_resource type="PackedScene" uid="uid://bfdqgkscuo4jc" path="res://entities/components/vision_box_component.tscn" id="5_rj7h0"]
 [ext_resource type="PackedScene" uid="uid://s7ild1mbiibm" path="res://entities/characters/enemies/slimes/components/dash_attack_component.tscn" id="6_8llpb"]
+[ext_resource type="Texture2D" uid="uid://br2hkg5qivjw4" path="res://sprites/slime/slime_dash_dashing.png" id="6_acqfg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k6lbi"]
 size = Vector2(48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_02vvn"]
-atlas = ExtResource("1_v57vt")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dn43w"]
-atlas = ExtResource("1_v57vt")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3qmu0"]
-atlas = ExtResource("1_v57vt")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_haleb"]
-atlas = ExtResource("1_v57vt")
-region = Rect2(32, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1hsag"]
-atlas = ExtResource("1_v57vt")
-region = Rect2(0, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_u5q8g"]
-atlas = ExtResource("1_v57vt")
-region = Rect2(16, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jwbx2"]
-atlas = ExtResource("1_v57vt")
-region = Rect2(32, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7wqyq"]
-atlas = ExtResource("1_v57vt")
-region = Rect2(0, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sexgm"]
-atlas = ExtResource("1_v57vt")
-region = Rect2(16, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_t4yq7"]
-atlas = ExtResource("1_v57vt")
-region = Rect2(32, 32, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_acqfg"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_02vvn")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dn43w")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3qmu0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_haleb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1hsag")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_u5q8g")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jwbx2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7wqyq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sexgm")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_t4yq7")
-}],
-"loop": true,
-"name": &"move",
-"speed": 8.0
-}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kg3rw"]
 size = Vector2(48, 48)
@@ -109,12 +28,104 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.75, 0)
 
+[sub_resource type="Animation" id="Animation_8llpb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Scalables/Sprites/MoveSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Scalables/Sprites/WindUpSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Scalables/Sprites/DashSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_k6lbi"]
+resource_name = "dashing"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Scalables/Sprites/DashSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_rlviq"]
+resource_name = "move"
+length = 0.26666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Scalables/Sprites/MoveSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.23333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 0]
+}
+
+[sub_resource type="Animation" id="Animation_rj7h0"]
+resource_name = "windup"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Scalables/Sprites/WindUpSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.099999994),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rj7h0"]
+_data = {
+&"RESET": SubResource("Animation_8llpb"),
+&"dashing": SubResource("Animation_k6lbi"),
+&"move": SubResource("Animation_rlviq"),
+&"windup": SubResource("Animation_rj7h0")
+}
+
 [node name="RedSlime" type="CharacterBody2D" unique_id=715088784 node_paths=PackedStringArray("health_component")]
 collision_layer = 4
 collision_mask = 2
 motion_mode = 1
 script = ExtResource("1_faa26")
-color = Color(1, 0, 0, 1)
 health_component = NodePath("Scalables/HealthComponent")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1996940723]
@@ -132,12 +143,6 @@ shape = SubResource("RectangleShape2D_k6lbi")
 
 [node name="Scalables" type="Node2D" parent="." unique_id=1948725138]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Scalables" unique_id=68905100 groups=["scalables"]]
-texture_filter = 1
-scale = Vector2(4, 4)
-sprite_frames = SubResource("SpriteFrames_acqfg")
-animation = &"move"
-
 [node name="HealthComponent" parent="Scalables" unique_id=807587943 groups=["scalables"] instance=ExtResource("2_faa26")]
 position = Vector2(0, 34)
 
@@ -152,7 +157,34 @@ z_index = -1
 position = Vector2(0, 32)
 texture = SubResource("GradientTexture2D_vgb1u")
 
+[node name="Sprites" type="Node2D" parent="Scalables" unique_id=392009719]
+
+[node name="MoveSprite" type="Sprite2D" parent="Scalables/Sprites" unique_id=1421021775]
+visible = false
+texture_filter = 1
+position = Vector2(-1.7881393e-06, -16.000004)
+scale = Vector2(6.0000005, 6.0000005)
+texture = ExtResource("4_8llpb")
+hframes = 2
+
+[node name="WindUpSprite" type="Sprite2D" parent="Scalables/Sprites" unique_id=486541686]
+visible = false
+texture_filter = 1
+position = Vector2(0, 7.999996)
+scale = Vector2(6.0000005, 6.0000005)
+texture = ExtResource("5_k6lbi")
+hframes = 2
+
+[node name="DashSprite" type="Sprite2D" parent="Scalables/Sprites" unique_id=1781967016]
+texture_filter = 1
+position = Vector2(0, 8)
+scale = Vector2(6.0000005, 6.0000005)
+texture = ExtResource("6_acqfg")
+hframes = 3
+
 [node name="JumpMovementComponent" parent="." unique_id=473034222 node_paths=PackedStringArray("enemy") instance=ExtResource("4_rlviq")]
+movement_cooldown = 0.3
+movement_duration = 0.25
 enemy = NodePath("..")
 
 [node name="DashAttackComponent" parent="." unique_id=1057099033 node_paths=PackedStringArray("enemy") instance=ExtResource("6_8llpb")]
@@ -160,5 +192,8 @@ enemy = NodePath("..")
 
 [node name="VisionBoxComponent" parent="." unique_id=1268107380 instance=ExtResource("5_rj7h0")]
 visible = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1135320501]
+libraries/ = SubResource("AnimationLibrary_rj7h0")
 
 [editable path="Scalables/HitboxComponent"]

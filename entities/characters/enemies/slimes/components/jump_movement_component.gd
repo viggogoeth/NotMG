@@ -17,9 +17,9 @@ func _ready() -> void:
 
 func move(target: CharacterBody2D) -> void:
 	if should_update_movement and not moving:
-		print("started moving")
 		should_update_movement = false
 		moving = true
+		enemy.set_moving()
 		
 		# if multiple enemies moving, dont want to clump up
 		var random_move_delay_offset = RNG.randf_range(-0.1, 0.1)
@@ -42,7 +42,7 @@ func _on_move_cooldown_timeout() -> void:
 	should_update_movement = true
 
 func _on_move_duration_timeout() -> void:
-	print("stopped moving")
 	moving = false
 	enemy.velocity = Vector2(0,0)
+	enemy.set_idle()
 	$MoveCooldown.start()

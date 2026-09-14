@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://barck7peqm2lo" path="res://entities/characters/player.tscn" id="2_jn3ic"]
 [ext_resource type="Texture2D" uid="uid://b3kycacdhoaok" path="res://tilesets/plain_tiles.png" id="2_ndc5a"]
 [ext_resource type="PackedScene" uid="uid://cejoi53cr8sdp" path="res://entities/characters/enemies/slimes/red_slime.tscn" id="4_w48uw"]
-[ext_resource type="PackedScene" uid="uid://bm2857742v0ai" path="res://entities/characters/enemies/slimes/green_slime.tscn" id="5_702yh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w48uw"]
 texture = ExtResource("2_ndc5a")
@@ -50,7 +49,3 @@ position = Vector2(611, -297)
 health = 100.0
 contact_damage = 10.0
 exp_amount = 10.0
-
-[node name="GreenSlime" parent="." unique_id=720180946 instance=ExtResource("5_702yh")]
-position = Vector2(1214, -403)
-health = 100.0

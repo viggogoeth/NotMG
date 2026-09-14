@@ -27,11 +27,13 @@ func try_attack(target: CharacterBody2D) -> bool:
 			# TODO: start the windup animation
 			dashing = true
 			dash_target = target
+			enemy.set_winding()
 
 	return dashing
 
 func _dash_attack() -> void:
 	# TODO: start the dash attack animation
+	enemy.set_dashing()
 	var direction = enemy.global_position.direction_to(dash_target.global_position)
 	enemy.velocity = direction * enemy.speed * dash_speed_factor
 	var velocity_tween = create_tween()
@@ -47,6 +49,7 @@ func _on_windup_duration_timeout() -> void:
 func _on_dash_duration_timeout() -> void:
 	enemy.velocity = Vector2(0,0)
 	post_attack_cooldown.start()
+	enemy.set_idle()
 	
 func _on_dash_cooldown_timeout() -> void:
 	can_dash = true
