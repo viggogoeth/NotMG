@@ -109,12 +109,13 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.75, 0)
 
-[node name="RedSlime" type="CharacterBody2D" unique_id=715088784]
+[node name="RedSlime" type="CharacterBody2D" unique_id=715088784 node_paths=PackedStringArray("health_component")]
 collision_layer = 4
 collision_mask = 2
 motion_mode = 1
 script = ExtResource("1_faa26")
 color = Color(1, 0, 0, 1)
+health_component = NodePath("Scalables/HealthComponent")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1996940723]
 visible = false

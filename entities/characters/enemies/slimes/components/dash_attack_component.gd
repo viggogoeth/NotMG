@@ -23,7 +23,6 @@ func _ready() -> void:
 func try_attack(target: CharacterBody2D) -> bool:
 	if can_dash and not dashing:
 		if target:
-			print("Winding up")
 			windup_duration_timer.start()
 			# TODO: start the windup animation
 			dashing = true
@@ -32,7 +31,6 @@ func try_attack(target: CharacterBody2D) -> bool:
 	return dashing
 
 func _dash_attack() -> void:
-	print("DASHING!")
 	# TODO: start the dash attack animation
 	var direction = enemy.global_position.direction_to(dash_target.global_position)
 	enemy.velocity = direction * enemy.speed * dash_speed_factor
@@ -47,7 +45,6 @@ func _on_windup_duration_timeout() -> void:
 	_dash_attack()	
 
 func _on_dash_duration_timeout() -> void:
-	print("tired...")
 	enemy.velocity = Vector2(0,0)
 	post_attack_cooldown.start()
 	
