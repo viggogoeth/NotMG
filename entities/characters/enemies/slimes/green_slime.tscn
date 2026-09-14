@@ -1,53 +1,53 @@
 [gd_scene format=3 uid="uid://bm2857742v0ai"]
 
-[ext_resource type="Script" uid="uid://cm6fvr1ixmh6a" path="res://entities/characters/enemies/slime.gd" id="1_w0cf2"]
-[ext_resource type="PackedScene" uid="uid://qxwiaux0yv7h" path="res://entities/components/health_component.tscn" id="2_wv5ky"]
-[ext_resource type="Texture2D" uid="uid://c7b0pm6p6y0v6" path="res://sprites/slime_move_texture.tres" id="3_3n866"]
-[ext_resource type="PackedScene" uid="uid://bt860mh3ihxku" path="res://entities/components/jump_movement_component.tscn" id="4_5tkof"]
-[ext_resource type="PackedScene" uid="uid://c02efoks2xrqt" path="res://entities/components/hitbox_component.tscn" id="5_02vvn"]
-[ext_resource type="PackedScene" uid="uid://bfdqgkscuo4jc" path="res://entities/components/vision_box_component.tscn" id="6_3hn33"]
+[ext_resource type="Script" uid="uid://cm6fvr1ixmh6a" path="res://entities/characters/enemies/slimes/green_slime.gd" id="1_1rtpj"]
+[ext_resource type="Texture2D" uid="uid://c7b0pm6p6y0v6" path="res://sprites/slime_move_texture.tres" id="2_u1i5b"]
+[ext_resource type="PackedScene" uid="uid://qxwiaux0yv7h" path="res://entities/components/health_component.tscn" id="3_q2fjr"]
+[ext_resource type="PackedScene" uid="uid://c02efoks2xrqt" path="res://entities/components/hitbox_component.tscn" id="4_eribw"]
+[ext_resource type="PackedScene" uid="uid://bt860mh3ihxku" path="res://entities/characters/enemies/slimes/components/jump_movement_component.tscn" id="5_ygkr2"]
+[ext_resource type="PackedScene" uid="uid://bfdqgkscuo4jc" path="res://entities/components/vision_box_component.tscn" id="6_0ir3e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i0y61"]
 size = Vector2(48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_02vvn"]
-atlas = ExtResource("3_3n866")
+atlas = ExtResource("2_u1i5b")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dn43w"]
-atlas = ExtResource("3_3n866")
+atlas = ExtResource("2_u1i5b")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3qmu0"]
-atlas = ExtResource("3_3n866")
+atlas = ExtResource("2_u1i5b")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_haleb"]
-atlas = ExtResource("3_3n866")
+atlas = ExtResource("2_u1i5b")
 region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1hsag"]
-atlas = ExtResource("3_3n866")
+atlas = ExtResource("2_u1i5b")
 region = Rect2(0, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u5q8g"]
-atlas = ExtResource("3_3n866")
+atlas = ExtResource("2_u1i5b")
 region = Rect2(16, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jwbx2"]
-atlas = ExtResource("3_3n866")
+atlas = ExtResource("2_u1i5b")
 region = Rect2(32, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7wqyq"]
-atlas = ExtResource("3_3n866")
+atlas = ExtResource("2_u1i5b")
 region = Rect2(0, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sexgm"]
-atlas = ExtResource("3_3n866")
+atlas = ExtResource("2_u1i5b")
 region = Rect2(16, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t4yq7"]
-atlas = ExtResource("3_3n866")
+atlas = ExtResource("2_u1i5b")
 region = Rect2(32, 32, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jwbx2"]
@@ -90,34 +90,37 @@ animations = [{
 }],
 "loop": true,
 "name": &"move",
-"speed": 16.0
+"speed": 8.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3n866"]
 size = Vector2(48, 48)
 
-[sub_resource type="Gradient" id="Gradient_02vvn"]
+[sub_resource type="Gradient" id="Gradient_61b8x"]
 offsets = PackedFloat32Array(0.38333333, 0.95)
 colors = PackedColorArray(0, 0, 0, 1, 0.2509804, 0.2509804, 0.2509804, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_3n866"]
-gradient = SubResource("Gradient_02vvn")
+gradient = SubResource("Gradient_61b8x")
 width = 70
 height = 24
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.75, 0)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_uuco2"]
-radius = 855.1497
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_02vvn"]
-radius = 4.0
-
-[node name="Slime" type="CharacterBody2D" unique_id=720180946 groups=["enemy", "hostile_entities"]]
+[node name="GreenSlime" type="CharacterBody2D" unique_id=720180946 groups=["enemy", "hostile_entities"]]
 collision_layer = 4
 collision_mask = 2
-script = ExtResource("1_w0cf2")
+motion_mode = 1
+script = ExtResource("1_1rtpj")
+color = null
+enemy_scale = null
+enemy_id = null
+speed = null
+health = null
+resistance = null
+contact_damage = null
+exp_amount = null
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=832939916]
 visible = false
@@ -138,12 +141,12 @@ shape = SubResource("RectangleShape2D_i0y61")
 texture_filter = 1
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_jwbx2")
-animation = &"idle"
+animation = &"move"
 
-[node name="HealthComponent" parent="Scalables" unique_id=334772244 groups=["scalables"] instance=ExtResource("2_wv5ky")]
+[node name="HealthComponent" parent="Scalables" unique_id=334772244 groups=["scalables"] instance=ExtResource("3_q2fjr")]
 position = Vector2(0, 34)
 
-[node name="HitboxComponent" parent="Scalables" unique_id=1058904513 groups=["scalables"] instance=ExtResource("5_02vvn")]
+[node name="HitboxComponent" parent="Scalables" unique_id=1058904513 groups=["scalables"] instance=ExtResource("4_eribw")]
 
 [node name="CollisionShape2D" parent="Scalables/HitboxComponent" index="0" unique_id=103943116]
 position = Vector2(0, 8)
@@ -154,23 +157,10 @@ z_index = -1
 position = Vector2(0, 32)
 texture = SubResource("GradientTexture2D_3n866")
 
-[node name="Vision" type="Area2D" parent="." unique_id=1534447643]
-visible = false
-collision_layer = 0
+[node name="JumpMovementComponent" parent="." unique_id=473034222 node_paths=PackedStringArray("enemy") instance=ExtResource("5_ygkr2")]
+enemy = NodePath("..")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Vision" unique_id=25452412]
-shape = SubResource("CircleShape2D_uuco2")
-
-[node name="LineOfSight" type="ShapeCast2D" parent="." unique_id=1569172687]
-shape = SubResource("CircleShape2D_02vvn")
-collision_mask = 2
-collide_with_areas = true
-
-[node name="JumpMovementComponent" parent="." unique_id=473034222 instance=ExtResource("4_5tkof")]
-
-[node name="VisionBoxComponent" parent="." unique_id=1268107380 instance=ExtResource("6_3hn33")]
-
-[connection signal="body_entered" from="Vision" to="." method="_on_vision_body_entered"]
-[connection signal="body_exited" from="Vision" to="." method="_on_vision_body_exited"]
+[node name="VisionBoxComponent" parent="." unique_id=1268107380 instance=ExtResource("6_0ir3e")]
+visible = true
 
 [editable path="Scalables/HitboxComponent"]

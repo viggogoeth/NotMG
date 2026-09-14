@@ -2,6 +2,8 @@ extends Node
 
 @export var movement_cooldown: float = 0.65
 @export var movement_duration: float = 0.5
+@export var enemy: CharacterBody2D
+
 var should_update_movement: bool = false
 var moving: bool = false
 
@@ -13,15 +15,18 @@ func _ready() -> void:
 	$MoveCooldown.start()
 
 
-func move(enemy: CharacterBody2D, target: CharacterBody2D) -> void:
+func move(target: CharacterBody2D) -> void:
 	if should_update_movement and not moving:
+		print("started moving")
 		should_update_movement = false
 		moving = true
 		
+		# if multiple enemies moving, dont want to clump up
 		var random_move_delay_offset = RNG.randf_range(-0.1, 0.1)
 		$MoveCooldown.wait_time = movement_cooldown + random_move_delay_offset
+		$MoveDuration.start()
 		
-		if target != null:
+		if target:
 			var direction = enemy.global_position.direction_to(target.global_position)
 			enemy.velocity = direction * enemy.speed
 		else: # idle movement
@@ -30,14 +35,14 @@ func move(enemy: CharacterBody2D, target: CharacterBody2D) -> void:
 			var direction = Vector2(dir_x, dir_y)
 			enemy.velocity = direction * enemy.speed
 		
-	if moving:
-		enemy.move_and_slide()
+	
 	
 
 func _on_move_cooldown_timeout() -> void:
 	should_update_movement = true
-	$MoveDuration.start()
 
 func _on_move_duration_timeout() -> void:
+	print("stopped moving")
 	moving = false
+	enemy.velocity = Vector2(0,0)
 	$MoveCooldown.start()

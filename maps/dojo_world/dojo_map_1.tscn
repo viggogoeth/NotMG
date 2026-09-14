@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://beedo2hlpvcgj" path="res://tilesets/dojo_top.png" id="1_pjn1k"]
 [ext_resource type="Texture2D" uid="uid://bwnoawte3jlkk" path="res://tilesets/dojo_tiles.png" id="2_tqi5d"]
 [ext_resource type="PackedScene" uid="uid://barck7peqm2lo" path="res://entities/characters/player.tscn" id="3_a6acs"]
-[ext_resource type="PackedScene" uid="uid://bm2857742v0ai" path="res://entities/characters/enemies/slime.tscn" id="4_tqi5d"]
+[ext_resource type="PackedScene" uid="uid://bm2857742v0ai" path="res://entities/characters/enemies/slimes/green_slime.tscn" id="4_tqi5d"]
 [ext_resource type="PackedScene" uid="uid://r6qt5n01hodp" path="res://maps/components/dojo_light.tscn" id="4_urx0c"]
 [ext_resource type="PackedScene" uid="uid://b8rjrpsoqbdvw" path="res://maps/portal.tscn" id="7_s8k3j"]
 

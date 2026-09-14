@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://s7ild1mbiibm"]
+
+[ext_resource type="Script" uid="uid://b6i0iek35rppu" path="res://entities/characters/enemies/slimes/components/dash_attack_component.gd" id="1_hsr03"]
+
+[node name="DashAttackComponent" type="Node" unique_id=1057099033]
+script = ExtResource("1_hsr03")
+
+[node name="DashCooldown" type="Timer" parent="." unique_id=2115425982]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="DashDuration" type="Timer" parent="." unique_id=1664184294]
+wait_time = 0.35
+one_shot = true
+
+[node name="WindupDuration" type="Timer" parent="." unique_id=397056756]
+wait_time = 0.85
+one_shot = true
+
+[node name="PostAttackCooldown" type="Timer" parent="." unique_id=813518192]
+wait_time = 0.65
+one_shot = true
+
+[connection signal="timeout" from="DashCooldown" to="." method="_on_dash_cooldown_timeout"]
+[connection signal="timeout" from="DashDuration" to="." method="_on_dash_duration_timeout"]
+[connection signal="timeout" from="WindupDuration" to="." method="_on_windup_duration_timeout"]
+[connection signal="timeout" from="PostAttackCooldown" to="." method="_on_post_attack_cooldown_timeout"]

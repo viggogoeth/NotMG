@@ -149,18 +149,22 @@ func die() -> void:
 	is_dead = true
 	print("THE PLAYER IS DEAD")
 
+
 func _level_up() -> void:
 	current_exp = current_exp - needed_exp_to_level()
 	current_level += 1
 	stats.increase_all(1)
 
+
 func needed_exp_to_level() -> float:
 	return CommonFuncs._fib(current_level) * 100.0
+
 
 func add_exp(amount: float) -> void:
 	current_exp += amount
 	if current_exp >= needed_exp_to_level():
 		_level_up()
+
 
 func update_mage_hand() -> void:
 	var direction = (get_global_mouse_position() - global_position).normalized()

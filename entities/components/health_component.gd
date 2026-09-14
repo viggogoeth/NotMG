@@ -18,7 +18,7 @@ func take_damage(amount: float) -> void:
 	
 	if current_health <= 0:
 		get_owner().die()
-	
+
 	_update_healthbar()
 	
 func heal(amount: float) -> void:

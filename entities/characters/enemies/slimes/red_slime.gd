@@ -1,4 +1,4 @@
-extends BaseEnemy
+extends BaseSlime
 
 var target_player: CharacterBody2D
 var exp_range_player: CharacterBody2D
@@ -8,39 +8,34 @@ var RNG = RandomNumberGenerator.new()
 @export var color: Color = Color(1,1,1)
 @export var enemy_scale: int = 1
 
+
+@onready var attack_component = $DashAttackComponent
+
 func _ready() -> void:
 	super._ready()
 	health_component = $Scalables/HealthComponent
 	$CollisionShape2D.scale *= enemy_scale
 	$Scalables.scale *= enemy_scale
-	$LineOfSight.collide_with_areas = true
 	$Scalables/HitboxComponent.contact_damage = contact_damage
-	$Scalables/AnimatedSprite2D.play()
-	$Scalables/AnimatedSprite2D.speed_scale = 0.5 / $JumpMovementComponent.movement_duration
+	sprite.play()
+	sprite.speed_scale = 0.5 / $JumpMovementComponent.movement_duration
 	health_component.set_health(health, health)
-	$Scalables/AnimatedSprite2D.self_modulate = color
+	sprite.self_modulate = color
 
 func _physics_process(delta: float) -> void:
 	var target = $VisionBoxComponent.get_target()
-			
-	$JumpMovementComponent.move(self, target)
+
+	var dashing = false
+	if not movement_component.moving:
+		dashing = attack_component.try_attack(target)
 		
-	if velocity.x < 0:
-		$Scalables/AnimatedSprite2D.flip_h = true
-	else:
-		$Scalables/AnimatedSprite2D.flip_h = false
-	
-	if $JumpMovementComponent.moving:
-		$Scalables/AnimatedSprite2D.animation = "move"
-	else:
-		$Scalables/AnimatedSprite2D.animation = "idle"
+	if not dashing:
+		movement_component.move(target)
+	move_and_slide()
 
+	orient_sprite()
+	update_animation()
 
-func _on_vision_body_entered(body: Node2D) -> void:
-	pass
-
-func _on_vision_body_exited(body: Node2D) -> void:
-	pass
 
 func move_start() -> void:
 	$Scalables/AnimatedSprite2D.animation = "move"
