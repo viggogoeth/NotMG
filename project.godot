@@ -12,7 +12,7 @@ config_version=5
 
 config/name="notmg"
 run/main_scene="uid://dbk8a2wqhird2"
-config/features=PackedStringArray("4.6", "Forward Plus")
+config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
