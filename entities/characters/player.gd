@@ -61,7 +61,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 	update_mage_hand()
-	
+
 	if Input.is_action_pressed("main_attack") and is_instance_valid(equipped_weapon.item_in_slot) and can_attack:
 		can_attack = false
 		var attack_cooldown = equipped_weapon.item_in_slot.base_attack_rate / ((stats.dexterity + 100.0) / 110.0)
@@ -76,7 +76,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("dodge") and not dodging and can_dodge:
 		_dodge()
 		print("Dodging")
-		
+
 
 func _dodge() -> void:
 	dodge_direction = (get_global_mouse_position() - global_position).normalized()
