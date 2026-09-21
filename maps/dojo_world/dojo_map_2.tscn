@@ -48,4 +48,4 @@ energy = 0.2
 position = Vector2(611, -297)
 health = 100.0
 contact_damage = 10.0
-exp_amount = 10.0
+exp_amount = 100.0

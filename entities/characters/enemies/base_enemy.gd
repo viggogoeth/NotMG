@@ -22,7 +22,9 @@ func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
 
 func add_exp() -> void:
+	print("adding exp")
 	if player:
+		print("with player")
 		player.add_exp(exp_amount)
 	
 func die() -> void:

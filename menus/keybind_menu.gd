@@ -1,4 +1,4 @@
-extends CanvasLayer
+class_name KeyBindMenu extends CanvasLayer
 
 @onready var key_list = $VBoxContainer
 
@@ -10,3 +10,6 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+
+

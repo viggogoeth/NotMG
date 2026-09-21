@@ -9,10 +9,10 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("zoom_in"):
+	if Input.is_action_just_pressed("g_zoom_in"):
 		if zoom.x < 5:
 			zoom *= 1.2
-	if Input.is_action_just_pressed("zoom_out"):
+	if Input.is_action_just_pressed("g_zoom_out"):
 		if zoom.x > 0.2:
 			zoom /= 1.2
 	WorldManager.zoom_level = zoom.x

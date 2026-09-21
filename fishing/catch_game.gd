@@ -47,7 +47,7 @@ func _physics_process(delta: float) -> void:
 		_play_catch_game(delta)
 
 func _play_catch_game(delta: float) -> void:
-	if Input.is_action_pressed("main_attack") and catch_bar_offset_ratio <= 100.0:
+	if Input.is_action_pressed("g_main_attack") and catch_bar_offset_ratio <= 100.0:
 		catch_bar_offset_ratio += delta * CATCH_BAR_SPEED
 	else:
 		catch_bar_offset_ratio -= delta * CATCH_BAR_SPEED

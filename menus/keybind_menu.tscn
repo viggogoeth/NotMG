@@ -1,9 +1,7 @@
 [gd_scene format=3 uid="uid://cx5cj2b21ai8q"]
 
 [ext_resource type="Script" uid="uid://b6s2l7cqnenv6" path="res://menus/keybind_menu.gd" id="1_4pwpd"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_h0emj"]
-font_size = 40
+[ext_resource type="PackedScene" uid="uid://covaff3whkutl" path="res://menus/key_button_pair.tscn" id="2_yv2ua"]
 
 [node name="KeybindMenu" type="CanvasLayer" unique_id=619822642]
 script = ExtResource("1_4pwpd")
@@ -21,14 +19,7 @@ offset_bottom = 50.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=431299258]
+[node name="KeyButtonPair" parent="VBoxContainer" unique_id=1884973477 instance=ExtResource("2_yv2ua")]
 layout_mode = 2
-
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=1441540561]
-layout_mode = 2
-text = "Action 1"
-label_settings = SubResource("LabelSettings_h0emj")
-
-[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=910870317]
-layout_mode = 2
-text = "Remap"
+action_name = "g_dodge"
+current_bind = "Space"

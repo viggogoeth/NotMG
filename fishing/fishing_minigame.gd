@@ -36,7 +36,7 @@ func _ready() -> void:
 	pass
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("dev_key"):
+	if event.is_action_pressed("g_dev_key"):
 		catch_game.start_catch_game(null)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -44,11 +44,11 @@ func _process(delta: float) -> void:
 	if paused:
 		return
 	
-	if Input.is_action_just_released("main_attack"):
+	if Input.is_action_just_released("g_main_attack"):
 		if not rod_released and not on_throw_cooldown:
 			release_rod()
 		
-	if Input.is_action_pressed("main_attack"):
+	if Input.is_action_pressed("g_main_attack"):
 		if rod_released and not on_reelin_cooldown:
 			return_rod()
 		elif not rod_released and not on_throw_cooldown:

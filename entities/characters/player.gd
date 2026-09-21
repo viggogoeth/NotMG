@@ -53,7 +53,7 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		return
 	
-	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	var direction = Input.get_vector("g_move_left", "g_move_right", "g_move_up", "g_move_down")
 	velocity = direction * (movement_speed + (stats.agility * 5))
 
 	_handle_animation_direction(velocity)
@@ -62,7 +62,7 @@ func _physics_process(delta: float) -> void:
 	
 	update_mage_hand()
 
-	if Input.is_action_pressed("main_attack") and is_instance_valid(equipped_weapon.item_in_slot) and can_attack:
+	if Input.is_action_pressed("g_main_attack") and is_instance_valid(equipped_weapon.item_in_slot) and can_attack:
 		can_attack = false
 		var attack_cooldown = equipped_weapon.item_in_slot.base_attack_rate / ((stats.dexterity + 100.0) / 110.0)
 		$AttackTimer.wait_time = attack_cooldown
@@ -73,9 +73,8 @@ func _physics_process(delta: float) -> void:
 		weapon.attack(self)
 		$MageHandSprite.speed_scale = 0.5 / attack_cooldown
 		
-	if Input.is_action_just_pressed("dodge") and not dodging and can_dodge:
+	if Input.is_action_just_pressed("g_dodge") and not dodging and can_dodge:
 		_dodge()
-		print("Dodging")
 
 
 func _dodge() -> void:
@@ -147,7 +146,6 @@ func set_health(max_health: float, current_health: float) -> void:
 
 func die() -> void:
 	is_dead = true
-	print("THE PLAYER IS DEAD")
 
 
 func _level_up() -> void:
@@ -188,7 +186,6 @@ func _overlapping_enemies_damage() -> void:
 	var bodies = $HitBox.get_overlapping_bodies()
 	if not bodies.is_empty():
 		var body = bodies[0]
-		print("taking damage after i-frames")
 		take_damage(body.contact_damage)
 
 func _on_regen_timer_timeout() -> void:

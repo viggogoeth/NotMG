@@ -12,7 +12,7 @@ func _ready() -> void:
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _input(event) -> void:
-	if event.is_action_pressed("pause"):
+	if event.is_action_pressed("g_pause"):
 		var menus = get_tree().get_nodes_in_group("menu")
 		for menu in menus:
 			if menu.visible == true and menu != self:

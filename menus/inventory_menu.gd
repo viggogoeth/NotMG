@@ -21,13 +21,13 @@ func update_item_slots() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _input(event) -> void:
-	if event.is_action_pressed("inventory"):
+	if event.is_action_pressed("g_inventory"):
 		var menus = get_tree().get_nodes_in_group("menu")
 		for menu in menus:
 			if menu.visible == true and menu != self:
 				return
 		toggle_pause()
-	if event.is_action_pressed("pause") and self.visible:
+	if event.is_action_pressed("g_pause") and self.visible:
 		toggle_pause()
 		get_viewport().set_input_as_handled()
 		
@@ -44,7 +44,6 @@ func _input(event) -> void:
 
 func _equip_weapon(item: ItemSlot) -> void:
 	if item.slot_data.item_in_slot is WeaponData:
-		print("Equipping weapon: %s" % item.slot_data.item_in_slot.item_name)
 		var eq = player.equipped_weapon.item_in_slot
 		player.equipped_weapon.item_in_slot = item.slot_data.item_in_slot
 		item.slot_data.item_in_slot = eq
