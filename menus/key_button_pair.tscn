@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://covaff3whkutl"]
+
+[ext_resource type="Script" uid="uid://blm1pl3gai75r" path="res://menus/key_button_pair.gd" id="1_qocax"]
+
+[node name="KeyButtonPair" type="HBoxContainer" unique_id=1884973477]
+script = ExtResource("1_qocax")
+action_name = null
+current_bind = null
+
+[node name="Label" type="Label" parent="." unique_id=149720098]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="." unique_id=475490657]
+layout_mode = 2

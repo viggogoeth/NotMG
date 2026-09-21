@@ -19,3 +19,7 @@ func _init_cfg() -> void:
 	config.set_value("Gameplay", "player_color", Color("red"))
 	
 	config.save("user://user_config.cfg")
+
+func remap(action: String, key: InputEvent) -> void:
+	InputMap.action_erase_events(action)
+	InputMap.action_add_event(action, key)
