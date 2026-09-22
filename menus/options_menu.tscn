@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://be2q36538n7rv"]
+
+[ext_resource type="PackedScene" uid="uid://cx5cj2b21ai8q" path="res://menus/keybind_menu.tscn" id="1_6r3ve"]
+[ext_resource type="Script" uid="uid://dlfprwg16nmj5" path="res://menus/options_menu.gd" id="1_wyyb7"]
+
+[node name="OptionsMenu" type="CanvasLayer" unique_id=1694963211 groups=["menu"]]
+process_mode = 3
+process_priority = -1
+process_physics_priority = -1
+script = ExtResource("1_wyyb7")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1385788827]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.14117648, 0.14117648, 0.14117648, 0.74509805)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=75901747]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -96.0
+offset_top = -20.0
+offset_right = 96.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ExitButton" type="Button" parent="VBoxContainer" unique_id=116630359]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Return"
+
+[node name="Tabs" type="HBoxContainer" parent="VBoxContainer" unique_id=2047047713]
+layout_mode = 2
+
+[node name="GameplayTab" type="Button" parent="VBoxContainer/Tabs" unique_id=369577661]
+layout_mode = 2
+text = "Gameplay"
+
+[node name="KeybindingsTab" type="Button" parent="VBoxContainer/Tabs" unique_id=943082124]
+layout_mode = 2
+text = "Keybindings"
+
+[node name="KeybindMenu" parent="VBoxContainer" unique_id=701966116 instance=ExtResource("1_6r3ve")]
+visible = false
+layout_mode = 2
+
+[node name="GameplayMenu" type="VBoxContainer" parent="VBoxContainer" unique_id=1242169040]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/GameplayMenu" unique_id=899218909]
+layout_mode = 2
+text = "this is where options go"
+
+[connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Tabs/GameplayTab" to="." method="_on_gameplay_tab_pressed"]
+[connection signal="pressed" from="VBoxContainer/Tabs/KeybindingsTab" to="." method="_on_keybindings_tab_pressed"]

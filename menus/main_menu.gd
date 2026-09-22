@@ -2,6 +2,8 @@ extends Control
 
 const MAIN_LEVEL: String = "res://maps/dojo_world/dojo_map_1.tscn"
 
+@onready var options_menu = $OptionsMenu
+
 var current_scene: String = ""
 
 # Called when the node enters the scene tree for the first time.
@@ -49,3 +51,6 @@ func _load_data() -> void:
 func _on_color_picker_color_changed(color: Color) -> void:
 	$MarginContainer/HBoxContainer/HBoxContainer/AnimatedSprite2D.modulate = color
 	Config.player_color = color
+
+func _on_options_button_pressed() -> void:
+	options_menu.show_menu(self)

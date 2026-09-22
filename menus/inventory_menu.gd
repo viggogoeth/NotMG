@@ -19,7 +19,6 @@ func update_item_slots() -> void:
 		i += 1
 	$EquippedContainer/EquippedGrid/Weapon.set_data(player.equipped_weapon)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _input(event) -> void:
 	if event.is_action_pressed("g_inventory"):
 		var menus = get_tree().get_nodes_in_group("menu")

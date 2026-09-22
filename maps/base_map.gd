@@ -5,6 +5,7 @@ class_name Map extends Node
 @export var map_cleared: bool = false
 
 const PAUSE_MENU_SCENE = preload("res://menus/pause_menu.tscn")
+const OPTIONS_MENU_SCENE = preload("res://menus/options_menu.tscn")
 const INVENTORY_MENU_SCENE = preload("res://menus/inventory_menu.tscn")
 const GAME_OVER_MENU_SCENE = preload("res://menus/game_over_menu.tscn")
 const LOOT_BAG_MENU_SCENE = preload("res://menus/loot_bag_menu.tscn")
@@ -13,7 +14,11 @@ var inventory_node: InventoryMenu
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	add_child(PAUSE_MENU_SCENE.instantiate())
+	var pause_menu = PAUSE_MENU_SCENE.instantiate()
+	var options_menu = OPTIONS_MENU_SCENE.instantiate()	
+	pause_menu.options_menu = options_menu
+	add_child(options_menu)
+	add_child(pause_menu)
 	inventory_node = INVENTORY_MENU_SCENE.instantiate()
 	add_child(inventory_node)
 	add_child(GAME_OVER_MENU_SCENE.instantiate())

@@ -3,58 +3,47 @@
 [ext_resource type="Script" uid="uid://b6s2l7cqnenv6" path="res://menus/keybind_menu.gd" id="1_4pwpd"]
 [ext_resource type="PackedScene" uid="uid://covaff3whkutl" path="res://menus/key_button_pair.tscn" id="2_yv2ua"]
 
-[node name="KeybindMenu" type="CanvasLayer" unique_id=619822642]
+[node name="KeybindMenu" type="VBoxContainer" unique_id=1920977346]
+offset_right = 139.0
+offset_bottom = 31.0
 script = ExtResource("1_4pwpd")
 key_button_scene = ExtResource("2_yv2ua")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=320489764]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -69.5
-offset_top = -50.5
-offset_right = 69.5
-offset_bottom = 50.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Reset" type="Button" parent="VBoxContainer" unique_id=1295053022]
+[node name="Reset" type="Button" parent="." unique_id=1295053022]
 layout_mode = 2
 text = "Reset to defaults"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=374996668]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=374996668]
 visible = false
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=717545206]
+[node name="Label" type="Label" parent="HBoxContainer" unique_id=717545206]
 layout_mode = 2
 text = "g_dodge"
 
-[node name="Control" type="Control" parent="VBoxContainer/HBoxContainer" unique_id=1757586604]
+[node name="Control" type="Control" parent="HBoxContainer" unique_id=1757586604]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=572759617]
+[node name="Button" type="Button" parent="HBoxContainer" unique_id=572759617]
 layout_mode = 2
 text = "Space"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer" unique_id=1756489376]
+[node name="HBoxContainer2" type="HBoxContainer" parent="." unique_id=1756489376]
 visible = false
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2" unique_id=1658497238]
+[node name="Label" type="Label" parent="HBoxContainer2" unique_id=1658497238]
 layout_mode = 2
 text = "g_interact"
 
-[node name="Control" type="Control" parent="VBoxContainer/HBoxContainer2" unique_id=1922486090]
+[node name="Control" type="Control" parent="HBoxContainer2" unique_id=1922486090]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer2" unique_id=1343432641]
+[node name="Button" type="Button" parent="HBoxContainer2" unique_id=1343432641]
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 text = "E"
 
-[connection signal="pressed" from="VBoxContainer/Reset" to="." method="_on_reset_pressed"]
+[connection signal="pressed" from="Reset" to="." method="_on_reset_pressed"]

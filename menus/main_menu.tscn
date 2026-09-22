@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dt67h2mpjwvm7" path="res://menus/main_menu.gd" id="1_caclp"]
 [ext_resource type="Texture2D" uid="uid://mmjfht3c42ql" path="res://sprites/wizard/idle_side.png" id="2_ij7vn"]
+[ext_resource type="PackedScene" uid="uid://be2q36538n7rv" path="res://menus/options_menu.tscn" id="3_yjgyn"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_caclp"]
 font_size = 120
@@ -72,7 +73,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_caclp")
 }],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 9.0
 }]
@@ -138,6 +139,11 @@ layout_mode = 2
 size_flags_vertical = 3
 text = "New Game"
 
+[node name="OptionsButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2" unique_id=509213364]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Options"
+
 [node name="QuitButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2" unique_id=550697452]
 layout_mode = 2
 size_flags_vertical = 3
@@ -162,7 +168,11 @@ offset_right = 1645.0
 offset_bottom = 570.0
 text = "Color"
 
+[node name="OptionsMenu" parent="." unique_id=1694963211 instance=ExtResource("3_yjgyn")]
+visible = false
+
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="color_changed" from="ColorPickerButton" to="." method="_on_color_picker_color_changed"]

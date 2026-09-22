@@ -1,6 +1,5 @@
-class_name KeyBindMenu extends CanvasLayer
+class_name KeyBindMenu extends VBoxContainer
 
-@onready var key_list = $VBoxContainer
 @export var key_button_scene: PackedScene
 
 const ACTION_NAMES: Dictionary[String, String] = {
@@ -31,7 +30,7 @@ func add_keybind_options() -> void:
 		key_button_node.action_name = act
 		key_button_node.display_name = ACTION_NAMES.get(act,act)
 		key_button_node.current_bind = binding.as_text()
-		key_list.add_child(key_button_node)
+		add_child(key_button_node)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

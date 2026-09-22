@@ -1,8 +1,7 @@
 extends CanvasLayer
 
-const MAIN_MENU: String = "res://menus/main_menu.tscn"
-
 @export var player: Player
+@export var options_menu: OptionsMenu
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -37,6 +36,9 @@ func _on_quick_save_button_pressed() -> void:
 func _on_save_quit_button_pressed() -> void:
 	_save_data()
 	get_tree().change_scene_to_file(WorldManager.MAIN_MENU)
+
+func _on_option_button_pressed() -> void:
+	options_menu.show_menu(self)
 
 func _save_data() -> void:
 	WorldManager.save_data(player, get_tree().current_scene.scene_file_path, get_tree().current_scene.map_cleared)
