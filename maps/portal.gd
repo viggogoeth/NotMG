@@ -15,7 +15,7 @@ func _ready() -> void:
 	$InteractPrompt.hide()
 
 func _input(event: InputEvent) -> void:
-	if player_in_range and event.is_action_pressed("interact"):
+	if player_in_range and event.is_action_pressed("g_interact"):
 		switch_world()
 		
 func switch_world() -> void:

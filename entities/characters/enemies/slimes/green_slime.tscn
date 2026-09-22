@@ -56,7 +56,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_02vvn")
 }],
-"loop": true,
+"loop": 1,
 "name": &"idle",
 "speed": 5.0
 }, {
@@ -88,7 +88,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_t4yq7")
 }],
-"loop": true,
+"loop": 1,
 "name": &"move",
 "speed": 8.0
 }]
@@ -134,7 +134,7 @@ shape = SubResource("RectangleShape2D_i0y61")
 texture_filter = 1
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_jwbx2")
-animation = &"move"
+animation = &"idle"
 
 [node name="HealthComponent" parent="Scalables" unique_id=334772244 groups=["scalables"] instance=ExtResource("3_q2fjr")]
 position = Vector2(0, 34)

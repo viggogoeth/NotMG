@@ -5,6 +5,9 @@ var exp_range_player: CharacterBody2D
 
 var RNG = RandomNumberGenerator.new()
 
+@onready var sprite = $Scalables/AnimatedSprite2D
+@onready var movement_component = $JumpMovementComponent
+
 @export var color: Color = Color(1,1,1)
 @export var enemy_scale: int = 1
 
@@ -25,9 +28,11 @@ func _physics_process(delta: float) -> void:
 	movement_component.move(target)
 	move_and_slide()
 		
-	orient_sprite()
-	update_animation()
+func set_moving() -> void:
+	sprite.animation = "move"
 
+func set_idle() -> void:
+	sprite.animation = "idle"
 
 func move_start() -> void:
 	$Scalables/AnimatedSprite2D.animation = "move"

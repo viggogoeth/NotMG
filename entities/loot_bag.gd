@@ -25,7 +25,7 @@ func add_items(items: Array[ItemData]) -> void:
 			slots_in_bag[i].item_in_slot = items[i]
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("interact") and player_in_range:
+	if event.is_action_pressed("g_interact") and player_in_range:
 		get_viewport().set_input_as_handled()
 		var loot_bag_menu = get_tree().get_first_node_in_group("loot_bag_menu")
 		loot_bag_menu.open_loot_bag(self)

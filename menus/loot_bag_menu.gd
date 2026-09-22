@@ -8,7 +8,7 @@ func _ready() -> void:
 
 func _input(event) -> void:
 	# only close using keyboard actions
-	if (event.is_action_pressed("g_pause") or event.is_action_pressed("g_inventory") or event.is_action_pressed("interact")) and self.visible:
+	if (event.is_action_pressed("g_pause") or event.is_action_pressed("g_inventory") or event.is_action_pressed("g_interact")) and self.visible:
 		if current_container and current_container.is_empty():
 			current_container.queue_free()
 		toggle_pause()

@@ -33,6 +33,8 @@ var can_dodge: bool = true
 var dodging: bool = false
 var dodge_direction: Vector2
 
+@onready var effect_label = $Effect
+
 func _ready() -> void:
 	$MageHandSprite.hide()
 	$AnimatedSprite2D.play()
@@ -46,6 +48,15 @@ func _ready() -> void:
 	can_attack = true
 	can_take_damage = true
 	
+func _input(event) -> void:
+	if event.is_action_pressed("g_dev_key"):
+		if collision_mask == 2:
+			collision_mask = 0
+			effect_label.set_text("noclipping")
+		else:
+			collision_mask = 2
+			effect_label.set_text("")
+
 func _physics_process(delta: float) -> void:
 	if dodging:
 		velocity = dodge_direction * DODGE_DISTANCE_PER_FRAME
