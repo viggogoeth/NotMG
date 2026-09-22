@@ -43,6 +43,7 @@ exit_portal=""
 outside_water=""
 bobber=""
 fish=""
+bind_button=""
 
 [input]
 

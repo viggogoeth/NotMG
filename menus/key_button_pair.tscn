@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://blm1pl3gai75r" path="res://menus/key_button_pair.gd" id="1_qocax"]
 
-[node name="KeyButtonPair" type="HBoxContainer" unique_id=1884973477]
+[node name="KeyButtonPair" type="HBoxContainer" unique_id=1884973477 groups=["bind_button"]]
 process_priority = 1
 script = ExtResource("1_qocax")
 action_name = "test"
@@ -11,7 +11,12 @@ current_bind = "test"
 [node name="Label" type="Label" parent="." unique_id=149720098]
 layout_mode = 2
 
+[node name="Gap" type="Control" parent="." unique_id=1335396949]
+layout_mode = 2
+size_flags_horizontal = 3
+
 [node name="Button" type="Button" parent="." unique_id=475490657]
+custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

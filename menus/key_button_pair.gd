@@ -1,6 +1,7 @@
 class_name KeyButtonPair extends HBoxContainer
 
 @export var action_name: String
+@export var display_name: String
 @export var current_bind: String
 
 @export var containing_menu: KeyBindMenu 
@@ -18,12 +19,12 @@ func update_bind(bind: String) -> void:
 	update_text()
 
 func update_text() -> void:
-	label.set_text(action_name)
+	label.set_text(display_name)
 	button.set_text(current_bind)
 	pass
 
 func _input(event) -> void:
-	if listening and event is InputEventKey:
+	if listening and (event is InputEventKey or event is InputEventMouseButton):
 		get_viewport().set_input_as_handled()
 		listening = false
 		update_bind(event.as_text())
@@ -31,4 +32,3 @@ func _input(event) -> void:
 
 func _on_button_pressed() -> void:
 	listening = true
-
