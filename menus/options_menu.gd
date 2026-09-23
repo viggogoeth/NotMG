@@ -1,7 +1,7 @@
 class_name OptionsMenu extends CanvasLayer
 
-@onready var gameplay_menu = $VBoxContainer/GameplayMenu
-@onready var keybindings_menu = $VBoxContainer/KeybindMenu
+@onready var gameplay_menu = $PanelContainer/VBoxContainer/GameplayMenu
+@onready var keybindings_menu = $PanelContainer/VBoxContainer/KeybindMenu
 
 var calling_menu = null
 
