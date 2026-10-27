@@ -4,6 +4,9 @@ class_name InventoryMenu extends CanvasLayer
 @export var inventory_resource: InventoryData
 @export var equipped_weapon: SlotData
 
+var mouse_pointer_point = load("res://ui/hand_pointer1.png")
+var mouse_pointer_click = load("res://ui/hand_pointer3.png")
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
@@ -19,6 +22,13 @@ func update_item_slots() -> void:
 		i += 1
 	$EquippedContainer/EquippedGrid/Weapon.set_data(player.equipped_weapon)
 
+func _process(delta: float) -> void:
+	if not visible: return
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		Input.set_custom_mouse_cursor(mouse_pointer_click)
+	else:
+		Input.set_custom_mouse_cursor(mouse_pointer_point)
+
 func _input(event) -> void:
 	if event.is_action_pressed("g_inventory"):
 		var menus = get_tree().get_nodes_in_group("menu")
@@ -29,6 +39,8 @@ func _input(event) -> void:
 	if event.is_action_pressed("g_pause") and self.visible:
 		toggle_pause()
 		get_viewport().set_input_as_handled()
+		
+
 		
 		
 	if event is InputEventMouseButton and event.double_click and event.button_index == MOUSE_BUTTON_LEFT:
@@ -55,6 +67,13 @@ func toggle_pause() -> void:
 	visible = new_pause_state
 	get_tree().paused = new_pause_state
 	update_item_slots()
+	
+	if visible:
+		Input.set_custom_mouse_cursor(mouse_pointer_point)
+		Input.set_custom_mouse_cursor(mouse_pointer_click, Input.CURSOR_CAN_DROP)
+		Input.set_custom_mouse_cursor(mouse_pointer_click, Input.CURSOR_FORBIDDEN)
+	else:
+		Input.set_custom_mouse_cursor(null)
 
 func _get_first_free_slot() -> ItemSlot:
 	for slot in $InventoryContainer/InventoryGrid.get_children():

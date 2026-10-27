@@ -13,7 +13,6 @@ func _on_finished() -> void:
 
 func start_particles() -> void:
 	emitting = true
-	print(lifetime)
 	create_tween().tween_property(self, "color", Color(1,1,1,0.25), lifetime)
 
 func set_backsplash(dir: Vector2) -> void:
