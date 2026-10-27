@@ -4,6 +4,8 @@ const STRAIGHT_PATTERN = preload("res://entities/projectiles/patterns/straight_p
 const SINE_PATTERN = preload("res://entities/projectiles/patterns/sine_pattern.gd")
 const HOMING_PATTERN = preload("res://entities/projectiles/patterns/homing_pattern.gd")
 
+@export var on_hit_particles: PackedScene
+
 @export var speed: float = 750.0
 @export var max_range: float = 800.0
 
@@ -16,6 +18,7 @@ var inverted: bool = false
 
 var direction: Vector2
 var straight_distance_traveled: float = 0.0
+
 
 func _ready() -> void:
 	pass
@@ -44,9 +47,19 @@ func _on_body_entered(body: Node2D) -> void:
 	# damage logic
 	if body.has_method("take_damage"):
 		body.take_damage(damage)
-		
-	queue_free()
 	
+	_add_particles_to_tree()
+	
+	queue_free()
+
+func _add_particles_to_tree() -> void:
+	var node = on_hit_particles.instantiate()
+	node.position = global_position
+	node.set_backsplash(direction.normalized())
+	node.start_particles()
+	
+	get_tree().current_scene.add_child(node)
+
 func get_closest_target() -> Node2D:
 	var targets: Array[Node2D] = $HomingRadius.get_overlapping_bodies()
 	if targets.is_empty():

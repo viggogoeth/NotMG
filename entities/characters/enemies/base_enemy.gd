@@ -16,10 +16,15 @@ var dead: bool = false
 
 @export var health_component: Node2D
 
+@export var sprites: Node2D
+var old_scale: Vector2
+
 var player: Player
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
+	old_scale = sprites.scale
+	
 
 func add_exp() -> void:
 	print("adding exp")
@@ -45,4 +50,8 @@ func die() -> void:
 func take_damage(amount: float) -> void:
 	var resist_adjusted_damage = amount * (1 - resistance)
 	health_component.take_damage(resist_adjusted_damage)
+	
+	var scale_tween = create_tween()
+	scale_tween.tween_property(sprites, "scale", old_scale*1.1, 0.1)
+	scale_tween.tween_property(sprites, "scale", old_scale, 0.1)
 	

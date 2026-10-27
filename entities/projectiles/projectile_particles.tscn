@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://7dtiholfdu30"]
+
+[ext_resource type="Script" uid="uid://c3uv8a2hr4x2p" path="res://entities/projectiles/projectile_particles.gd" id="1_sqbto"]
+
+[sub_resource type="Gradient" id="Gradient_vvrwk"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lqjh7"]
+gradient = SubResource("Gradient_vvrwk")
+width = 8
+height = 8
+
+[node name="ProjectileParticles" type="CPUParticles2D" unique_id=156253162]
+emitting = false
+amount = 3
+texture = SubResource("GradientTexture2D_lqjh7")
+lifetime = 0.25
+one_shot = true
+speed_scale = 1.8
+explosiveness = 0.69
+randomness = 0.69
+emission_shape = 1
+emission_sphere_radius = 40.27
+scale_amount_max = 1.4
+color = Color(1, 0.23921569, 1, 1)
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+script = ExtResource("1_sqbto")
+
+[connection signal="finished" from="." to="." method="_on_finished"]
