@@ -16,5 +16,5 @@ func start_particles() -> void:
 	create_tween().tween_property(self, "color", Color(1,1,1,0.25), lifetime)
 
 func set_backsplash(dir: Vector2) -> void:
-	gravity.x = TOTAL_SPEED * (-dir.x)
-	gravity.y = TOTAL_SPEED * (-dir.y)
+	direction.x = -dir.x
+	direction.y = -dir.y

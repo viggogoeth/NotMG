@@ -14,6 +14,8 @@ var RNG = RandomNumberGenerator.new()
 @onready var move_sprite = $Scalables/Sprites/MoveSprite
 @onready var animation = $AnimationPlayer
 
+@onready var particle_trail: CPUParticles2D = $CPUParticles2D
+
 var rotating: bool = false
 
 func _ready() -> void:
@@ -52,6 +54,7 @@ func set_dashing() -> void:
 	hide_sprites()
 	dash_sprite.show()
 	rotating = false
+	particle_trail.emitting = true
 
 func set_moving() -> void:
 	animation.play("move")
@@ -66,6 +69,7 @@ func set_idle() -> void:
 	move_sprite.show()
 	rotating = false
 	all_sprites_node.rotation = 0
+	particle_trail.emitting = false
 
 func hide_sprites() -> void:
 	for child in all_sprites_node.get_children():
