@@ -35,6 +35,8 @@ var dodge_direction: Vector2
 
 @onready var effect_label = $Effect
 
+var last_fist_hit_was_right = false
+
 func _ready() -> void:
 	$MageHandSprite.hide()
 	$AnimatedSprite2D.play()
@@ -81,8 +83,18 @@ func _physics_process(delta: float) -> void:
 		$MageHandSprite.play()
 		$MageHandSprite.show()
 		var weapon: WeaponData = equipped_weapon.item_in_slot
-		weapon.attack(self)
 		$MageHandSprite.speed_scale = 0.5 / attack_cooldown
+		weapon.attack(self)
+	elif Input.is_action_pressed("g_main_attack") and can_attack:
+		can_attack = false
+		var base_fist_attack_rate = 0.5
+		var attack_cooldown = base_fist_attack_rate / ((stats.dexterity + 100.0) / 110.0)
+		$AttackTimer.wait_time = attack_cooldown
+		$AttackTimer.start()
+		$MageHandSprite.play()
+		$MageHandSprite.show()
+		$MageHandSprite.speed_scale = max(1, 0.5 / attack_cooldown)
+		attack_fists()
 		
 	if Input.is_action_just_pressed("g_dodge") and not dodging and can_dodge:
 		_dodge()
@@ -182,6 +194,8 @@ func update_mage_hand() -> void:
 	projectile_spawn.global_position = $MageHandSprite.global_position
 	$SwordHitbox.global_position = $MageHandSprite.global_position
 	$SwordHitbox.rotation = $MageHandSprite.rotation
+	$FistHitbox.global_position = $MageHandSprite.global_position
+	$FistHitbox.rotation_degrees = $MageHandSprite.rotation_degrees - 90 # rotation offset by default
 	
 	if direction.x < 0:
 		$MageHandSprite.flip_h = true
@@ -251,3 +265,14 @@ func attack_sword(sword: SwordData) -> void:
 	for enemy in enemies_in_sword_range:
 		if enemy.has_method("take_damage"):
 			enemy.take_damage(damage)
+
+func attack_fists() -> void:
+	if last_fist_hit_was_right:
+		$MageHandSprite.animation = "attack_fist_flipped"
+	else:
+		$MageHandSprite.animation = "attack_fist"	
+	last_fist_hit_was_right = not last_fist_hit_was_right
+	var enemies_in_fist_range = $FistHitbox.get_overlapping_bodies()
+	for e in enemies_in_fist_range:
+		var bam = $BamSpawner.create_bam()
+		e.add_child(bam)

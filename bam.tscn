@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://raf3djkv36l2"]
+
+[ext_resource type="Texture2D" uid="uid://dcy36d761banb" path="res://sprites/bams/bam_1.png" id="1_3g0ir"]
+[ext_resource type="Script" uid="uid://c4u3iiy8no05a" path="res://bam.gd" id="1_ymmct"]
+
+[node name="Bam" type="Sprite2D" unique_id=39096866]
+z_index = 3
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_3g0ir")
+script = ExtResource("1_ymmct")
+
+[node name="Lifetime" type="Timer" parent="." unique_id=1835675032]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="Lifetime" to="." method="_on_lifetime_timeout"]

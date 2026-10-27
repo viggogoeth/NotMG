@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cj8krk0hy3sag"]
+
+[ext_resource type="Script" uid="uid://bxcrvptljl4b5" path="res://bam_spawner.gd" id="1_djegi"]
+[ext_resource type="PackedScene" uid="uid://raf3djkv36l2" path="res://bam.tscn" id="2_djegi"]
+
+[node name="BamSpawner" type="Node2D" unique_id=80139969]
+script = ExtResource("1_djegi")
+bam_scene = ExtResource("2_djegi")
