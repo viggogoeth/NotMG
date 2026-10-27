@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://bfdp32s3ojod8" path="res://sprites/mage_hand/mage_fist_flipped.png" id="15_8ug6l"]
 [ext_resource type="Texture2D" uid="uid://ccbjolx85vvx4" path="res://sprites/mage_hand/mage_hand_up.png" id="15_jq748"]
 [ext_resource type="PackedScene" uid="uid://cj8krk0hy3sag" path="res://bam_spawner.tscn" id="19_g5okp"]
+[ext_resource type="AudioStream" uid="uid://icavxx05pddh" path="res://sound/swing2.wav" id="20_eiif7"]
 [ext_resource type="Script" uid="uid://cqv3rck705tfd" path="res://entities/characters/camera_2d.gd" id="47_fwlip"]
 [ext_resource type="PackedScene" uid="uid://qxwiaux0yv7h" path="res://entities/components/health_component.tscn" id="48_48k2y"]
 [ext_resource type="PackedScene" uid="uid://cmi0lerhhabpo" path="res://hud.tscn" id="49_ar761"]
@@ -862,6 +863,10 @@ offset_right = 37.0
 offset_bottom = -77.0
 
 [node name="BamSpawner" parent="." unique_id=80139969 instance=ExtResource("19_g5okp")]
+
+[node name="SwingSound" type="AudioStreamPlayer2D" parent="." unique_id=849044842]
+stream = ExtResource("20_eiif7")
+max_polyphony = 2
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="IFrameTimer" to="." method="_on_i_frame_timer_timeout"]

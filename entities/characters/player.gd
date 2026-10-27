@@ -87,7 +87,7 @@ func _physics_process(delta: float) -> void:
 		weapon.attack(self)
 	elif Input.is_action_pressed("g_main_attack") and can_attack:
 		can_attack = false
-		var base_fist_attack_rate = 0.5
+		var base_fist_attack_rate = 0.4
 		var attack_cooldown = base_fist_attack_rate / ((stats.dexterity + 100.0) / 110.0)
 		$AttackTimer.wait_time = attack_cooldown
 		$AttackTimer.start()
@@ -265,6 +265,7 @@ func attack_sword(sword: SwordData) -> void:
 	for enemy in enemies_in_sword_range:
 		if enemy.has_method("take_damage"):
 			enemy.take_damage(damage)
+	$SwingSound.play()
 
 func attack_fists() -> void:
 	if last_fist_hit_was_right:
@@ -276,3 +277,4 @@ func attack_fists() -> void:
 	for e in enemies_in_fist_range:
 		var bam = $BamSpawner.create_bam()
 		e.add_child(bam)
+	$SwingSound.play()
