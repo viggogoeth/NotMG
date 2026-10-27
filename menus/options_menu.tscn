@@ -17,46 +17,51 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.14117648, 0.14117648, 0.14117648, 0.74509805)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=75901747]
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1321381582]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -96.0
-offset_top = -20.0
+offset_top = -48.5
 offset_right = 96.0
-offset_bottom = 20.0
+offset_bottom = 48.5
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
-[node name="ExitButton" type="Button" parent="VBoxContainer" unique_id=116630359]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=75901747]
+layout_mode = 2
+
+[node name="ExitButton" type="Button" parent="PanelContainer/VBoxContainer" unique_id=116630359]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "Return"
 
-[node name="Tabs" type="HBoxContainer" parent="VBoxContainer" unique_id=2047047713]
+[node name="Tabs" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=2047047713]
 layout_mode = 2
 
-[node name="GameplayTab" type="Button" parent="VBoxContainer/Tabs" unique_id=369577661]
+[node name="GameplayTab" type="Button" parent="PanelContainer/VBoxContainer/Tabs" unique_id=369577661]
 layout_mode = 2
 text = "Gameplay"
 
-[node name="KeybindingsTab" type="Button" parent="VBoxContainer/Tabs" unique_id=943082124]
+[node name="KeybindingsTab" type="Button" parent="PanelContainer/VBoxContainer/Tabs" unique_id=943082124]
 layout_mode = 2
 text = "Keybindings"
 
-[node name="KeybindMenu" parent="VBoxContainer" unique_id=701966116 instance=ExtResource("1_6r3ve")]
+[node name="KeybindMenu" parent="PanelContainer/VBoxContainer" unique_id=701966116 instance=ExtResource("1_6r3ve")]
 visible = false
 layout_mode = 2
 
-[node name="GameplayMenu" type="VBoxContainer" parent="VBoxContainer" unique_id=1242169040]
+[node name="GameplayMenu" type="VBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=1242169040]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/GameplayMenu" unique_id=899218909]
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/GameplayMenu" unique_id=899218909]
 layout_mode = 2
 text = "this is where options go"
 
-[connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/Tabs/GameplayTab" to="." method="_on_gameplay_tab_pressed"]
-[connection signal="pressed" from="VBoxContainer/Tabs/KeybindingsTab" to="." method="_on_keybindings_tab_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Tabs/GameplayTab" to="." method="_on_gameplay_tab_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Tabs/KeybindingsTab" to="." method="_on_keybindings_tab_pressed"]
