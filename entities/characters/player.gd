@@ -41,12 +41,14 @@ var last_fist_hit_was_right = false
 
 @onready var dash_end_player: AudioStreamPlayer2D = $SoundEffects/DashEndPlayer
 @onready var swing_sound: AudioStreamPlayer2D = $SoundEffects/SwingSound
+@onready var dodge_particles: CPUParticles2D = $DodgeParticles
 
 
 func _ready() -> void:
 	$MageHandSprite.hide()
 	$AnimatedSprite2D.play()
 	$AnimatedSprite2D.modulate = Config.player_color
+	dodge_particles.color = Config.player_color
 	if is_instance_valid(equipped_weapon.item_in_slot):
 		$AttackTimer.wait_time = equipped_weapon.item_in_slot.base_attack_rate / (stats.dexterity / 10)
 	$IFrameTimer.wait_time = I_FRAMES
@@ -115,8 +117,13 @@ func _dodge() -> void:
 	$DodgeTimer.start()
 	$DodgeCooldown.start()
 	$Hud.dodge_used()
-	$AnimatedSprite2D.modulate = Color(1.207, 0.212, 1.154, 1.0) # TODO: fix when sprite is changed
+	#$AnimatedSprite2D.modulate = Color(1.207, 0.212, 1.154, 1.0) # TODO: fix when sprite is changed
+	$AnimatedSprite2D.animation = "dash"
+	$AnimatedSprite2D.play()
+	#$AnimatedSprite2D.modulate = Color("red")
+	dash_end_player.pitch_scale = randf_range(0.9,1.1)
 	dash_end_player.play()
+	dodge_particles.restart()
 	
 
 func _handle_animation_direction(velocity: Vector2) -> void:

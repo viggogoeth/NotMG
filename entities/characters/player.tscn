@@ -5,6 +5,7 @@
 [ext_resource type="Resource" uid="uid://c5eh8376wnjnk" path="res://items/concrete_items/weapons/wood_staff.tres" id="3_jq748"]
 [ext_resource type="Script" uid="uid://b7xlakifl5pew" path="res://items/slot_data.gd" id="5_noh6d"]
 [ext_resource type="Script" uid="uid://ds1f0nfr3slp0" path="res://items/inventory_data.gd" id="6_0s3p3"]
+[ext_resource type="Texture2D" uid="uid://bgxwq8hiaew6m" path="res://sprites/wizard/dash.png" id="6_blta8"]
 [ext_resource type="Texture2D" uid="uid://d3fauhbiuqxw4" path="res://sprites/wizard/textures/idle_back_texture.tres" id="6_jq748"]
 [ext_resource type="Texture2D" uid="uid://gr3kd0venp6l" path="res://sprites/wizard/textures/walk_front_texture.tres" id="6_jtwqb"]
 [ext_resource type="Texture2D" uid="uid://c88alvjquvwgc" path="res://sprites/wizard/textures/idle_front_texture.tres" id="7_jq748"]
@@ -135,6 +136,22 @@ metadata/_custom_type_script = "uid://b7xlakifl5pew"
 script = ExtResource("6_0s3p3")
 inventory_slots = Array[ExtResource("5_noh6d")]([SubResource("Resource_1vlwv"), SubResource("Resource_u5td6"), SubResource("Resource_s6xdf"), SubResource("Resource_s521s"), SubResource("Resource_y5erd"), SubResource("Resource_dkbbl"), SubResource("Resource_kbu1a"), SubResource("Resource_ufxco"), SubResource("Resource_pykaa"), SubResource("Resource_nt0jd"), SubResource("Resource_0k77t"), SubResource("Resource_noh6d"), SubResource("Resource_0s3p3"), SubResource("Resource_v8l5j"), SubResource("Resource_cund2"), SubResource("Resource_jwuy3"), SubResource("Resource_f0xee"), SubResource("Resource_nssv8"), SubResource("Resource_eaefr"), SubResource("Resource_qwny2"), SubResource("Resource_6fcx3"), SubResource("Resource_45e53"), SubResource("Resource_kqo53"), SubResource("Resource_atrjn"), SubResource("Resource_okc3o")])
 metadata/_custom_type_script = "uid://ds1f0nfr3slp0"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k76cm"]
+atlas = ExtResource("6_blta8")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cuq24"]
+atlas = ExtResource("6_blta8")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uj5q7"]
+atlas = ExtResource("6_blta8")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jkn7d"]
+atlas = ExtResource("6_blta8")
+region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gmhi3"]
 atlas = ExtResource("6_jq748")
@@ -318,6 +335,56 @@ region = Rect2(32, 64, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2wuci"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k76cm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cuq24")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uj5q7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jkn7d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jkn7d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jkn7d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jkn7d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jkn7d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jkn7d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jkn7d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jkn7d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jkn7d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uj5q7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cuq24")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k76cm")
+}],
+"loop": 1,
+"name": &"dash",
+"speed": 80.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_gmhi3")
@@ -766,6 +833,17 @@ height = 268.0
 radius = 35.0
 height = 148.0
 
+[sub_resource type="Gradient" id="Gradient_blta8"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4jh0y"]
+gradient = SubResource("Gradient_blta8")
+width = 8
+height = 8
+
+[sub_resource type="Gradient" id="Gradient_d3hb7"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
 [node name="Player" type="CharacterBody2D" unique_id=8722019 groups=["persistent", "player"]]
 y_sort_enabled = true
 position = Vector2(665, 345)
@@ -780,7 +858,7 @@ inventory = SubResource("Resource_2nc7j")
 texture_filter = 1
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_2wuci")
-animation = &"idle_back"
+animation = &"dash"
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=43446092]
 z_index = -1
@@ -877,6 +955,27 @@ volume_db = -5.15
 stream = ExtResource("20_eiif7")
 volume_db = -13.303
 max_polyphony = 2
+
+[node name="DodgeParticles" type="CPUParticles2D" parent="." unique_id=1065074757]
+emitting = false
+amount = 64
+texture = SubResource("GradientTexture2D_4jh0y")
+lifetime = 0.2
+one_shot = true
+emission_shape = 2
+emission_sphere_radius = 40.28
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 101.41
+angular_velocity_min = -90.0
+angular_velocity_max = 90.0
+scale_amount_min = 0.75
+scale_amount_max = 1.15
+color = Color(0.41568628, 0.6784314, 0.45490196, 1)
+color_ramp = SubResource("Gradient_d3hb7")
+hue_variation_min = -1.0
+hue_variation_max = 1.0
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="IFrameTimer" to="." method="_on_i_frame_timer_timeout"]
