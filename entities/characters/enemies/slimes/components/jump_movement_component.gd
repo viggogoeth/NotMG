@@ -14,9 +14,8 @@ func _ready() -> void:
 	$MoveDuration.wait_time = movement_duration
 	$MoveCooldown.start()
 
-
-func move(target: CharacterBody2D) -> void:
-	if should_update_movement and not moving:
+func move(target: CharacterBody2D, obstructed_movement: bool = false) -> void:
+	if not obstructed_movement and should_update_movement and not moving:
 		should_update_movement = false
 		moving = true
 		enemy.set_moving()
@@ -28,21 +27,19 @@ func move(target: CharacterBody2D) -> void:
 		
 		if target:
 			var direction = enemy.global_position.direction_to(target.global_position)
-			enemy.velocity = direction * enemy.speed
+			enemy.base_velocity = direction * enemy.speed
 		else: # idle movement
 			var dir_x = RNG.randf_range(-0.5, 0.5)
 			var dir_y = RNG.randf_range(-0.5, 0.5)
 			var direction = Vector2(dir_x, dir_y)
-			enemy.velocity = direction * enemy.speed
-		
-	
-	
+			enemy.base_velocity = direction * enemy.speed
+	enemy.velocity = enemy.base_velocity + enemy.knockback_velocity
 
 func _on_move_cooldown_timeout() -> void:
 	should_update_movement = true
 
 func _on_move_duration_timeout() -> void:
 	moving = false
-	enemy.velocity = Vector2(0,0)
+	enemy.base_velocity = Vector2.ZERO
 	enemy.set_idle()
 	$MoveCooldown.start()

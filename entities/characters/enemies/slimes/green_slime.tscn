@@ -157,4 +157,6 @@ enemy = NodePath("..")
 [node name="VisionBoxComponent" parent="." unique_id=1268107380 instance=ExtResource("6_0ir3e")]
 visible = true
 
+[connection signal="has_died" from="." to="." method="_on_has_died"]
+
 [editable path="Scalables/HitboxComponent"]

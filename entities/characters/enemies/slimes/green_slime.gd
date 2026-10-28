@@ -23,6 +23,7 @@ func _ready() -> void:
 	sprite.self_modulate = color
 
 func _physics_process(delta: float) -> void:
+	if dead: return
 	var target = $VisionBoxComponent.get_target()
 			
 	movement_component.move(target)
@@ -39,3 +40,8 @@ func move_start() -> void:
 
 func move_stop() -> void:
 	$Scalables/AnimatedSprite2D.animation = "idle"
+
+
+func _on_has_died() -> void:
+	print("has died from signal")
+	$Scalables/AnimatedSprite2D.animation = "dying"

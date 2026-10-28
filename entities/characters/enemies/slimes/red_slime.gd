@@ -28,14 +28,14 @@ func _ready() -> void:
 	all_sprites_node.modulate = color
 
 func _physics_process(delta: float) -> void:
+	if dead: return
 	var target = $VisionBoxComponent.get_target()
 
 	var dashing = false
 	if not movement_component.moving:
 		dashing = attack_component.try_attack(target)
 		
-	if not dashing:
-		movement_component.move(target)
+	movement_component.move(target, dashing)
 	move_and_slide()
 
 	if rotating and target:

@@ -261,13 +261,17 @@ func attack_wand(wand: WandData) -> void:
 func attack_sword(sword: SwordData) -> void:
 	$MageHandSprite.animation = "attack_sword"
 	var enemies_in_sword_range = $SwordHitbox.get_overlapping_bodies()
-	var damage = sword.base_damage * 0.1 * stats.strength
+	var damage = sword.base_damage * (stats.strength / 10)
 	for enemy in enemies_in_sword_range:
 		if enemy.has_method("take_damage"):
 			enemy.take_damage(damage)
+			var scaled_knockback_amount = sword.knockback * (stats.strength / 10) # TODO: check that this amount makes sense
+			enemy.knockback(scaled_knockback_amount, get_attack_direction_vector())
+	$SwingSound.pitch_scale = randf_range(0.9, 1.1)
 	$SwingSound.play()
 
 func attack_fists() -> void:
+	var fist_default_knockback = 250
 	if last_fist_hit_was_right:
 		$MageHandSprite.animation = "attack_fist_flipped"
 	else:
@@ -277,4 +281,12 @@ func attack_fists() -> void:
 	for e in enemies_in_fist_range:
 		var bam = $BamSpawner.create_bam()
 		e.add_child(bam)
+		var scaled_knockback_amount = fist_default_knockback * (stats.strength / 10) # TODO: check that this amount makes sense
+		e.knockback(scaled_knockback_amount, get_attack_direction_vector())
+		var damage = stats.strength / 10
+		e.take_damage(damage)
+	$SwingSound.pitch_scale = randf_range(0.9, 1.1)
 	$SwingSound.play()
+
+func get_attack_direction_vector() -> Vector2:
+	return ($MageHandSprite.global_position - global_position).normalized()

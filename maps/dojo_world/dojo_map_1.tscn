@@ -6,7 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://barck7peqm2lo" path="res://entities/characters/player.tscn" id="3_a6acs"]
 [ext_resource type="PackedScene" uid="uid://bm2857742v0ai" path="res://entities/characters/enemies/slimes/green_slime.tscn" id="4_tqi5d"]
 [ext_resource type="PackedScene" uid="uid://r6qt5n01hodp" path="res://maps/components/dojo_light.tscn" id="4_urx0c"]
+[ext_resource type="Script" uid="uid://b7xlakifl5pew" path="res://items/slot_data.gd" id="5_87r3h"]
+[ext_resource type="Resource" uid="uid://dhayg8klujp56" path="res://items/concrete_items/weapons/copper_sword.tres" id="6_lvj5j"]
+[ext_resource type="Resource" uid="uid://c5eh8376wnjnk" path="res://items/concrete_items/weapons/wood_staff.tres" id="7_lvj5j"]
 [ext_resource type="PackedScene" uid="uid://b8rjrpsoqbdvw" path="res://maps/portal.tscn" id="7_s8k3j"]
+[ext_resource type="Script" uid="uid://ds1f0nfr3slp0" path="res://items/inventory_data.gd" id="7_tjthg"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_urx0c"]
 polygon = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
@@ -53,6 +57,117 @@ physics_layer_0/collision_mask = 0
 sources/1 = SubResource("TileSetAtlasSource_urx0c")
 sources/2 = SubResource("TileSetAtlasSource_s8k3j")
 
+[sub_resource type="Resource" id="Resource_tjthg"]
+script = ExtResource("5_87r3h")
+item_in_slot = ExtResource("6_lvj5j")
+metadata/_custom_type_script = "uid://b7xlakifl5pew"
+
+[sub_resource type="Resource" id="Resource_gsegi"]
+script = ExtResource("5_87r3h")
+item_in_slot = ExtResource("7_lvj5j")
+metadata/_custom_type_script = "uid://b7xlakifl5pew"
+
+[sub_resource type="Resource" id="Resource_u5td6"]
+script = ExtResource("5_87r3h")
+metadata/_custom_type_script = "uid://b7xlakifl5pew"
+
+[sub_resource type="Resource" id="Resource_s6xdf"]
+script = ExtResource("5_87r3h")
+metadata/_custom_type_script = "uid://b7xlakifl5pew"
+
+[sub_resource type="Resource" id="Resource_s521s"]
+script = ExtResource("5_87r3h")
+metadata/_custom_type_script = "uid://b7xlakifl5pew"
+
+[sub_resource type="Resource" id="Resource_y5erd"]
+script = ExtResource("5_87r3h")
+metadata/_custom_type_script = "uid://b7xlakifl5pew"
+
+[sub_resource type="Resource" id="Resource_dkbbl"]
+script = ExtResource("5_87r3h")
+metadata/_custom_type_script = "uid://b7xlakifl5pew"
+
+[sub_resource type="Resource" id="Resource_kbu1a"]
+script = ExtResource("5_87r3h")
+metadata/_custom_type_script = "uid://b7xlakifl5pew"
+
+[sub_resource type="Resource" id="Resource_ufxco"]
+script = ExtResource("5_87r3h")
+metadata/_custom_type_script = "uid://b7xlakifl5pew"
+
+[sub_resource type="Resource" id="Resource_pykaa"]
+script = ExtResource("5_87r3h")
+metadata/_custom_type_script = "uid://b7xlakifl5pew"
+
+[sub_resource type="Resource" id="Resource_nt0jd"]
+script = ExtResource("5_87r3h")
+metadata/_custom_type_script = "uid://b7xlakifl5pew"
+
+[sub_resource type="Resource" id="Resource_0k77t"]
+script = ExtResource("5_87r3h")
+metadata/_custom_type_script = "uid://b7xlakifl5pew"
+
+[sub_resource type="Resource" id="Resource_noh6d"]
+script = ExtResource("5_87r3h")
+metadata/_custom_type_script = "uid://b7xlakifl5pew"
+
+[sub_resource type="Resource" id="Resource_0s3p3"]
+script = ExtResource("5_87r3h")
+metadata/_custom_type_script = "uid://b7xlakifl5pew"
+
+[sub_resource type="Resource" id="Resource_v8l5j"]
+script = ExtResource("5_87r3h")
+metadata/_custom_type_script = "uid://b7xlakifl5pew"
+
+[sub_resource type="Resource" id="Resource_cund2"]
+script = ExtResource("5_87r3h")
+metadata/_custom_type_script = "uid://b7xlakifl5pew"
+
+[sub_resource type="Resource" id="Resource_jwuy3"]
+script = ExtResource("5_87r3h")
+metadata/_custom_type_script = "uid://b7xlakifl5pew"
+
+[sub_resource type="Resource" id="Resource_f0xee"]
+script = ExtResource("5_87r3h")
+metadata/_custom_type_script = "uid://b7xlakifl5pew"
+
+[sub_resource type="Resource" id="Resource_nssv8"]
+script = ExtResource("5_87r3h")
+metadata/_custom_type_script = "uid://b7xlakifl5pew"
+
+[sub_resource type="Resource" id="Resource_eaefr"]
+script = ExtResource("5_87r3h")
+metadata/_custom_type_script = "uid://b7xlakifl5pew"
+
+[sub_resource type="Resource" id="Resource_qwny2"]
+script = ExtResource("5_87r3h")
+metadata/_custom_type_script = "uid://b7xlakifl5pew"
+
+[sub_resource type="Resource" id="Resource_6fcx3"]
+script = ExtResource("5_87r3h")
+metadata/_custom_type_script = "uid://b7xlakifl5pew"
+
+[sub_resource type="Resource" id="Resource_45e53"]
+script = ExtResource("5_87r3h")
+metadata/_custom_type_script = "uid://b7xlakifl5pew"
+
+[sub_resource type="Resource" id="Resource_kqo53"]
+script = ExtResource("5_87r3h")
+metadata/_custom_type_script = "uid://b7xlakifl5pew"
+
+[sub_resource type="Resource" id="Resource_atrjn"]
+script = ExtResource("5_87r3h")
+metadata/_custom_type_script = "uid://b7xlakifl5pew"
+
+[sub_resource type="Resource" id="Resource_okc3o"]
+script = ExtResource("5_87r3h")
+metadata/_custom_type_script = "uid://b7xlakifl5pew"
+
+[sub_resource type="Resource" id="Resource_1t865"]
+script = ExtResource("7_tjthg")
+inventory_slots = Array[ExtResource("5_87r3h")]([SubResource("Resource_gsegi"), SubResource("Resource_u5td6"), SubResource("Resource_s6xdf"), SubResource("Resource_s521s"), SubResource("Resource_y5erd"), SubResource("Resource_dkbbl"), SubResource("Resource_kbu1a"), SubResource("Resource_ufxco"), SubResource("Resource_pykaa"), SubResource("Resource_nt0jd"), SubResource("Resource_0k77t"), SubResource("Resource_noh6d"), SubResource("Resource_0s3p3"), SubResource("Resource_v8l5j"), SubResource("Resource_cund2"), SubResource("Resource_jwuy3"), SubResource("Resource_f0xee"), SubResource("Resource_nssv8"), SubResource("Resource_eaefr"), SubResource("Resource_qwny2"), SubResource("Resource_6fcx3"), SubResource("Resource_45e53"), SubResource("Resource_kqo53"), SubResource("Resource_atrjn"), SubResource("Resource_okc3o")])
+metadata/_custom_type_script = "uid://ds1f0nfr3slp0"
+
 [sub_resource type="Gradient" id="Gradient_s8k3j"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
@@ -74,33 +189,36 @@ tile_set = SubResource("TileSet_aswen")
 
 [node name="Player" parent="." unique_id=8722019 instance=ExtResource("3_a6acs")]
 position = Vector2(515, 83)
+equipped_weapon = SubResource("Resource_tjthg")
+inventory = SubResource("Resource_1t865")
 
 [node name="Enemy3" parent="." unique_id=856358990 instance=ExtResource("4_tqi5d")]
 position = Vector2(1342, 1561)
+color = Color(1.2800586, 0.8179674, 0.67934, 1)
+enemy_scale = 2
 enemy_id = "slime_drop_tut"
 health = 200.0
 contact_damage = 12.0
 exp_amount = 20.0
-color = Color(1.2800586, 0.8179674, 0.67934, 1)
-enemy_scale = 2
 
 [node name="Enemy4" parent="." unique_id=802092509 instance=ExtResource("4_tqi5d")]
 position = Vector2(2403, 1167)
+color = Color(1.2800586, 0.8179674, 0.67934, 1)
+enemy_scale = 2
 enemy_id = "slime_medium"
 health = 200.0
 contact_damage = 12.0
 exp_amount = 20.0
-color = Color(1.2800586, 0.8179674, 0.67934, 1)
-enemy_scale = 2
 
-[node name="Enemy5" parent="." unique_id=234849953 instance=ExtResource("4_tqi5d")]
+[node name="BigEnemy" parent="." unique_id=234849953 instance=ExtResource("4_tqi5d")]
 position = Vector2(3711, 1184)
+color = Color(1.2800586, 0.8179674, 0.67934, 1)
+enemy_scale = 5
 enemy_id = "slime_joke"
 health = 2000.0
 contact_damage = 12.0
+knockback_resistance = 0.9
 exp_amount = 20.0
-color = Color(1.2800586, 0.8179674, 0.67934, 1)
-enemy_scale = 5
 
 [node name="LightingEffect" type="Node2D" parent="." unique_id=887272423]
 

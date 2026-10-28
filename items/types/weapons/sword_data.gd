@@ -1,5 +1,7 @@
 class_name SwordData extends WeaponData
 
+@export var knockback: float
+
 func attack(attacking_player: Player) -> void:
 	attacking_player.attack_sword(self)
 

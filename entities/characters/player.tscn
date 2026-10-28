@@ -802,7 +802,7 @@ wait_time = 0.5
 one_shot = true
 
 [node name="IFrameTimer" type="Timer" parent="." unique_id=69761710 groups=["friendly_entities"]]
-wait_time = 0.2
+wait_time = 0.3
 one_shot = true
 
 [node name="DodgeTimer" type="Timer" parent="." unique_id=1230303118 groups=["friendly_entities"]]

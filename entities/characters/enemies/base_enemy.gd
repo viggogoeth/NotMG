@@ -12,6 +12,10 @@ var dead: bool = false
 @export var resistance: float = 0
 @export var contact_damage: float = 0
 
+@export var knockback_resistance: float = 0
+var base_velocity: Vector2 = Vector2.ZERO
+var knockback_velocity: Vector2 = Vector2.ZERO
+
 @export var exp_amount: float = 0
 
 @export var health_component: Node2D
@@ -19,12 +23,13 @@ var dead: bool = false
 @export var sprites: Node2D
 var old_scale: Vector2
 
+@export var death_timer: Timer
+
 var player: Player
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
 	old_scale = sprites.scale
-	
 
 func add_exp() -> void:
 	print("adding exp")
@@ -35,8 +40,12 @@ func add_exp() -> void:
 func die() -> void:
 	if dead:
 		return
+	has_died.emit()
 	dead = true
 	add_exp()
+	
+	#death_timer.start() # this should give the enemy a chance to play a death animation before proceeding
+	#await death_timer.timeout
 	
 	var drop = DropTables.get_drop(self.enemy_id)
 	if drop.size() > 0:
@@ -48,6 +57,7 @@ func die() -> void:
 	queue_free()
 
 func take_damage(amount: float) -> void:
+	if dead: return
 	var resist_adjusted_damage = amount * (1 - resistance)
 	health_component.take_damage(resist_adjusted_damage)
 	
@@ -55,3 +65,9 @@ func take_damage(amount: float) -> void:
 	scale_tween.tween_property(sprites, "scale", old_scale*1.1, 0.1)
 	scale_tween.tween_property(sprites, "scale", old_scale, 0.1)
 	
+func knockback(amount: float, direction: Vector2) -> void:
+	var resisted_knockback = amount * (1-knockback_resistance)
+	knockback_velocity = direction * resisted_knockback
+	create_tween().tween_property(self, "knockback_velocity", Vector2.ZERO, 0.3)
+
+signal has_died
