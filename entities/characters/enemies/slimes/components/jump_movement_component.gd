@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 @export var movement_cooldown: float = 0.65
 @export var movement_duration: float = 0.5
@@ -7,12 +7,16 @@ extends Node
 var should_update_movement: bool = false
 var moving: bool = false
 
-var RNG = RandomNumberGenerator.new()
+@onready var sound_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
+var base_pitch: float
+var min_pitch_scale: float = 0.9
+var max_pitch_scale: float = 1.1
 
 func _ready() -> void:
 	$MoveCooldown.wait_time = movement_cooldown
 	$MoveDuration.wait_time = movement_duration
 	$MoveCooldown.start()
+	base_pitch = 2.0 / enemy.enemy_scale # this implies that the "regular" slimes are scaled to 2x
 
 func move(target: CharacterBody2D, obstructed_movement: bool = false) -> void:
 	if not obstructed_movement and should_update_movement and not moving:
@@ -21,19 +25,23 @@ func move(target: CharacterBody2D, obstructed_movement: bool = false) -> void:
 		enemy.set_moving()
 		
 		# if multiple enemies moving, dont want to clump up
-		var random_move_delay_offset = RNG.randf_range(-0.1, 0.1)
+		var random_move_delay_offset = randf_range(-0.1, 0.1)
 		$MoveCooldown.wait_time = movement_cooldown + random_move_delay_offset
 		$MoveDuration.start()
-		
+		_play_sound()
 		if target:
 			var direction = enemy.global_position.direction_to(target.global_position)
 			enemy.base_velocity = direction * enemy.speed
 		else: # idle movement
-			var dir_x = RNG.randf_range(-0.5, 0.5)
-			var dir_y = RNG.randf_range(-0.5, 0.5)
+			var dir_x = randf_range(-0.5, 0.5)
+			var dir_y = randf_range(-0.5, 0.5)
 			var direction = Vector2(dir_x, dir_y)
 			enemy.base_velocity = direction * enemy.speed
 	enemy.velocity = enemy.base_velocity + enemy.knockback_velocity
+		
+func _play_sound() -> void:
+	sound_player.pitch_scale = base_pitch * randf_range(min_pitch_scale, max_pitch_scale)
+	sound_player.play()
 
 func _on_move_cooldown_timeout() -> void:
 	should_update_movement = true

@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://bt860mh3ihxku"]
 
 [ext_resource type="Script" uid="uid://bt33x21m47k2m" path="res://entities/characters/enemies/slimes/components/jump_movement_component.gd" id="1_jsnxk"]
+[ext_resource type="AudioStream" uid="uid://d2mxpuqkyu3uy" path="res://sound/slime_step.wav" id="2_gw2s6"]
 
-[node name="JumpMovementComponent" type="Node" unique_id=473034222]
+[node name="JumpMovementComponent" type="Node2D" unique_id=175021962]
 script = ExtResource("1_jsnxk")
 
 [node name="MoveCooldown" type="Timer" parent="." unique_id=314661713]
@@ -12,6 +13,11 @@ one_shot = true
 [node name="MoveDuration" type="Timer" parent="." unique_id=1363660806]
 wait_time = 0.2
 one_shot = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1402807359]
+stream = ExtResource("2_gw2s6")
+max_distance = 1000.0
+area_mask = 2
 
 [connection signal="timeout" from="MoveCooldown" to="." method="_on_move_cooldown_timeout"]
 [connection signal="timeout" from="MoveDuration" to="." method="_on_move_duration_timeout"]

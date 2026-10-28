@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://c50gnaoerryfg"]
+
+[node name="SlimeHitPlayer" type="AudioStreamPlayer2D" unique_id=1123257933]

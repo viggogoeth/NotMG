@@ -16,6 +16,6 @@ one_shot = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=213772578]
 stream = ExtResource("3_4u3cr")
-volume_db = -2.035
+volume_db = -10.325
 
 [connection signal="timeout" from="Lifetime" to="." method="_on_lifetime_timeout"]

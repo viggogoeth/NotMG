@@ -37,6 +37,12 @@ var dodge_direction: Vector2
 
 var last_fist_hit_was_right = false
 
+@onready var audio_listener: AudioListener2D = $AudioListener2D
+
+@onready var dash_end_player: AudioStreamPlayer2D = $SoundEffects/DashEndPlayer
+@onready var swing_sound: AudioStreamPlayer2D = $SoundEffects/SwingSound
+
+
 func _ready() -> void:
 	$MageHandSprite.hide()
 	$AnimatedSprite2D.play()
@@ -49,6 +55,7 @@ func _ready() -> void:
 	$HealthComponent.set_health(max_health, current_health)
 	can_attack = true
 	can_take_damage = true
+	audio_listener.make_current()
 	
 func _input(event) -> void:
 	if event.is_action_pressed("g_dev_key"):
@@ -109,6 +116,7 @@ func _dodge() -> void:
 	$DodgeCooldown.start()
 	$Hud.dodge_used()
 	$AnimatedSprite2D.modulate = Color(1.207, 0.212, 1.154, 1.0) # TODO: fix when sprite is changed
+	dash_end_player.play()
 	
 
 func _handle_animation_direction(velocity: Vector2) -> void:
@@ -267,8 +275,8 @@ func attack_sword(sword: SwordData) -> void:
 			enemy.take_damage(damage)
 			var scaled_knockback_amount = sword.knockback * (stats.strength / 10) # TODO: check that this amount makes sense
 			enemy.knockback(scaled_knockback_amount, get_attack_direction_vector())
-	$SwingSound.pitch_scale = randf_range(0.9, 1.1)
-	$SwingSound.play()
+	swing_sound.pitch_scale = randf_range(0.9, 1.1)
+	swing_sound.play()
 
 func attack_fists() -> void:
 	var fist_default_knockback = 250
@@ -285,8 +293,8 @@ func attack_fists() -> void:
 		e.knockback(scaled_knockback_amount, get_attack_direction_vector())
 		var damage = stats.strength / 10
 		e.take_damage(damage)
-	$SwingSound.pitch_scale = randf_range(0.9, 1.1)
-	$SwingSound.play()
+	swing_sound.pitch_scale = randf_range(0.9, 1.1)
+	swing_sound.play()
 
 func get_attack_direction_vector() -> Vector2:
 	return ($MageHandSprite.global_position - global_position).normalized()
