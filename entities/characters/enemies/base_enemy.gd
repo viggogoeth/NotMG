@@ -1,5 +1,8 @@
 class_name BaseEnemy extends CharacterBody2D
 
+signal took_damage()
+signal has_died() # all enemy types must implement their own death logic
+
 const LOOT_BAG_SCENE = preload("res://entities/loot_bag.tscn")
 
 @export var enemy_id: String
@@ -23,7 +26,8 @@ var knockback_velocity: Vector2 = Vector2.ZERO
 @export var sprites: Node2D
 var old_scale: Vector2
 
-@export var death_timer: Timer
+@export var damage_sound_player: AudioStreamPlayer2D
+@export var base_damage_sound_pitch: float = 1.0
 
 var player: Player
 
@@ -32,9 +36,7 @@ func _ready() -> void:
 	old_scale = sprites.scale
 
 func add_exp() -> void:
-	print("adding exp")
 	if player:
-		print("with player")
 		player.add_exp(exp_amount)
 	
 func die() -> void:
@@ -53,13 +55,14 @@ func die() -> void:
 		lootbag.global_position = global_position
 		lootbag.add_items(drop)
 		get_tree().current_scene.add_child.call_deferred(lootbag)
-	
-	queue_free()
 
 func take_damage(amount: float) -> void:
 	if dead: return
+	_play_damage_sound()
+	
 	var resist_adjusted_damage = amount * (1 - resistance)
 	health_component.take_damage(resist_adjusted_damage)
+	took_damage.emit()
 	
 	var scale_tween = create_tween()
 	scale_tween.tween_property(sprites, "scale", old_scale*1.1, 0.1)
@@ -70,4 +73,10 @@ func knockback(amount: float, direction: Vector2) -> void:
 	knockback_velocity = direction * resisted_knockback
 	create_tween().tween_property(self, "knockback_velocity", Vector2.ZERO, 0.3)
 
-signal has_died
+func _play_damage_sound() -> void:
+	if not damage_sound_player: 
+		print("wah")
+		return # should be set for each individual enemy
+	damage_sound_player.pitch_scale = base_damage_sound_pitch * randf_range(0.9,1.1)
+	print("not wah?")
+	damage_sound_player.play()

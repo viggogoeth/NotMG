@@ -80,3 +80,6 @@ func move_start() -> void:
 
 func move_stop() -> void:
 	$Scalables/AnimatedSprite2D.animation = "idle"
+
+func _on_has_died() -> void:
+	queue_free()

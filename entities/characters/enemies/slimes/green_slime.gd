@@ -21,6 +21,7 @@ func _ready() -> void:
 	sprite.speed_scale = 0.5 / $JumpMovementComponent.movement_duration
 	health_component.set_health(health, health)
 	sprite.self_modulate = color
+	base_damage_sound_pitch = 1.0 / enemy_scale # this implies that the "regular" slimes are scaled to 2x (base is then 0.5)
 
 func _physics_process(delta: float) -> void:
 	if dead: return
@@ -41,7 +42,7 @@ func move_start() -> void:
 func move_stop() -> void:
 	$Scalables/AnimatedSprite2D.animation = "idle"
 
-
 func _on_has_died() -> void:
-	print("has died from signal")
 	$Scalables/AnimatedSprite2D.animation = "dying"
+	await get_tree().create_timer(1).timeout
+	queue_free()
