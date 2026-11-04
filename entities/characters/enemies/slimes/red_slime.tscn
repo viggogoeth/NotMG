@@ -134,6 +134,9 @@ collision_layer = 4
 collision_mask = 2
 motion_mode = 1
 script = ExtResource("1_faa26")
+health = 100.0
+contact_damage = 10.0
+exp_amount = 20.0
 health_component = NodePath("Scalables/HealthComponent")
 sprites = NodePath("Scalables/Sprites")
 

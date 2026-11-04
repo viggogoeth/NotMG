@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://t88ggu5tb2k7"]
+
+[ext_resource type="Script" uid="uid://dleysk5p4lapj" path="res://entities/characters/enemies/slimes/components/shoot_attack_component.gd" id="1_s2q1t"]
+[ext_resource type="PackedScene" uid="uid://duuga3j05yrok" path="res://entities/projectiles/projectile.tscn" id="2_ysdv0"]
+
+[node name="ShootAttackComponent" type="Node2D" unique_id=2131583610]
+script = ExtResource("1_s2q1t")
+projectile_scene = ExtResource("2_ysdv0")
+
+[node name="ShootCooldown" type="Timer" parent="." unique_id=61423711]
+wait_time = 5.0
+one_shot = true
+
+[node name="ShootPause" type="Timer" parent="." unique_id=355680811]
+one_shot = true
+
+[node name="PostAttackCooldown" type="Timer" parent="." unique_id=1705987086]
+wait_time = 0.75
+one_shot = true
+
+[connection signal="timeout" from="ShootCooldown" to="." method="_on_shoot_cooldown_timeout"]
+[connection signal="timeout" from="ShootPause" to="." method="_on_shoot_pause_timeout"]
+[connection signal="timeout" from="PostAttackCooldown" to="." method="_on_post_attack_cooldown_timeout"]

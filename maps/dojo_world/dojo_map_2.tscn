@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://barck7peqm2lo" path="res://entities/characters/player.tscn" id="2_jn3ic"]
 [ext_resource type="Texture2D" uid="uid://b3kycacdhoaok" path="res://tilesets/plain_tiles.png" id="2_ndc5a"]
 [ext_resource type="PackedScene" uid="uid://cejoi53cr8sdp" path="res://entities/characters/enemies/slimes/red_slime.tscn" id="4_w48uw"]
+[ext_resource type="PackedScene" uid="uid://csmrpi8qtld4p" path="res://entities/characters/enemies/slimes/blue_slime.tscn" id="5_702yh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w48uw"]
 texture = ExtResource("2_ndc5a")
@@ -46,6 +47,31 @@ energy = 0.2
 
 [node name="RedSlime" parent="." unique_id=715088784 instance=ExtResource("4_w48uw")]
 position = Vector2(611, -297)
-health = 100.0
-contact_damage = 10.0
 exp_amount = 100.0
+
+[node name="BlueSlime" parent="." unique_id=739325602 instance=ExtResource("5_702yh")]
+position = Vector2(1271, -311)
+
+[node name="BlueSlime2" parent="." unique_id=216649854 instance=ExtResource("5_702yh")]
+position = Vector2(882, -602)
+
+[node name="BlueSlime3" parent="." unique_id=1862952612 instance=ExtResource("5_702yh")]
+position = Vector2(1374, -622)
+
+[node name="BlueSlime4" parent="." unique_id=267963486 instance=ExtResource("5_702yh")]
+position = Vector2(334, -638)
+
+[node name="BlueSlime5" parent="." unique_id=223746850 instance=ExtResource("5_702yh")]
+position = Vector2(693, -792)
+
+[node name="BlueSlime6" parent="." unique_id=1262935982 instance=ExtResource("5_702yh")]
+position = Vector2(1185, -788)
+
+[node name="BlueSlime7" parent="." unique_id=1746329698 instance=ExtResource("5_702yh")]
+position = Vector2(1501, -986)
+
+[node name="BlueSlime8" parent="." unique_id=452610853 instance=ExtResource("5_702yh")]
+position = Vector2(1031, -999)
+
+[node name="BlueSlime9" parent="." unique_id=335265292 instance=ExtResource("5_702yh")]
+position = Vector2(456, -986)

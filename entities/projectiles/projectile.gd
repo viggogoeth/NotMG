@@ -6,22 +6,25 @@ const HOMING_PATTERN = preload("res://entities/projectiles/patterns/homing_patte
 
 @export var on_hit_particles: PackedScene
 
+@export var color: Color = Color("ff86ffff")
+
 @export var speed: float = 750.0
 @export var max_range: float = 800.0
 
 var time_elapsed: float = 0.0
 @onready var spawn_position: Vector2 = global_position
 
-@export var damage: float = 25.0
+@export var damage: float = 10.0
 
 var inverted: bool = false
 
 var direction: Vector2
 var straight_distance_traveled: float = 0.0
 
+@onready var color_rect: ColorRect = $ColorRect
 
 func _ready() -> void:
-	pass
+	color_rect.color = color
 
 func _physics_process(delta: float) -> void:
 	time_elapsed += delta
@@ -53,12 +56,13 @@ func _on_body_entered(body: Node2D) -> void:
 	queue_free()
 
 func _add_particles_to_tree() -> void:
-	var node = on_hit_particles.instantiate()
-	node.position = global_position
-	node.set_backsplash(direction.normalized())
-	node.start_particles()
+	var particles = on_hit_particles.instantiate()
+	particles.position = global_position
+	particles.set_backsplash(direction.normalized())
+	particles.start_particles()
+	particles.color = color
 	
-	get_tree().current_scene.add_child(node)
+	get_tree().current_scene.add_child(particles)
 
 func get_closest_target() -> Node2D:
 	var targets: Array[Node2D] = $HomingRadius.get_overlapping_bodies()
@@ -75,3 +79,24 @@ func get_closest_target() -> Node2D:
 			closest_node = target
 		
 	return closest_node
+
+func set_color(color: Color) -> void:
+	self.color = color
+
+func set_collision_mask_by_shooter(shooter_type: String) -> void:
+	# 1 = player
+	# 2 = world
+	# 3 = enemy
+	# 4 = super enemy
+	if shooter_type == "enemy":
+		set_collision_mask_value(1, true)
+		set_collision_mask_value(3, false)
+		set_collision_mask_value(4, false)
+	elif shooter_type == "player":
+		set_collision_mask_value(1, false)
+		set_collision_mask_value(3, true)
+		set_collision_mask_value(4, true)
+	elif shooter_type == "super_enemy":
+		set_collision_mask_value(1, true)
+		set_collision_mask_value(3, true)
+		set_collision_mask_value(4, false)

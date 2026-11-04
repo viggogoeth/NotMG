@@ -75,8 +75,6 @@ func knockback(amount: float, direction: Vector2) -> void:
 
 func _play_damage_sound() -> void:
 	if not damage_sound_player: 
-		print("wah")
 		return # should be set for each individual enemy
 	damage_sound_player.pitch_scale = base_damage_sound_pitch * randf_range(0.9,1.1)
-	print("not wah?")
 	damage_sound_player.play()

@@ -75,11 +75,5 @@ func hide_sprites() -> void:
 	for child in all_sprites_node.get_children():
 		child.hide()
 
-func move_start() -> void:
-	$Scalables/AnimatedSprite2D.animation = "move"
-
-func move_stop() -> void:
-	$Scalables/AnimatedSprite2D.animation = "idle"
-
 func _on_has_died() -> void:
 	queue_free()

@@ -262,7 +262,7 @@ func _attack_ranged(weapon: WeaponData, pattern: String, invert_pattern: bool = 
 	
 	projectile.set_pattern(pattern)
 	projectile.inverted = invert_pattern
-	get_owner().add_child(projectile)
+	get_tree().root.add_child(projectile)
 
 func attack_staff(staff: StaffData) -> void:
 	$MageHandSprite.animation = "attack_up"

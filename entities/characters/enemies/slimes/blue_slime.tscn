@@ -1,0 +1,133 @@
+[gd_scene format=3 uid="uid://csmrpi8qtld4p"]
+
+[ext_resource type="Script" uid="uid://bws3yt2xsexn" path="res://entities/characters/enemies/slimes/blue_slime.gd" id="1_1ggb1"]
+[ext_resource type="PackedScene" uid="uid://qxwiaux0yv7h" path="res://entities/components/health_component.tscn" id="2_yvfx5"]
+[ext_resource type="PackedScene" uid="uid://c02efoks2xrqt" path="res://entities/components/hitbox_component.tscn" id="3_05o1u"]
+[ext_resource type="Texture2D" uid="uid://cpge4pdqo2847" path="res://sprites/slime/slime_move.png" id="4_j1e0s"]
+[ext_resource type="PackedScene" uid="uid://bt860mh3ihxku" path="res://entities/characters/enemies/slimes/components/jump_movement_component.tscn" id="5_s0hrr"]
+[ext_resource type="PackedScene" uid="uid://t88ggu5tb2k7" path="res://entities/characters/enemies/slimes/components/shoot_attack_component.tscn" id="6_1ggb1"]
+[ext_resource type="PackedScene" uid="uid://bfdqgkscuo4jc" path="res://entities/components/vision_box_component.tscn" id="7_ltfwr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2be7j"]
+size = Vector2(48, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q5lb5"]
+size = Vector2(48, 48)
+
+[sub_resource type="Gradient" id="Gradient_02vvn"]
+offsets = PackedFloat32Array(0.38333333, 0.95)
+colors = PackedColorArray(0, 0, 0, 1, 0.2509804, 0.2509804, 0.2509804, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gknw3"]
+gradient = SubResource("Gradient_02vvn")
+width = 70
+height = 24
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.75, 0)
+
+[sub_resource type="Animation" id="Animation_8llpb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Scalables/Sprites/MoveSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_rlviq"]
+resource_name = "move"
+length = 0.26666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Scalables/Sprites/MoveSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.23333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_crmat"]
+_data = {
+&"RESET": SubResource("Animation_8llpb"),
+&"move": SubResource("Animation_rlviq")
+}
+
+[node name="BlueSlime" type="CharacterBody2D" unique_id=739325602 node_paths=PackedStringArray("health_component", "sprites")]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_1ggb1")
+health = 100.0
+contact_damage = 10.0
+exp_amount = 20.0
+health_component = NodePath("Scalables/HealthComponent")
+sprites = NodePath("Scalables/Sprites")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=961774076]
+visible = false
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 24.0
+offset_bottom = 24.0
+color = Color(0, 0.39532185, 0.022088934, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1178488648 groups=["scalables"]]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_2be7j")
+
+[node name="Scalables" type="Node2D" parent="." unique_id=1560041502]
+
+[node name="HealthComponent" parent="Scalables" unique_id=807587943 groups=["scalables"] instance=ExtResource("2_yvfx5")]
+position = Vector2(0, 34)
+
+[node name="HitboxComponent" parent="Scalables" unique_id=1058904513 groups=["scalables"] instance=ExtResource("3_05o1u")]
+
+[node name="CollisionShape2D" parent="Scalables/HitboxComponent" index="0" unique_id=103943116]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_q5lb5")
+
+[node name="Shadow" type="Sprite2D" parent="Scalables" unique_id=1824948816]
+z_index = -1
+position = Vector2(0, 32)
+texture = SubResource("GradientTexture2D_gknw3")
+
+[node name="Sprites" type="Node2D" parent="Scalables" unique_id=294461319]
+
+[node name="MoveSprite" type="Sprite2D" parent="Scalables/Sprites" unique_id=1226167639]
+texture_filter = 1
+position = Vector2(-1.7881393e-06, -16.000004)
+scale = Vector2(6.0000005, 6.0000005)
+texture = ExtResource("4_j1e0s")
+hframes = 2
+
+[node name="JumpMovementComponent" parent="." unique_id=175021962 node_paths=PackedStringArray("enemy") instance=ExtResource("5_s0hrr")]
+movement_cooldown = 0.3
+movement_duration = 0.25
+enemy = NodePath("..")
+
+[node name="ShootAttackComponent" parent="." unique_id=2131583610 node_paths=PackedStringArray("enemy") instance=ExtResource("6_1ggb1")]
+enemy = NodePath("..")
+
+[node name="VisionBoxComponent" parent="." unique_id=1268107380 instance=ExtResource("7_ltfwr")]
+visible = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=157283404]
+libraries/ = SubResource("AnimationLibrary_crmat")
+
+[connection signal="has_died" from="." to="." method="_on_has_died"]
+[connection signal="shooting" from="." to="." method="_on_shooting"]
+[connection signal="winding" from="." to="." method="_on_winding"]
+[connection signal="body_entered" from="VisionBoxComponent" to="." method="_on_vision_box_component_body_entered"]
+
+[editable path="Scalables/HitboxComponent"]
