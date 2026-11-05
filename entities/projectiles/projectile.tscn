@@ -7,7 +7,7 @@
 size = Vector2(16, 16)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ek2yu"]
-radius = 250.0
+radius = 109.004585
 
 [node name="Projectile" type="Area2D" unique_id=910072545]
 z_index = 1

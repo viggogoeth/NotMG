@@ -1,7 +1,7 @@
 extends Node
 
 var target: Node2D = null
-var turn_speed: float = 3.0
+var turn_speed: float = 9.0
 
 func get_offset(projectile: Projectile, delta: float) -> Vector2:
 	target = projectile.get_closest_target()
