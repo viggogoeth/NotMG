@@ -23,7 +23,7 @@ func _init_cfg() -> void:
 	print("Creating new config: 'user_config.cfg'")
 
 	_update_map_and_file_value(config, "Gameplay", "player_color", Color("red"))
-	_update_map_and_file_value(config, "Gameplay", "dash_mode", "Follow Mouse")
+	_update_map_and_file_value(config, "Gameplay", "dash_follows_mouse", true)
 	_add_default_keybinds(config)
 	config.save("user://user_config.cfg")
 
@@ -77,7 +77,7 @@ func _update_map_and_file_value(config: ConfigFile, section: String, key: String
 	config.set_value(section, key, value)
 	gameplay_config_map.set(key, value)
 
-func update_config(section: String, key: String, value: String) -> void:
+func update_config(section: String, key: String, value: Variant) -> void:
 	var config = ConfigFile.new()
 	var err = config.load("user://user_config.cfg")
 	if err != OK:

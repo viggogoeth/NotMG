@@ -110,7 +110,10 @@ func _physics_process(delta: float) -> void:
 
 
 func _dodge() -> void:
-	dodge_direction = (get_global_mouse_position() - global_position).normalized()
+	if Config.get_gameplay_key_value("dash_follows_mouse"):
+		dodge_direction = (get_global_mouse_position() - global_position).normalized()
+	else:
+		dodge_direction = velocity.normalized()
 	dodging = true
 	can_take_damage = false
 	can_dodge = false

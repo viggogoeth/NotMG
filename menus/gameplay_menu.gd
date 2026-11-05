@@ -4,13 +4,14 @@ extends VBoxContainer
 
 func _ready() -> void:
 	# read from config to get current settings
-	dash_mode_toggle.text = Config.get_gameplay_key_value("dash_mode")
-
-func _on_dash_mode_toggle_pressed() -> void:
-	var mode: String
-	if dash_mode_toggle.text == "Follow Mouse":
-		mode = "Follow Keyboard"
+	#dash_mode_toggle.text = Config.get_gameplay_key_value("dash_follows_mouse")
+	if Config.get_gameplay_key_value("dash_follows_mouse"):
+		dash_mode_toggle.button_pressed = true
+		dash_mode_toggle.text = "Follows Mouse"
 	else:
-		mode = "Follow Mouse"
-	dash_mode_toggle.text = mode
-	Config.update_config("Gameplay", "dash_mode", mode)
+		dash_mode_toggle.text = "Follows Keyboard"
+
+func _on_dash_mode_toggle_toggled(toggled_on: bool) -> void:
+	print("follows mouse: ", toggled_on)
+	dash_mode_toggle.text = "Follows Mouse" if toggled_on else "Follows Keyboard"
+	Config.update_config("Gameplay", "dash_follows_mouse", toggled_on)

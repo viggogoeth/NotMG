@@ -76,10 +76,10 @@ layout_mode = 2
 
 [node name="DashModeToggle" type="Button" parent="PanelContainer/VBoxContainer/GameplayMenu/DashMode" unique_id=71258348]
 layout_mode = 2
+toggle_mode = true
 text = "Follow Mouse"
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Tabs/GameplayTab" to="." method="_on_gameplay_tab_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Tabs/KeybindingsTab" to="." method="_on_keybindings_tab_pressed"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/GameplayMenu/DashMode/DashModeToggle" to="PanelContainer/VBoxContainer/GameplayMenu" method="_on_dash_mode_toggle_pressed"]
 [connection signal="toggled" from="PanelContainer/VBoxContainer/GameplayMenu/DashMode/DashModeToggle" to="PanelContainer/VBoxContainer/GameplayMenu" method="_on_dash_mode_toggle_toggled"]
