@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cx5cj2b21ai8q" path="res://menus/keybind_menu.tscn" id="1_6r3ve"]
 [ext_resource type="Script" uid="uid://dlfprwg16nmj5" path="res://menus/options_menu.gd" id="1_wyyb7"]
+[ext_resource type="Script" uid="uid://dmie51l5h1qiy" path="res://menus/gameplay_menu.gd" id="3_cet7k"]
 
 [node name="OptionsMenu" type="CanvasLayer" unique_id=1694963211 groups=["menu"]]
 process_mode = 3
@@ -57,11 +58,28 @@ layout_mode = 2
 
 [node name="GameplayMenu" type="VBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=1242169040]
 layout_mode = 2
+script = ExtResource("3_cet7k")
 
 [node name="Label" type="Label" parent="PanelContainer/VBoxContainer/GameplayMenu" unique_id=899218909]
 layout_mode = 2
 text = "this is where options go"
 
+[node name="DashMode" type="HBoxContainer" parent="PanelContainer/VBoxContainer/GameplayMenu" unique_id=1821782721]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/GameplayMenu/DashMode" unique_id=1208738651]
+layout_mode = 2
+text = "Dash Mode"
+
+[node name="Gap" type="Control" parent="PanelContainer/VBoxContainer/GameplayMenu/DashMode" unique_id=1931926246]
+layout_mode = 2
+
+[node name="DashModeToggle" type="Button" parent="PanelContainer/VBoxContainer/GameplayMenu/DashMode" unique_id=71258348]
+layout_mode = 2
+text = "Follow Mouse"
+
 [connection signal="pressed" from="PanelContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Tabs/GameplayTab" to="." method="_on_gameplay_tab_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Tabs/KeybindingsTab" to="." method="_on_keybindings_tab_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/GameplayMenu/DashMode/DashModeToggle" to="PanelContainer/VBoxContainer/GameplayMenu" method="_on_dash_mode_toggle_pressed"]
+[connection signal="toggled" from="PanelContainer/VBoxContainer/GameplayMenu/DashMode/DashModeToggle" to="PanelContainer/VBoxContainer/GameplayMenu" method="_on_dash_mode_toggle_toggled"]
