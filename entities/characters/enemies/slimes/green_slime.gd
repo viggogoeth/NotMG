@@ -14,11 +14,11 @@ var RNG = RandomNumberGenerator.new()
 func _ready() -> void:
 	super._ready()
 	health_component = $Scalables/HealthComponent
-	$CollisionShape2D.scale *= enemy_scale
-	$Scalables.scale *= enemy_scale
+	#$CollisionShape2D.scale *= enemy_scale
+	#$Scalables.scale *= enemy_scale
 	$Scalables/HitboxComponent.contact_damage = contact_damage
 	sprite.play()
-	sprite.speed_scale = 0.5 / $JumpMovementComponent.movement_duration
+	#sprite.speed_scale = 0.5 / $JumpMovementComponent.movement_duration
 	health_component.set_health(health, health)
 	sprite.self_modulate = color
 	base_damage_sound_pitch = 1.0 / enemy_scale # this implies that the "regular" slimes are scaled to 2x (base is then 0.5)
@@ -38,6 +38,7 @@ func set_idle() -> void:
 
 func move_start() -> void:
 	$Scalables/AnimatedSprite2D.animation = "move"
+	$Scalables/AnimatedSprite2D.play()
 
 func move_stop() -> void:
 	$Scalables/AnimatedSprite2D.animation = "idle"
