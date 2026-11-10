@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://bug3n72gtaduf"]
+
+[ext_resource type="Texture2D" uid="uid://4br2rceo0k5l" path="res://sprites/slime/slime_boss/slime_boss_idle.png" id="1_fdj8r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4jh0y"]
+size = Vector2(495, 483)
+
+[node name="SlimeBoss" type="CharacterBody2D" unique_id=1838871162]
+collision_layer = 6
+collision_mask = 2
+
+[node name="Sprites" type="Node2D" parent="." unique_id=1194789419]
+scale = Vector2(4, 4)
+
+[node name="IdleSprite" type="Sprite2D" parent="Sprites" unique_id=674840252]
+texture_filter = 1
+texture = ExtResource("1_fdj8r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=530135047]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_4jh0y")
