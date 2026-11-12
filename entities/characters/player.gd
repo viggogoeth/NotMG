@@ -206,7 +206,8 @@ func add_exp(amount: float) -> void:
 
 
 func update_mage_hand() -> void:
-	var direction = (get_global_mouse_position() - global_position).normalized()
+	#var direction = (get_global_mouse_position() - global_position).normalized()
+	var direction = global_position.direction_to(get_global_mouse_position())
 	$MageHandSprite.rotation = direction.angle() + PI / 2
 	$MageHandSprite.global_position = global_position + direction * 80
 	projectile_spawn.global_position = $MageHandSprite.global_position
@@ -283,6 +284,7 @@ func attack_sword(sword: SwordData) -> void:
 	for enemy in enemies_in_sword_range:
 		if enemy.has_method("take_damage"):
 			enemy.take_damage(damage)
+		if enemy.has_method("knockback"):
 			var scaled_knockback_amount = sword.knockback * (stats.strength / 10) # TODO: check that this amount makes sense
 			enemy.knockback(scaled_knockback_amount, get_attack_direction_vector())
 	swing_sound.pitch_scale = randf_range(0.9, 1.1)

@@ -2,6 +2,7 @@ extends Node
 
 # UI globals
 var zoom_level: float = 1.0
+var camera: PlayerCamera
 
 # const values
 const MAIN_MENU: String = "res://menus/main_menu.tscn"

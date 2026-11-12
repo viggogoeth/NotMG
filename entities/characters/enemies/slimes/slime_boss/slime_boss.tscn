@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://bug3n72gtaduf"]
+
+[ext_resource type="Texture2D" uid="uid://4br2rceo0k5l" path="res://sprites/slime/slime_boss/slime_boss_idle.png" id="1_fdj8r"]
+[ext_resource type="Script" uid="uid://smr5eyiu54mh" path="res://entities/characters/enemies/slimes/slime_boss/slime_boss.gd" id="1_tjc3j"]
+[ext_resource type="Script" uid="uid://b6pk0me5diy2d" path="res://entities/characters/enemies/slimes/slime_boss/phase_one.gd" id="3_0oou7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4jh0y"]
+size = Vector2(495, 483)
+
+[node name="SlimeBoss" type="CharacterBody2D" unique_id=1838871162]
+collision_layer = 6
+collision_mask = 2
+script = ExtResource("1_tjc3j")
+
+[node name="Sprites" type="Node2D" parent="." unique_id=1194789419]
+scale = Vector2(4, 4)
+
+[node name="IdleSprite" type="Sprite2D" parent="Sprites" unique_id=674840252]
+texture_filter = 1
+texture = ExtResource("1_fdj8r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=530135047]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_4jh0y")
+
+[node name="InvulnerabilityTimer" type="Timer" parent="." unique_id=1077091139]
+wait_time = 5.0
+one_shot = true
+
+[node name="PhaseOne" type="Node2D" parent="." unique_id=569704126 node_paths=PackedStringArray("boss")]
+script = ExtResource("3_0oou7")
+boss = NodePath("..")
+
+[node name="AttackCooldown" type="Timer" parent="PhaseOne" unique_id=820534666]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="AttackDuration" type="Timer" parent="PhaseOne" unique_id=1092039480]
+one_shot = true
+
+[node name="MovementCooldown" type="Timer" parent="PhaseOne" unique_id=991288062]
+one_shot = true
+autostart = true
+
+[node name="MovementDuration" type="Timer" parent="PhaseOne" unique_id=214696932]
+one_shot = true
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=701027177]
+
+[node name="ProgressBar" type="ProgressBar" parent="UI" unique_id=1902867210]
+offset_left = 400.0
+offset_top = 71.0
+offset_right = 1517.0
+offset_bottom = 98.0
+max_value = 1000.0
+step = 1.0
+value = 1000.0
+show_percentage = false
+
+[connection signal="timeout" from="InvulnerabilityTimer" to="." method="_on_invulnerability_timer_timeout"]
+[connection signal="timeout" from="PhaseOne/AttackCooldown" to="PhaseOne" method="_on_attack_cooldown_timeout"]
+[connection signal="timeout" from="PhaseOne/MovementCooldown" to="PhaseOne" method="_on_movement_cooldown_timeout"]
+[connection signal="timeout" from="PhaseOne/MovementDuration" to="PhaseOne" method="_on_movement_duration_timeout"]

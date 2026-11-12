@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://rcfke560iet0" path="res://maps/base_map.gd" id="1_cymp3"]
 [ext_resource type="PackedScene" uid="uid://barck7peqm2lo" path="res://entities/characters/player.tscn" id="2_jn3ic"]
 [ext_resource type="Texture2D" uid="uid://b3kycacdhoaok" path="res://tilesets/plain_tiles.png" id="2_ndc5a"]
-[ext_resource type="PackedScene" uid="uid://bug3n72gtaduf" path="res://entities/characters/enemies/slimes/slime_boss.tscn" id="4_w48uw"]
+[ext_resource type="PackedScene" uid="uid://bug3n72gtaduf" path="res://entities/characters/enemies/slimes/slime_boss/slime_boss.tscn" id="4_w48uw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w48uw"]
 texture = ExtResource("2_ndc5a")
@@ -44,5 +44,6 @@ rotation = -0.7853982
 color = Color(1, 0.64117295, 0.52651143, 1)
 energy = 0.2
 
-[node name="SlimeBoss" parent="." unique_id=1838871162 instance=ExtResource("4_w48uw")]
+[node name="SlimeBoss" parent="." unique_id=1838871162 node_paths=PackedStringArray("player") instance=ExtResource("4_w48uw")]
 position = Vector2(898, -862)
+player = NodePath("../Player")

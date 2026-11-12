@@ -868,11 +868,12 @@ texture = SubResource("GradientTexture2D_jq748")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1686537352]
 shape = SubResource("CapsuleShape2D_o21vo")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=484666724]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=484666724 node_paths=PackedStringArray("target")]
 process_callback = 0
 position_smoothing_enabled = true
 position_smoothing_speed = 20.0
 script = ExtResource("47_fwlip")
+target = NodePath("..")
 
 [node name="ProjectileSpawn" type="Marker2D" parent="." unique_id=933644270]
 
