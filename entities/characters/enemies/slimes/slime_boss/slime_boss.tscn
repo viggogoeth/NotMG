@@ -3,7 +3,126 @@
 [ext_resource type="Texture2D" uid="uid://4br2rceo0k5l" path="res://sprites/slime/slime_boss/slime_boss_idle.png" id="1_fdj8r"]
 [ext_resource type="Script" uid="uid://smr5eyiu54mh" path="res://entities/characters/enemies/slimes/slime_boss/slime_boss.gd" id="1_tjc3j"]
 [ext_resource type="Script" uid="uid://b6pk0me5diy2d" path="res://entities/characters/enemies/slimes/slime_boss/phase_one.gd" id="3_0oou7"]
+[ext_resource type="Texture2D" uid="uid://dm1vn8gmxxhgt" path="res://sprites/slime/slime_boss/slime_boss_move.png" id="3_7gq3m"]
 [ext_resource type="Script" uid="uid://tjfyv41gkvl7" path="res://entities/characters/enemies/slimes/slime_boss/phase_two.gd" id="4_0oou7"]
+[ext_resource type="AudioStream" uid="uid://d2mxpuqkyu3uy" path="res://sound/slime_step.wav" id="6_j265r"]
+[ext_resource type="AudioStream" uid="uid://duv65on7fnqxq" path="res://sound/slime_boss_step_land.wav" id="7_sgf02"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j265r"]
+atlas = ExtResource("3_7gq3m")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sgf02"]
+atlas = ExtResource("3_7gq3m")
+region = Rect2(2560, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7gq3m"]
+atlas = ExtResource("3_7gq3m")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mdvkn"]
+atlas = ExtResource("3_7gq3m")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fkkxi"]
+atlas = ExtResource("3_7gq3m")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_radiv"]
+atlas = ExtResource("3_7gq3m")
+region = Rect2(768, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a1kme"]
+atlas = ExtResource("3_7gq3m")
+region = Rect2(1024, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_60lou"]
+atlas = ExtResource("3_7gq3m")
+region = Rect2(1280, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vtmhb"]
+atlas = ExtResource("3_7gq3m")
+region = Rect2(1536, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6eqoh"]
+atlas = ExtResource("3_7gq3m")
+region = Rect2(1792, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_12dwt"]
+atlas = ExtResource("3_7gq3m")
+region = Rect2(2048, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rf1pa"]
+atlas = ExtResource("3_7gq3m")
+region = Rect2(2304, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3egmw"]
+atlas = ExtResource("3_7gq3m")
+region = Rect2(2560, 0, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0oou7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j265r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sgf02")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7gq3m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mdvkn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fkkxi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_radiv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a1kme")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_60lou")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vtmhb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6eqoh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_12dwt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rf1pa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3egmw")
+}],
+"loop": 1,
+"name": &"move",
+"speed": 6.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_raraa"]
+offsets = PackedFloat32Array(0, 0.9208861)
+colors = PackedColorArray(0, 0, 0, 1, 0.2509804, 0.2509804, 0.2509804, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7gq3m"]
+gradient = SubResource("Gradient_raraa")
+width = 120
+height = 20
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.75, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4jh0y"]
 size = Vector2(495, 483)
@@ -17,8 +136,21 @@ script = ExtResource("1_tjc3j")
 scale = Vector2(4, 4)
 
 [node name="IdleSprite" type="Sprite2D" parent="Sprites" unique_id=674840252]
+visible = false
 texture_filter = 1
 texture = ExtResource("1_fdj8r")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sprites" unique_id=709149927]
+modulate = Color(0, 1, 0, 1)
+texture_filter = 1
+position = Vector2(0, -67)
+sprite_frames = SubResource("SpriteFrames_0oou7")
+animation = &"idle"
+
+[node name="Shadow" type="Sprite2D" parent="Sprites" unique_id=1810367694]
+z_index = -1
+position = Vector2(0, 60.5)
+texture = SubResource("GradientTexture2D_7gq3m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=530135047]
 position = Vector2(-0.5, 0.5)
@@ -34,11 +166,12 @@ script = ExtResource("3_0oou7")
 boss = NodePath("..")
 
 [node name="AttackCooldown" type="Timer" parent="PhaseOne" unique_id=820534666]
-wait_time = 2.0
+wait_time = 5.0
 one_shot = true
 autostart = true
 
 [node name="AttackDuration" type="Timer" parent="PhaseOne" unique_id=1092039480]
+wait_time = 2.0
 one_shot = true
 
 [node name="MovementCooldown" type="Timer" parent="PhaseOne" unique_id=991288062]
@@ -83,10 +216,29 @@ step = 1.0
 value = 1000.0
 show_percentage = false
 
+[node name="Sound" type="Node2D" parent="." unique_id=456598081]
+
+[node name="JumpSound" type="AudioStreamPlayer2D" parent="Sound" unique_id=946883709]
+stream = ExtResource("6_j265r")
+volume_db = 5.6
+pitch_scale = 0.2
+max_distance = 12915.0
+attenuation = 4.924576
+
+[node name="LandSound" type="AudioStreamPlayer2D" parent="Sound" unique_id=122355699]
+stream = ExtResource("7_sgf02")
+volume_db = 4.0
+pitch_scale = 0.8
+max_distance = 12915.0
+attenuation = 4.9245687
+
 [connection signal="timeout" from="InvulnerabilityTimer" to="." method="_on_invulnerability_timer_timeout"]
+[connection signal="change_state" from="PhaseOne" to="." method="_on_phase_change_state"]
 [connection signal="timeout" from="PhaseOne/AttackCooldown" to="PhaseOne" method="_on_attack_cooldown_timeout"]
+[connection signal="timeout" from="PhaseOne/AttackDuration" to="PhaseOne" method="_on_attack_duration_timeout"]
 [connection signal="timeout" from="PhaseOne/MovementCooldown" to="PhaseOne" method="_on_movement_cooldown_timeout"]
 [connection signal="timeout" from="PhaseOne/MovementDuration" to="PhaseOne" method="_on_movement_duration_timeout"]
+[connection signal="change_state" from="PhaseTwo" to="." method="_on_phase_change_state"]
 [connection signal="timeout" from="PhaseTwo/AttackCooldown" to="PhaseTwo" method="_on_attack_cooldown_timeout"]
 [connection signal="timeout" from="PhaseTwo/MovementCooldown" to="PhaseTwo" method="_on_movement_cooldown_timeout"]
 [connection signal="timeout" from="PhaseTwo/MovementDuration" to="PhaseTwo" method="_on_movement_duration_timeout"]

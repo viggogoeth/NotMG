@@ -201,7 +201,7 @@ func needed_exp_to_level() -> float:
 
 func add_exp(amount: float) -> void:
 	current_exp += amount
-	if current_exp >= needed_exp_to_level():
+	while current_exp >= needed_exp_to_level():
 		_level_up()
 
 
@@ -302,9 +302,11 @@ func attack_fists() -> void:
 		var bam = $BamSpawner.create_bam()
 		e.add_child(bam)
 		var scaled_knockback_amount = fist_default_knockback * (stats.strength / 10) # TODO: check that this amount makes sense
-		e.knockback(scaled_knockback_amount, get_attack_direction_vector())
+		if e.has_method("knockback"):
+			e.knockback(scaled_knockback_amount, get_attack_direction_vector())
 		var damage = stats.strength / 10
-		e.take_damage(damage)
+		if e.has_method("take_damage"):
+			e.take_damage(damage)
 	swing_sound.pitch_scale = randf_range(0.9, 1.1)
 	swing_sound.play()
 
