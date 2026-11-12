@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var movement_speed: float = 150
+@export var movement_speed: float = 250
 
 @onready var attack_cooldown: Timer = $AttackCooldown
 @onready var attack_duration: Timer = $AttackDuration
