@@ -49,8 +49,6 @@ func _ready() -> void:
 	$AnimatedSprite2D.play()
 	$AnimatedSprite2D.modulate = Config.player_color
 	dodge_particles.color = Config.player_color
-	if is_instance_valid(equipped_weapon.item_in_slot):
-		$AttackTimer.wait_time = equipped_weapon.item_in_slot.base_attack_rate / (stats.dexterity / 10)
 	$IFrameTimer.wait_time = I_FRAMES
 	$DodgeTimer.wait_time = DODGE_FRAMES
 	$DodgeCooldown.wait_time = DODGE_COOLDOWN
@@ -86,13 +84,16 @@ func _physics_process(delta: float) -> void:
 
 	if Input.is_action_pressed("g_main_attack") and is_instance_valid(equipped_weapon.item_in_slot) and can_attack:
 		can_attack = false
-		var attack_cooldown = equipped_weapon.item_in_slot.base_attack_rate / ((stats.dexterity + 100.0) / 110.0)
+		var attack_cooldown = equipped_weapon.item_in_slot.base_attack_rate / ((stats.dexterity + 25.0) / 75.0)
 		$AttackTimer.wait_time = attack_cooldown
 		$AttackTimer.start()
 		$MageHandSprite.play()
 		$MageHandSprite.show()
 		var weapon: WeaponData = equipped_weapon.item_in_slot
-		$MageHandSprite.speed_scale = 0.5 / attack_cooldown
+		if not equipped_weapon.item_in_slot is SwordData:
+			$MageHandSprite.speed_scale = 0.5 / attack_cooldown
+		else:
+			$MageHandSprite.speed_scale = min(1, 0.5 / attack_cooldown)
 		weapon.attack(self)
 	elif Input.is_action_pressed("g_main_attack") and can_attack:
 		can_attack = false
@@ -257,7 +258,7 @@ func _on_mage_hand_sprite_animation_finished() -> void:
 
 func _attack_ranged(weapon: WeaponData, pattern: String, invert_pattern: bool = false) -> void:
 	var projectile = projectile_scene.instantiate()
-	projectile.damage = weapon.base_damage * (0.1 * stats.strength)
+	projectile.damage = weapon.base_damage + (0.01 * stats.strength)
 	projectile.max_range = weapon.range * 100
 	
 	var attack_direction = (get_global_mouse_position() - global_position).normalized()

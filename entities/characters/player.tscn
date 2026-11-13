@@ -799,7 +799,7 @@ animations = [{
 }],
 "loop": 0,
 "name": &"attack_sword",
-"speed": 40.0
+"speed": 120.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -911,7 +911,7 @@ texture_filter = 1
 position = Vector2(127, -11)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_y5erd")
-animation = &"attack_fist_flipped"
+animation = &"attack_sword"
 
 [node name="SwordHitbox" type="Area2D" parent="." unique_id=742207270]
 position = Vector2(127, -11)
