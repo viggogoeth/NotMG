@@ -24,6 +24,7 @@ enum State {
 	idle,
 	moving,
 	attacking,
+	attack_waiting,
 }
 
 enum Phase {
@@ -101,6 +102,12 @@ func _on_phase_change_state(state: SlimeBoss.State) -> void:
 			animated_sprite_2d.animation = "idle"
 			if prev_state == State.moving:
 				land_sound.play()
+			print("idle")
 		State.moving:
 			animated_sprite_2d.animation = "move"
 			jump_sound.play()
+			print("moving")
+		State.attacking:
+			print("attacking")
+		State.attack_waiting:
+			print("attack_waiting")
